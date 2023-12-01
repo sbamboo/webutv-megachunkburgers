@@ -3,7 +3,7 @@ CREATE DATABASE megacbur;
 USE megacbur;
 
 CREATE TABLE tb_orders (
-    ID int,
+    ID INT AUTO_INCREMENT PRIMARY KEY,
     `TableNr` varchar(45),
     FullName varchar(255),
     Telephone varchar(30),
@@ -13,7 +13,7 @@ CREATE TABLE tb_orders (
 );
 
 CREATE TABLE admin_pg (
-    ID int,
+    ID INT AUTO_INCREMENT PRIMARY KEY,
     Username varchar(45),
     Password varchar(80)
 );

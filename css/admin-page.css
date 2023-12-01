@@ -1,0 +1,14 @@
+#loginbox, #entriesbox {
+    background-color: #e1e1e1;
+    padding: 15px;
+    border: 1px solid #d1d1d1;
+    margin: 10px;
+}
+
+.tab_id {
+    color: gray;
+}
+
+.tab_title {
+    color: red;
+}
