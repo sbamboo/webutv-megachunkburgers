@@ -7,3 +7,6 @@ _functions.php är bara något jag importerar från med require().
 admin.php är en sida där man kan logga in och se vilka orders som är lagda.
 
 dbsetup innehåller en .bat fil för att skapa databaserna så alla slipper skriva SQL setup commandona.
+
+Användarnamn för admin är just nu "test"
+Lösen för admin är just nu "test"

@@ -68,6 +68,27 @@ $sqlargs2 = array("localhost","root","","megacbur","tb_orders");
             $times[] = $order["Time"];
             $details[] = $order["Details"];
         }
+        if (count($ids) == 0) {
+            $ids[] = "NO ENTRIES";
+        }
+        if (count($tablenrs) == 0) {
+            $tablenrs[] = "NO ENTRIES";
+        }
+        if (count($fullnames) == 0) {
+            $fullnames[] = "NO ENTRIES";
+        }
+        if (count($telephones) == 0) {
+            $telephones[] = "NO ENTRIES";
+        }
+        if (count($emails) == 0) {
+            $emails[] = "NO ENTRIES";
+        }
+        if (count($times) == 0) {
+            $times[] = "NO ENTRIES";
+        }
+        if (count($details) == 0) {
+            $details[] = "NO ENTRIES";
+        }
         echo '<tr>';
         echo '<th class="tab_id tab_title">ID</th>';
         foreach ($ids as $id) {
