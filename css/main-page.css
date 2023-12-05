@@ -47,13 +47,16 @@ main {
 }
 .sidebar-flyout {
     position: relative;
-    right: calc(-200px + 30px);
+    right: calc(-200px + 10px);
+    display: flex;
+    flex-direction: row;
 }
 .sidebar-flyout:hover {
     right: 0px;
 }
 .sidebar-content {
     width: 200px;
+    height: 200px;;
 }
 .sidebar-button {
     writing-mode: vertical-rl;
@@ -61,12 +64,21 @@ main {
     color: black;
     padding:10px;
 }
-#menu-flyout {
+#menu-content {
     background-color: yellow;
 }
-#book-flyout {
+#menu-button {
+    background-color: rgb(231, 231, 1);
+}
+#book-content {
     background-color: yellow;
 }
-#admi-flyout {
+#book-button {
+    background-color: rgb(231, 231, 1);
+}
+#admi-content {
     background-color: gray;
+}
+#admi-button {
+    background-color: rgb(105, 105, 105);
 }
