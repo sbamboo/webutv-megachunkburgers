@@ -18,15 +18,23 @@
                 </ul>
             </nav>
         </header>
-    <main>
-        <aside id="sidebar-menu">
-            <a id="menu-button">
+    <aside id="sidebar-menu">
+        <div id="menu-flyout">
+            <div id="menu-button">
                 Meny
-            </a>
-            <a id="book-button">
+            </div>
+            <div id="menu-content">
+            </div>
+        </div>
+        <div id="book-flyout">
+            <div id="book-button">
                 Boka
-            </a>
-        </aside>
+            </div>
+            <div id="book-content">
+            </div>
+    </div>
+    </aside>
+    <main>
         <section>
             <div id="employees">
                 <div id="owner">
