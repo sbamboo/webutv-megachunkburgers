@@ -6,7 +6,7 @@
         <title>MegeChomp Burger</title>
         <link type="text/css" rel="stylesheet" href="css/main-page.css">
     </head>
-<body>
+    <body>
         <header>
             <img src="">
             <nav>
@@ -18,58 +18,58 @@
                 </ul>
             </nav>
         </header>
-    <aside id="sidebar-menu">
-        <div id="menu-flyout">
-            <div id="menu-button">
-                Meny
-            </div>
-            <div id="menu-content">
-            </div>
-        </div>
-        <div id="book-flyout">
-            <div id="book-button">
-                Boka
-            </div>
-            <div id="book-content">
-            </div>
-    </div>
-    </aside>
-    <main>
-        <section>
-            <div id="employees">
-                <div id="owner">
-                    <img src="">
-                    <h2>Ägare</h2>
+        <main>
+            <aside id="sidebar-menu">
+                <div id="menu-flyout">
+                    <div id="menu-button">
+                        Meny
+                    </div>
+                    <div id="menu-content">
+                    </div>
+                </div>
+                <div id="book-flyout">
+                    <div id="book-button">
+                        Boka
+                    </div>
+                    <div id="book-content">
+                    </div>
+                </div>
+            </aside>
+            <section>
+                <div id="employees">
+                    <div id="owner">
+                        <img src="">
+                        <h2>Ägare</h2>
+                        <p>Vi är ett företag som gör saker</p>
+                    </div>
+                    <div class="chefs chef1">
+                        <img src="">
+                        <h2>Kock 1</h2>
+                        <p>Vi är ett företag som gör saker</p>
+                    </div>
+                    <div class="chefs chef2">
+                        <img src="">
+                        <h2>Kock 2</h2>
+                        <p>Vi är ett företag som gör saker</p>
+                    </div>
+                    <div class="chefs chef3">
+                        <img src="">
+                        <h2>Kock 3</h2>
+                        <p>Vi är ett företag som gör saker</p>
+                    </div>
+                </div>
+                <div id="about">
+                    <h2>Om oss</h2>
                     <p>Vi är ett företag som gör saker</p>
                 </div>
-                <div class="chefs chef1">
-                    <img src="">
-                    <h2>Kock 1</h2>
+                <div id="contact">
+                    <h2>Kontakt</h2>
                     <p>Vi är ett företag som gör saker</p>
                 </div>
-                <div class="chefs chef2">
-                    <img src="">
-                    <h2>Kock 2</h2>
-                    <p>Vi är ett företag som gör saker</p>
-                </div>
-                <div class="chefs chef3">
-                    <img src="">
-                    <h2>Kock 3</h2>
-                    <p>Vi är ett företag som gör saker</p>
-                </div>
-            </div>
-            <div id="about">
-                <h2>Om oss</h2>
-                <p>Vi är ett företag som gör saker</p>
-            </div>
-            <div id="contact">
-                <h2>Kontakt</h2>
-                <p>Vi är ett företag som gör saker</p>
-            </div>
-        </section>
-    </main>
-    <footer>
+            </section>
+        </main>
+        <footer>
 
-    </footer>
-</body>
+        </footer>
+    </body>
 </html>
