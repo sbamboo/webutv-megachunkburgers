@@ -20,9 +20,8 @@ $sqlargs2 = array("localhost","root","","megacbur","tb_orders");
             <h2>Login to admin page:</h2>
             <p>Username:</p><input type="text" name="usrnme" placeholder="Username">
             <p>Password:</p><input type="password" name="usrpsw" placeholder="Password">
-            <input type="submit" name="submit" value="Send In">
+            <input type="submit" name="submit" value="Send In">  <a href="./index.html" id="goback-btn">Go Back</a>
         </form>
-        <a href="./index.html">Go Back</a>
         <?php
         if ( isset($_POST["usrnme"]) && isset($_POST["usrpsw"]) ) {
             $funcres = validateLoginDetails($sqlargs,$_POST["usrnme"],$_POST["usrpsw"]);
@@ -49,9 +48,21 @@ $sqlargs2 = array("localhost","root","","megacbur","tb_orders");
         }
         echo '
         <div id="entriesbox">
-            <h2>Current booking entries:</h2>
-            <table border="1">
-        ';
+            <h2>Current booking entries:</h2>';
+        if ( isset($_POST["usrnme"]) && isset($_POST["usrpsw"]) ) {
+            echo '
+            <form method="post" action="admin.php" id="orders-ops">
+                <input type="submit" name="submit_3" value="Clear Orders">
+                <input type="hidden" name="usrnme" value="' . $_POST["usrnme"] . '">
+                <input type="hidden" name="usrpsw" value="' . $_POST["usrpsw"] . '">
+                <input type="hidden" name="submit" value="true">
+            </form><br>
+            ';
+        }
+        echo '   <table border="1">';
+        if ( isset($_POST["submit_3"]) ) {
+            clearOrders($sqlargs2);
+        }
         $orders = getOrders($sqlargs2);
         $ids = array();
         $tablenrs = array();
@@ -60,6 +71,7 @@ $sqlargs2 = array("localhost","root","","megacbur","tb_orders");
         $emails = array();
         $times = array();
         $details = array();
+        $clrbtns = array();
         foreach ($orders as $order) {
             $ids[] = $order["ID"];
             $tablenrs[] = $order["TableNr"];

@@ -195,4 +195,23 @@ function getOrders(array $sqlargs) {
 
     return $data;
 }
+
+function clearOrders(array $sqlargs) {
+    // Extracting values from the arg array
+    list($sql_host, $sql_uname, $sql_password, $sql_database, $sql_table) = $sqlargs;
+
+    // Connect to SQL server UTF8
+    $mysqli = new mysqli($sql_host, $sql_uname, $sql_password, $sql_database);
+    $mysqli->set_charset("utf8");
+
+    // Verify connection to database
+    if ($mysqli->connect_error) {
+        return array(False,"Failed to connect to SQL databse (" . $mysqli->connect_error . ")",array());
+    }
+    $sqlcmd = "TRUNCATE TABLE " . $sql_table;
+                
+    $result = $mysqli->query($sqlcmd);
+
+    return $result;
+}
 ?>
