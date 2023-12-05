@@ -19,14 +19,14 @@
             </nav>
         </header>
     <main>
-        <div id="sidebar-menu">
+        <aside id="sidebar-menu">
             <a id="menu-button">
                 Meny
             </a>
             <a id="book-button">
                 Boka
             </a>
-        </div>
+        </aside>
         <section>
             <div id="employees">
                 <div id="owner">
