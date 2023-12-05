@@ -37,29 +37,27 @@ main {
     background-color:white;
 }
 #sidebar-menu {
-    position:fixed;
+    position:absolute;
     display:flex;
     flex-direction: column;
     top:35%;
-    right:0%;
-    background-color:yellow;
-    padding:10px;
+    right:0px;
     height:20%;
-
 }
-#sidebar-menu a {
+.sidebar-flyout {
+    padding:10px;
+}
+.sidebar-button {
     writing-mode: vertical-rl;
     text-orientation: upright;
+    color: black;
 }
-#menu-button {
-    position:absolute;
-    right:0;
-    top:0;
-    height:13%;
+#menu-flyout {
+    background-color: yellow;
 }
-#book-button {
-    position:absolute;
-    right:0;
-    bottom:0;
-    height:13%;
+#book-flyout {
+    background-color: yellow;
+}
+#admi-flyout {
+    background-color: gray;
 }

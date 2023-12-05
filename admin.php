@@ -22,6 +22,7 @@ $sqlargs2 = array("localhost","root","","megacbur","tb_orders");
             <p>Password:</p><input type="password" name="usrpsw" placeholder="Password">
             <input type="submit" name="submit" value="Send In">
         </form>
+        <a href="./index.html">Go Back</a>
         <?php
         if ( isset($_POST["usrnme"]) && isset($_POST["usrpsw"]) ) {
             $funcres = validateLoginDetails($sqlargs,$_POST["usrnme"],$_POST["usrpsw"]);
