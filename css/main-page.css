@@ -42,15 +42,24 @@ main {
     flex-direction: column;
     top:35%;
     right:0px;
-    height:20%;
+    height:100%;
+    overflow: hidden;
 }
 .sidebar-flyout {
-    padding:10px;
+    position: relative;
+    right: calc(-200px + 30px);
+}
+.sidebar-flyout:hover {
+    right: 0px;
+}
+.sidebar-content {
+    width: 200px;
 }
 .sidebar-button {
     writing-mode: vertical-rl;
     text-orientation: upright;
     color: black;
+    padding:10px;
 }
 #menu-flyout {
     background-color: yellow;
