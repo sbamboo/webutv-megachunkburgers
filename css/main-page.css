@@ -37,48 +37,43 @@ main {
     background-color:white;
 }
 #sidebar-menu {
-    position:absolute;
+    position:fixed;
     display:flex;
     flex-direction: column;
     top:35%;
-    right:0px;
-    height:100%;
-    overflow: hidden;
-}
-.sidebar-flyout {
-    position: relative;
-    right: calc(-200px + 10px);
-    display: flex;
-    flex-direction: row;
-}
-.sidebar-flyout:hover {
-    right: 0px;
-}
-.sidebar-content {
-    width: 200px;
-    height: 200px;;
-}
-.sidebar-button {
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    color: black;
+    right:0%;
     padding:10px;
-}
-#menu-content {
-    background-color: yellow;
+    height:20%;
+
 }
 #menu-button {
-    background-color: rgb(231, 231, 1);
-}
-#book-content {
-    background-color: yellow;
+    height:80px;
+    position:absolute;
+    right:0;
+    top:30;
+    background-color:red;
+    padding-bottom:20px;
+    padding-left:10px;
+    border-radius:10px;
+    border:3px solid black;
 }
 #book-button {
-    background-color: rgb(231, 231, 1);
+    height:80px;
+    position:absolute;
+    right:0;
+    bottom:-30px;
+    background-color:orange;
+    padding-top:20px;
+    padding-left:10px;
+    border-radius:10px;
+    border:3px solid black;
 }
-#admi-content {
-    background-color: gray;
-}
-#admi-button {
-    background-color: rgb(105, 105, 105);
+#book-button p, #menu-button p {
+    font-size:15px;
+    margin-top:5px;
+    margin-right:10px;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    color:black;
+    opacity:1;
 }
