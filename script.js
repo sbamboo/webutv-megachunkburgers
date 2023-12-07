@@ -8,17 +8,17 @@ const bookPage = document.querySelector('#book-content');
 let menuActive = false;
 let bookActive = false;
 
-menuButton.addEventListener('mouseover', (event) => { 
+menuButton.addEventListener('mouseover', () => { 
     menuButton.style.zIndex = 1;
     bookButton.style.zIndex = 0;
 },false);
-bookButton.addEventListener('mouseover', (event) => {
+bookButton.addEventListener('mouseover', () => {
     bookButton.style.zIndex = 1;
     menuButton.style.zIndex = 0;
 },false);
 
 
-menuButton.addEventListener('mousedown', (event) => {
+menuButton.addEventListener('mousedown', () => {
     if(menuActive == true) {
         menuActive = false;
         menuPage.style.left = "-1500px";
@@ -31,7 +31,7 @@ menuButton.addEventListener('mousedown', (event) => {
     }
 },false);
 
-bookButton.addEventListener('mousedown', (event) => {
+bookButton.addEventListener('mousedown', () => {
     if(bookActive == true) {
         bookActive = false;
         bookPage.style.left = "-1500px";
