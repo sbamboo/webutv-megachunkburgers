@@ -20,7 +20,7 @@ $sqlargs2 = array("localhost","root","","megacbur","tb_orders");
             <h2>Login to admin page:</h2>
             <p>Username:</p><input type="text" name="usrnme" placeholder="Username">
             <p>Password:</p><input type="password" name="usrpsw" placeholder="Password">
-            <input type="submit" name="submit" value="Send In">  <a href="./index.html" id="goback-btn">Go Back</a>
+            <input type="submit" name="submit" value="Send In">  <a href="./index.php" id="goback-btn">Go Back</a>
         </form>
         <?php
         if ( isset($_POST["usrnme"]) && isset($_POST["usrpsw"]) ) {
