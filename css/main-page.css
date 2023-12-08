@@ -5,17 +5,16 @@
 }
 
 :root {
-    --page-height: 1200px;
-    --sb-tab-height: 350px;
-    --sb-tab-btn-height: 350px;
-    --sb-tab-btn-voffset: 200px;
-    --sb-tab-btn-width: 50px;
-    --sb-content-width: 800px;
-    --sb-tab-border-w: 3px;
+    --sb-tab-height: 30vh;
+    --sb-tab-btn-height: 30vh;
+    --sb-tab-btn-voffset: 17.14vh;
+    --sb-tab-btn-width: 2.74vw;
+    --sb-content-width: 43.8vw;
+    --sb-tab-border-w: 0.00257vh;
     --sb-tab-border: solid black;
     --sb-tab-border-rad: 20px 0 0 20px;
     --sb-tab-inner-border-rad: 17px 0 0 17px;
-    --sb-tab-font-size: 22px;
+    --sb-tab-font-size: min(1.89vh, 22px);
     --sb-tab-border-width: var(--sb-tab-border-w) 0 var(--sb-tab-border-w) var(--sb-tab-border-w);
     --sb-tab-fill-height: calc(var(--sb-tab-height) - var(--sb-tab-btn-voffset) + 15px);
     --sb-tab-fill-height-n: calc( var(--sb-tab-fill-height) * -1);
