@@ -196,6 +196,20 @@ input[type="checkbox"] {
     margin-right: 15%;
 }
 
+.group-picture-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.group-picture {
+    width: 800px;
+    height: 270px;
+    background-color: gray;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
 #employees {
     display: flex;
     flex-direction: column;

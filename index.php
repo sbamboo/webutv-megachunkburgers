@@ -69,7 +69,7 @@ $retargs = ["./index.php","./index.php"];
                             </div>
                         </form>
                         <?php
-                        if ( isset($_POST["fullname"]) && isset($_POST["telephone"]) && isset($_POST["email"]) && isset($_POST["time"]) && isset($_POST["details"]) ) {
+                        if ( isset($_POST["tablenr"]) && isset($_POST["fullname"]) && isset($_POST["telephone"]) && isset($_POST["email"]) && isset($_POST["time"]) && isset($_POST["details"]) ) {
                             addOrder($sqlargs,$retargs,$_POST["tablenr"],$_POST["fullname"],$_POST["telephone"],$_POST["email"],$_POST["time"],$_POST["details"]);
                         }
                         if (isset($_GET["ret-msg"]) && !empty($_GET["ret-msg"])) {
@@ -92,6 +92,9 @@ $retargs = ["./index.php","./index.php"];
             <section>
                 <div id="title">
                     <h1 id="title-text">MegaChomp Burgers</h1>
+                </div>
+                <div class="group-picture-wrapper">
+                    <img src="" class="group-picture">
                 </div>
                 <div id="employees">
                     <div class="employee" id="owner">
