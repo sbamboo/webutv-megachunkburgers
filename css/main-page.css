@@ -5,12 +5,11 @@
 }
 
 :root {
-    --sb-tab-height: max(30vh,234.67px);
-    --sb-tab-btn-height: max(30vh,234.67px);
-    --sb-tab-btn-voffset: 17.14vh;
-    --sb-tab-btn-width: 2.74vw;
-    --sb-content-width: 43.8vw;
-    --sb-content-width-smal: 17.14vw;
+    --sb-tab-height: 40vh;
+    --sb-tab-btn-height: 40vh;
+    --sb-tab-btn-voffset: 15vh;
+    --sb-tab-btn-width: 3vw;
+    --sb-content-width: 40vw;
     --sb-tab-border-w: 0.18vw;
     --sb-tab-border: solid white;
     --sb-tab-border-rad: 20px 0 0 20px;
@@ -28,8 +27,6 @@
     --sb-tab1-hover-color: #2980b9;
     --sb-tab2-bg-color:     #e74c3c;
     --sb-tab2-hover-color: #c0392b;
-    --sb-tab3-bg-color:     #2ecc71;
-    --sb-tab3-hover-color: #27ae60;
     --form-tx-color: black;
     --form-admin-btn-border-color: black;
     --form-admin-btn-bg-color: gray; 
@@ -53,9 +50,9 @@ main {
     border: 5px solid rgb(151, 0, 0);
     background-size: cover;
     background-repeat: no-repeat;
-    width:60vw;
-    margin-left:20vw;
-    height:100%;
+    width: 60vw;
+    margin-left: 20vw;
+    height: 100%;
 }
 .hidden {
     display: None;
@@ -63,7 +60,7 @@ main {
 
 #sidebar-menu {
     position: fixed;
-    top: 10%;
+    top: 20%;
     right: 0;
     display: flex;
     flex-direction: column-reverse;
@@ -131,19 +128,6 @@ main {
     background-color: var(--sb-tab2-bg-color);
 }
 
-#tab3 .sidebar-content {
-    width: var(--sb-content-width-smal);
-}
-#tab3 .sidebar-label {
-    background-color: var(--sb-tab3-bg-color);
-}
-#tab3 .sidebar-label:hover {
-    background-color: var(--sb-tab3-hover-color);
-}
-#tab3 .sidebar-content {
-    background-color: var(--sb-tab3-bg-color);
-}
-
 input[type="checkbox"] {
     display: none;
 }
@@ -152,10 +136,6 @@ input[type="checkbox"] {
 #cb2:checked + #tab2 {
     z-index: 11;
     right: 0px;
-}
-#cb3:checked + #tab3 {
-    z-index: 11;
-    right: calc( calc( var(--sb-content-width) - var(--sb-content-width-smal) ) * -1 );
 }
 
 .booking-form {
@@ -170,19 +150,6 @@ input[type="checkbox"] {
 }
 .booking-form h1, .booking-form p, .booking-form input, .booking-form option {
     color: var(--form-tx-color);
-}
-
-#admin-button {
-    display: block;
-    background-color: var(--form-admin-btn-bg-color);
-    padding: 5px;
-    border: 1px solid var(--form-admin-btn-border-color);
-    border-radius: 10px;
-    font-size: 20px;
-    margin-top: 50px;
-    margin-left: 20px;
-    width: 130px;
-    text-align: center;
 }
 
 /* PAGE CONTENT BELLOW HERE */
@@ -213,7 +180,7 @@ input[type="checkbox"] {
 #employees {
     display: flex;
     flex-direction: column;
-    height: 700px;
+    height: 650px;
     justify-content: space-evenly;
 }
 .employee {

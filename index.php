@@ -19,18 +19,6 @@ $retargs = ["./index.php","./index.php"];
         </header>
         <main>
             <aside id="sidebar-menu">
-                <input type="checkbox" id="cb3">
-                <div class="sidebar-tab" id="tab3">
-                    <div class="tab-button">
-                        <label for="cb3" class="sidebar-label">
-                            <p>Admin</p>
-                        </a>
-                    </div>
-                    <div class="sidebar-content">
-                        <a href="admin.php" id="admin-button">Go to admin page</a>
-                    </div>
-                </div>
-
                 <?php
                 if (isset($_GET["ret-msg"]) && !empty($_GET["ret-msg"]) && strpos($_GET["ret-msg"], "KeepTab:") !== false) {
                     echo '<input type="checkbox" id="cb2" checked="checked">';
@@ -97,13 +85,6 @@ $retargs = ["./index.php","./index.php"];
                     <img src="" class="group-picture">
                 </div>
                 <div id="employees">
-                    <div class="employee" id="owner">
-                        <img src="" class="employee-img">
-                        <div class="employee-info">
-                            <h2>Ägare</h2>
-                            <p>Vi är ett företag som gör saker</p>
-                        </div>
-                    </div>
                     <div class="employee" id=chef1">
                         <img src="" class="employee-img">
                         <div class="employee-info">
