@@ -5,6 +5,7 @@
 }
 
 :root {
+    --page-height: 1200px;
     --sb-tab-height: 350px;
     --sb-tab-btn-height: 350px;
     --sb-tab-btn-voffset: 200px;
@@ -24,7 +25,7 @@
 }
 
 html {
-    height: 100vh;
+    height: var(--page-height);
 }
 
 body {
