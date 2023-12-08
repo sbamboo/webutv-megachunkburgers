@@ -10,7 +10,7 @@ $retargs = ["./index.php","./index.php"];
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MegeChomp Burger</title>
+        <title>MegaChomp Burgers</title>
         <link type="text/css" rel="stylesheet" href="css/main-page.css">
     </head>
     <body>
@@ -90,6 +90,9 @@ $retargs = ["./index.php","./index.php"];
                 </div>
             </aside>
             <section>
+                <div id="title">
+                    <h1 id="title-text">MegaChomp Burgers</h1>
+                </div>
                 <div id="employees">
                     <div class="employee" id="owner">
                         <img src="" class="employee-img">

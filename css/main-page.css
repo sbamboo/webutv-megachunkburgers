@@ -12,7 +12,7 @@
     --sb-content-width: 43.8vw;
     --sb-content-width-smal: 17.14vw;
     --sb-tab-border-w: 0.00257vh;
-    --sb-tab-border: solid black;
+    --sb-tab-border: solid white;
     --sb-tab-border-rad: 20px 0 0 20px;
     --sb-tab-inner-border-rad: 17px 0 0 17px;
     --sb-tab-font-size: min(1.89vh, 22px);
@@ -22,6 +22,16 @@
     --sb-content-width-n: calc( var(--sb-content-width) * -1);
     --page-bg-img: url("https://media.discordapp.net/attachments/1180142803855093780/1181537169119133706/photo-1600089091183-cce8468ba5f8.png?ex=65816b3d&is=656ef63d&hm=01bf0d1e45dbb66add1329ce614e8f6531f4dc9b18da8847a2ff77caee050345&=&format=webp&quality=lossless&width=446&height=670");
     --main-bg-img: url("https://media.discordapp.net/attachments/817494956037111848/1180154606865612800/bild.png?ex=657c63a0&is=6569eea0&hm=868c80a848e852161a1e0443ed77c8f705f6ac796023a84c85cc84d2b226e108&=&format=webp&quality=lossless&width=1067&height=670");
+    --tab-bg-img: url("https://images.pexels.com/photos/326333/pexels-photo-326333.jpeg");
+    --sb-tab1-bg-color:    #3498db;
+    --sb-tab1-hover-color: #2980b9;
+    --sb-tab2-bg-color:     #e74c3c;
+    --sb-tab2-hover-color: #c0392b;
+    --sb-tab3-bg-color:     #2ecc71;
+    --sb-tab3-hover-color: #27ae60;
+    --form-tx-color: black;
+    --form-admin-btn-border-color: black;
+    --form-admin-btn-bg-color: gray; 
 }
 
 html {
@@ -83,6 +93,9 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: var(--tab-bg-img);
+    background-position: center;
+    background-size: cover;
 }
 
 .sidebar-label p {
@@ -96,38 +109,37 @@ main {
     height: 100%;
     width: var(--sb-content-width);
 }
-
 #tab1 .sidebar-label {
-    background-color: #3498db;
+    background-color: var(--sb-tab1-bg-color);
 }
 #tab1 .sidebar-label:hover {
-    background-color: #2980b9;
+    background-color: var(--sb-tab1-hover-color);
 }
 #tab1 .sidebar-content {
-    background-color: #3498db;
+    background-color: var(--sb-tab1-bg-color);
 }
 
 #tab2 .sidebar-label {
-    background-color: #e74c3c;
+    background-color: var(--sb-tab2-bg-color);
 }
 #tab2 .sidebar-label:hover {
-    background-color: #c0392b;
+    background-color: var(--sb-tab2-hover-color);
 }
 #tab2 .sidebar-content {
-    background-color: #e74c3c;
+    background-color: var(--sb-tab2-bg-color);
 }
 
 #tab3 .sidebar-content {
     width: var(--sb-content-width-smal);
 }
 #tab3 .sidebar-label {
-    background-color: #2ecc71;
+    background-color: var(--sb-tab3-bg-color);
 }
 #tab3 .sidebar-label:hover {
-    background-color: #27ae60;
+    background-color: var(--sb-tab3-hover-color);
 }
 #tab3 .sidebar-content {
-    background-color: #2ecc71;
+    background-color: var(--sb-tab3-bg-color);
 }
 
 input[type="checkbox"] {
@@ -155,14 +167,14 @@ input[type="checkbox"] {
     margin-left: 15px;
 }
 .booking-form h1, .booking-form p, .booking-form input, .booking-form option {
-    color: black;
+    color: var(--form-tx-color);
 }
 
 #admin-button {
     display: block;
-    background-color: gray;
+    background-color: var(--form-admin-btn-bg-color);
     padding: 5px;
-    border: 1px solid black;
+    border: 1px solid var(--form-admin-btn-border-color);
     border-radius: 10px;
     font-size: 20px;
     margin-top: 50px;
@@ -172,6 +184,15 @@ input[type="checkbox"] {
 }
 
 /* PAGE CONTENT BELLOW HERE */
+
+#title-text {
+    width: 70%;
+    text-align: center;
+    font-size: 58px;
+    border-bottom: 3px solid white;
+    margin-left: 15%;
+    margin-right: 15%;
+}
 
 #employees {
     display: flex;
