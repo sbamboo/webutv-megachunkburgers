@@ -5,8 +5,8 @@
 }
 
 :root {
-    --sb-tab-height: max(30vh,206.67px);
-    --sb-tab-btn-height: max(30vh,206.67px);
+    --sb-tab-height: max(30vh,234.67px);
+    --sb-tab-btn-height: max(30vh,234.67px);
     --sb-tab-btn-voffset: 17.14vh;
     --sb-tab-btn-width: 2.74vw;
     --sb-content-width: 43.8vw;
