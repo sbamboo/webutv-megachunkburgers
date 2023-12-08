@@ -50,7 +50,7 @@ header {
 }
 main {
     background-color: maroon;
-    border: 10px solid rgb(142, 0, 0);
+    border: 5px solid rgb(151, 0, 0);
     background-size: cover;
     background-repeat: no-repeat;
     width:60vw;
