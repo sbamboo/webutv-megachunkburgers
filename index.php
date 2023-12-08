@@ -48,19 +48,25 @@ $retargs = ["./index.php","./index.php"];
                     <div class="sidebar-content">
                         <form method="post" action="index.php" class="booking-form">
                             <h1>Book a table:</h1>
-                            <p>Which table?</p><select name="tablenr" size="5">
-                                <?php
-                                for ($i = $tables[0]; $i <= $tables[1]; $i++) {
-                                    echo '<option value="' . $i . '">' . $i . '</option>';
-                                }
-                                ?>
-                            </select>
-                            <p>Your full name:</p><input type="text" name="fullname" placeholder="Full name">
-                            <p>Phone Number:</p><input type="text" name="telephone" placeholder="Phone Number">
-                            <p>Email:</p><input type="text" name="email" placeholder="Email">
-                            <p>When do you want to be there?</p><input type="datetime-local" name="time">
-                            <p>Any additional details you want to provide: (Optional)</p><input type="text" name="details">
-                            <input type="submit" value="Send In">
+                            <div id="booking-form-wrapper">
+                                <div id="booking-form-sec1">
+                                    <p>Which table?</p><select name="tablenr" size="5">
+                                        <?php
+                                        for ($i = $tables[0]; $i <= $tables[1]; $i++) {
+                                            echo '<option value="' . $i . '">' . $i . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div id="booking-form-sec1">
+                                    <p>Your full name:</p><input type="text" name="fullname" placeholder="Full name">
+                                    <p>Phone Number:</p><input type="text" name="telephone" placeholder="Phone Number">
+                                    <p>Email:</p><input type="text" name="email" placeholder="Email">
+                                    <p>When do you want to be there?</p><input type="datetime-local" name="time">
+                                    <p>Any additional details you want to provide: (Optional)</p><input type="text" name="details">
+                                    <input type="submit" value="Send In">
+                                </div>
+                            </div>
                         </form>
                         <?php
                         if ( isset($_POST["fullname"]) && isset($_POST["telephone"]) && isset($_POST["email"]) && isset($_POST["time"]) && isset($_POST["details"]) ) {

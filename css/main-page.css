@@ -10,6 +10,7 @@
     --sb-tab-btn-voffset: 17.14vh;
     --sb-tab-btn-width: 2.74vw;
     --sb-content-width: 43.8vw;
+    --sb-content-width-smal: 17.14vw;
     --sb-tab-border-w: 0.00257vh;
     --sb-tab-border: solid black;
     --sb-tab-border-rad: 20px 0 0 20px;
@@ -117,7 +118,7 @@ main {
 }
 
 #tab3 .sidebar-content {
-    width: 200px;
+    width: var(--sb-content-width-smal);
 }
 #tab3 .sidebar-label {
     background-color: #2ecc71;
@@ -140,9 +141,19 @@ input[type="checkbox"] {
 }
 #cb3:checked + #tab3 {
     z-index: 11;
-    right: -600px;
+    right: calc( calc( var(--sb-content-width) - var(--sb-content-width-smal) ) * -1 );
 }
 
+.booking-form {
+    height: var(--sb-tab-height);
+}
+#booking-form-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+#booking-form-sec1 {
+    margin-left: 15px;
+}
 .booking-form h1, .booking-form p, .booking-form input, .booking-form option {
     color: black;
 }
