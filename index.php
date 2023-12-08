@@ -131,5 +131,6 @@ $retargs = ["./index.php","./index.php"];
         <footer>
 
         </footer>
+        <script src="./js/script.js"></script>
     </body>
 </html>
