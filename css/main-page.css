@@ -109,3 +109,25 @@ main {
     color:black;
     opacity:1;
 }
+#menu-content {
+    width:80%;
+    height:80%;
+    position:fixed;
+    background-color:yellow;
+    top:10%;
+    left:-1500px;
+    transition: 300ms;
+    border: black 5px solid;
+    border-radius:10px;
+}
+#book-content {
+    width:80%;
+    height:80%;
+    position:fixed;
+    background-color: aqua;
+    top:10%;
+    left:-1500px;
+    transition: 300ms;
+    border: black 5px solid;
+    border-radius:10px;
+}
