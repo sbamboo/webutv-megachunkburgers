@@ -23,6 +23,7 @@
     --page-bg-img: url("https://media.discordapp.net/attachments/1180142803855093780/1181537169119133706/photo-1600089091183-cce8468ba5f8.png?ex=65816b3d&is=656ef63d&hm=01bf0d1e45dbb66add1329ce614e8f6531f4dc9b18da8847a2ff77caee050345&=&format=webp&quality=lossless&width=446&height=670");
     --main-bg-img: url("https://media.discordapp.net/attachments/817494956037111848/1180154606865612800/bild.png?ex=657c63a0&is=6569eea0&hm=868c80a848e852161a1e0443ed77c8f705f6ac796023a84c85cc84d2b226e108&=&format=webp&quality=lossless&width=1067&height=670");
     --tab-bg-img: url("https://images.pexels.com/photos/326333/pexels-photo-326333.jpeg");
+    --main-bg-color: maroon;
     --sb-tab1-bg-color:    #3498db;
     --sb-tab1-hover-color: #2980b9;
     --sb-tab2-bg-color:     #e74c3c;
@@ -48,7 +49,7 @@ header {
     display:flex;
 }
 main {
-    background-image: var(--main-bg-img);
+    background-color: maroon;
     background-size: cover;
     background-repeat: no-repeat;
     width:60vw;
@@ -220,19 +221,19 @@ input[type="checkbox"] {
 }
 
 #about {
-    background-color: yellow;
+    background-color: rgb(255, 174, 0);
     margin-top: 100px;
     width: 60vw;
     height: 150px;
 }
 #produce {
-    background-color: red;
+    background-color: rgb(235, 13, 13);
     margin-top: 15px;
     width: 60vw;
     height: 150px;
 }
 #contact {
-    background-color: grey;
+    background-color: rgb(86, 86, 86);
     margin-top: 33px;
     width: 60vw;
     height:50px;
