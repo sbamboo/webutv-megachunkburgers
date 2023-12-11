@@ -14,6 +14,7 @@ $keeptab2 = "KeepTab:cb2:";
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MegaChomp Burgers</title>
         <link type="text/css" rel="stylesheet" href="css/main-page.css">
+        <link type="text/css" rel="stylesheet" href="css/sidebar.css">
     </head>
     <body>
         <header>
@@ -62,7 +63,7 @@ $keeptab2 = "KeepTab:cb2:";
                         addOrder($sqlargs,$retargs,$_POST["tablenr"],$_POST["fullname"],$_POST["telephone"],$_POST["email"],$_POST["time"],$_POST["details"]);
                     }
                     if (isset($_GET["ret-msg"]) && !empty($_GET["ret-msg"])) {
-                        echo $_GET["ret-msg"];
+                        echo '<p id="ret-msg">' . $_GET["ret-msg"] . '</p>';
                     }
                     ?>
                 </div>

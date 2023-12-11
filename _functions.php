@@ -26,7 +26,7 @@ function addOrder(array $sqlargs, array $retargs, int $tableNr, string $fullName
     // Basic validation of inputted values
     if (empty($tableNr) || empty($fullName) || $contactValid != true || empty($time)) {
         //return array(False,"Order placement failed! (Empty form input)",array());
-        toLanding($retargs,"KeepTab:Order placement failed! (Empty form input)");
+        toLanding($retargs,"KeepTab:cb2:Order placement failed! (Empty form input)");
     }
 
     // Extracting values from the arg array
@@ -38,7 +38,7 @@ function addOrder(array $sqlargs, array $retargs, int $tableNr, string $fullName
 
     // Verify connection to database
     if ($mysqli->connect_error) {
-        return array(False,"KeepTab:Failed to connect to SQL databse (" . $mysqli->connect_error . ")",array());
+        return array(False,"KeepTab:cb2:Failed to connect to SQL databse (" . $mysqli->connect_error . ")",array());
     }
 
     // Here we now use ? as a placeholder for our later values
@@ -64,7 +64,7 @@ function addOrder(array $sqlargs, array $retargs, int $tableNr, string $fullName
 
     // Return
     //return array(TRUE,"",array());
-    toLanding($retargs,"KeepTab:Order successfully placed!");
+    toLanding($retargs,"KeepTab:cb2:Order successfully placed!");
 }
 
 // Function to validate login-details (username and password) to check if they match a database
