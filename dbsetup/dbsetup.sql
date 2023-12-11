@@ -17,3 +17,5 @@ CREATE TABLE admin_pg (
     Username varchar(45),
     Password varchar(80)
 );
+
+INSERT INTO admin_pg (Username, Password) VALUES ("test","test");

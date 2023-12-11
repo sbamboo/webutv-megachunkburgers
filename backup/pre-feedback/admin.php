@@ -52,7 +52,7 @@ $sqlargs2 = array("localhost","root","","megacbur","tb_orders");
         if ( isset($_POST["usrnme"]) && isset($_POST["usrpsw"]) ) {
             echo '
             <form method="post" action="admin.php" id="orders-ops">
-                <input type="submit" name="submit_3" value="Clear Orders"><p id="order-clear-warn">(Use with caution, will clear al orders)</p>
+                <input type="submit" name="submit_3" value="Clear Orders">
                 <input type="hidden" name="usrnme" value="' . $_POST["usrnme"] . '">
                 <input type="hidden" name="usrpsw" value="' . $_POST["usrpsw"] . '">
                 <input type="hidden" name="submit" value="true">

@@ -1,30 +1,17 @@
 <?php
 
-// Function used to return to the landing page, with or without a message
 function toLanding($loc=["index.php","."],$msg=NULL) {
     if ($msg != NULL && !empty($msg)) {
         header("Location:" . $loc[0] . "?ret-msg=$msg");
     } else {
         header("Location:" . $loc[1]);
     }
-    exit(); // Exit to end the php execution-chain
+    exit();
 }
 
-// Function to place a table order into the database taking the information
-function addOrder(array $sqlargs, array $retargs, int $tableNr, string $fullName, string $telephone, string $email, string $time, string $details, bool $phoneOrMail=true) {
-    // Validate telephone or email requirement (if $phoneOrMail is true either phone or mail is required but not both, if set to false both are needed)
-    $contactValid = false;
-    if ($phoneOrMail == true) {
-        if (!empty($telephone) || !empty($email)) {
-            $contactValid = true;
-        }
-    } else {
-        if (!empty($telephone) && !empty($email)) {
-            $contactValid = true;
-        }
-    }
+function addOrder(array $sqlargs, array $retargs, int $tableNr, string $fullName, string $telephone, string $email, string $time, string $details) {
     // Basic validation of inputted values
-    if (empty($tableNr) || empty($fullName) || $contactValid != true || empty($time)) {
+    if (empty($tableNr) || empty($fullName) || empty($telephone) || empty($email) || empty($time)) {
         //return array(False,"Order placement failed! (Empty form input)",array());
         toLanding($retargs,"KeepTab:Order placement failed! (Empty form input)");
     }
@@ -67,7 +54,6 @@ function addOrder(array $sqlargs, array $retargs, int $tableNr, string $fullName
     toLanding($retargs,"KeepTab:Order successfully placed!");
 }
 
-// Function to validate login-details (username and password) to check if they match a database
 function validateLoginDetails(array $sqlargs, string $username, string $password) {
     // Basic validation of inputted values
     if (empty($username) || empty($password)) {
@@ -115,7 +101,6 @@ function validateLoginDetails(array $sqlargs, string $username, string $password
     }
 }
 
-// Function to update user data (In this case to update the login-details of a user account)
 function updUserData(array $sqlargs, string $username, string $password, string $olduname) {
     // Basic validation of inputted values
     if (empty($username) || empty($password) || empty($olduname)) {
@@ -186,7 +171,6 @@ function updUserData(array $sqlargs, string $username, string $password, string 
     }
 }
 
-// Function to get the orders from the SQL-order database and return them as an array.
 function getOrders(array $sqlargs) {
     // Extracting values from the arg array
     list($sql_host, $sql_uname, $sql_password, $sql_database, $sql_table) = $sqlargs;
@@ -212,7 +196,6 @@ function getOrders(array $sqlargs) {
     return $data;
 }
 
-// Function to clear the orders in the SQL-order database
 function clearOrders(array $sqlargs) {
     // Extracting values from the arg array
     list($sql_host, $sql_uname, $sql_password, $sql_database, $sql_table) = $sqlargs;

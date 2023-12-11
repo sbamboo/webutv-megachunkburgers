@@ -9,7 +9,7 @@ menuButton.forEach(button => button.addEventListener('mousedown', () => {
     bookButton[0].style.zIndex = 0;
 
     //uncheck every other checkbox
-    document.getElementById('#cb2').checked = false;
+    document.getElementById('cb2').checked = false;
 }),false);
 bookButton.forEach(button => button.addEventListener('mousedown', () => {
 
@@ -18,5 +18,5 @@ bookButton.forEach(button => button.addEventListener('mousedown', () => {
     bookButton[0].style.zIndex = 1;
 
     //uncheck every other checkbox
-    document.getElementById('#cb1').checked = false;
+    document.getElementById('cb1').checked = false;
 }),false);

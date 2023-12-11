@@ -12,4 +12,7 @@
 :: It also creates a table called admin_pg standing for admin-page, where the admin/owner-of-site/employees can login.
 ::     Username at 45 char long.
 ::     Password at 80 char long.
+:: 
+:: Finally it creates an account on the admin-page
+::
 mysql -u root < dbsetup.sql
