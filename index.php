@@ -100,7 +100,7 @@ $keeptab2 = "KeepTab:cb2:";
                     <img src="" class="group-picture">
                 </div>
                 <div id="employees">
-                    <div class="employee" id=chef1">
+                    <div class="employee" id="chef1">
                         <img src="" class="employee-img">
                         <div class="employee-info">
                             <h2>Kock 1</h2>

@@ -41,10 +41,6 @@ input[type="checkbox"] {
     z-index: 11;
     right: var(--sb-tab-pos);
 }
-#cb1:checked + #tab1 + .sidebar-content,
-#cb2:checked + #tab2 + .sidebar-content {
-    display: block;
-}
 
 /*Sidebar*/
 #sidebar-menu {
@@ -93,6 +89,7 @@ input[type="checkbox"] {
     font-size: var(--sb-tab-font-size);
     border-right: white 2px solid;
     margin-right: var(--sb-tab-text-rmar);
+    user-select:none;
 }
 
 /*Sidebar content*/
@@ -102,9 +99,9 @@ input[type="checkbox"] {
     position: absolute;
     top: var(--sb-content-to-offset);
     left: calc( calc(var(--sb-content-width) + var(--sb-content-mv-offset)) * -1);
-    display: none;
     border: var(--sb-content-border);
     border-radius: var(--sb-content-border-rad);
+    scale:0;
 }
 
 /*Colors*/
