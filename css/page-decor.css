@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    flex-direction: row;
+}
+
+:root {
+    --pg-dec-img-width: 10vw;
+    --pg-dec-left-mar: 20vw;
+}
+
+.page-decor {
+}
+
+.side-decor-img {
+    width: var(--pg-dec-img-width);
+    height: 100vh;
+    background-repeat: repeat-y;
+    background-size: cover;
+}
+
+#page-decor-left {
+    margin-left: calc( var(--pg-dec-left-mar) - var(--pg-dec-img-width) );
+}
+
+#page-decor-left .side-decor-img {
+    background-image: url("../images/sallad_left.png");
+}
+#page-decor-right .side-decor-img {
+    background-image: url("../images/sallad_right.png");
+}

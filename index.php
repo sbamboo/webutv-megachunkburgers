@@ -15,11 +15,16 @@ $keeptab2 = "KeepTab:cb2:";
         <title>MegaChomp Burgers</title>
         <link type="text/css" rel="stylesheet" href="css/main-page.css">
         <link type="text/css" rel="stylesheet" href="css/sidebar.css">
+        <link type="text/css" rel="stylesheet" href="css/page-decor.css">
     </head>
     <body>
         <header>
             <img src="">
         </header>
+        <aside class="page-decor" id="page-decor-left">
+            <div class="side-decor-img">
+            </div>
+        </aside>
         <main>
             <aside id="sidebar-menu">
                 <!-- PHP code to generate the checkbox HTML incase keeptab is used to "pre-click" a tab -->
@@ -135,6 +140,10 @@ $keeptab2 = "KeepTab:cb2:";
                 <a href="./admin.php">Admin</a>
             </section>
         </main>
+        <aside class="page-decor" id="page-decor-right">
+            <div class="side-decor-img">
+            </div>
+        </aside>
         <footer>
         </footer>
         <script src="./js/script.js"></script>
