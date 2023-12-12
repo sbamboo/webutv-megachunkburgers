@@ -102,6 +102,7 @@ input[type="checkbox"] {
     border: var(--sb-content-border);
     border-radius: var(--sb-content-border-rad);
     scale:0;
+    transition:250s;
 }
 
 /*Colors*/

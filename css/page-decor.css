@@ -23,8 +23,8 @@ body {
 }
 
 #page-decor-left .side-decor-img {
-    background-image: url("../images/sallad_left.png");
+    background-image: url("../media/sallad_left.png");
 }
 #page-decor-right .side-decor-img {
-    background-image: url("../images/sallad_right.png");
+    background-image: url("../media/sallad_right.png");
 }

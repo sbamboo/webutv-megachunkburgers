@@ -4,6 +4,8 @@ const bookButton = document.querySelector('#tab1');
 
 let content = document.querySelectorAll('.sidebar-content');
 
+const acontent = '<audio autoplay><source src="../media/sound.mp3" type="audio/mp3"></audio>';
+
 menuButton.addEventListener('mousedown', () => {
     if(document.getElementById('cb2').checked == true) {
         content[0].style.scale = 0;
@@ -11,6 +13,7 @@ menuButton.addEventListener('mousedown', () => {
     }else{
         content[0].style.scale = 1;
         content[0].style.zIndex = 1;
+
     }
 
     //uncheck every other checkbox
