@@ -71,7 +71,33 @@ $keeptab2 = "KeepTab:cb2:";
                         </div>
                     </div>
                 </div>
-                <div class="sidebar-content"></div>
+                <div class="sidebar-content">
+                    <form id="menu-order-form">    
+                        <div class="menu-header">
+                            <p>Meny</p>
+                            <div class="vert-div-smal">
+                            </div><p>Bord:</p>
+                            <input type="text" name="tablenr" placeholder="xx">
+                            <input type="submit" name="food-submit" value="Beställ">
+                        </div>
+                        <div class="menu-main">
+                            <nav class="menu-catsel">
+                                <div class="meny-category" id="menu-cat-hamburgare">
+                                    <p>Hamburgare</p>
+                                </div>
+                                <div class="meny-category" id="menu-cat-annat-kott">
+                                    <p>Andra Kött Rätter</p>
+                                </div>
+                                <div class="meny-category" id="menu-cat-drinks">
+                                    <p>Dryck</p>
+                                </div>
+                                <div class="meny-category" id="menu-cat-deserts">
+                                    <p>Desert</p>
+                                </div>
+                            </nav>
+                        </div>
+                    </form>
+                </div>
             </aside>
             <section>
                 <div id="title">
