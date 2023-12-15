@@ -36,12 +36,6 @@ input[type="checkbox"] {
     display: none;
 }
 
-#cb1:checked + #tab1,
-#cb2:checked + #tab2 {
-    z-index: 11;
-    right: var(--sb-tab-pos);
-}
-
 /*Sidebar*/
 #sidebar-menu {
     position: fixed;
