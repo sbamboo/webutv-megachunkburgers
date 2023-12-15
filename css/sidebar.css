@@ -31,11 +31,6 @@
     --sb-content-border-rad: 30px;
 }
 
-/*Functionality*/
-input[type="checkbox"] {
-    display: none;
-}
-
 /*Sidebar*/
 #sidebar-menu {
     position: fixed;
