@@ -9,33 +9,41 @@ const parent = document.querySelector('#music');
 
 
 menuButton.addEventListener('mousedown', () => {
-    if(document.getElementById('cb2').checked == true) {
+    if(content[0].style.scale == 1) {
         content[0].style.scale = 0;
         content[0].style.zIndex = 0;
+        menuButton.style.right = '-1vw';
         parent.innerHTML = acontent;
     }else{
         content[0].style.scale = 1;
         content[0].style.zIndex = 1;
+        menuButton.style.right = '0vw';
+        menuButton.style.zIndex = 1;
         parent.innerHTML = acontent;
-        document.getElementById('cb2').checked = true;
     }
 
-    //uncheck every other checkbox
-    document.getElementById('cb1').checked = false;
+    bookButton.style.right = '-1vw';
+    bookButton.style.zIndex = 0;
+    content[1].style.zIndex = 0;
     content[1].style.scale = 0;
 });
 bookButton.addEventListener('mousedown', () => {
-    if(document.getElementById('cb1').checked == true) {
+    if(content[1].style.scale == 1) {
         content[1].style.scale = 0;
         content[1].style.zIndex = 0;
+        bookButton.style.right = '-1vw';
         parent.innerHTML = acontent;
     }else{
         content[1].style.scale = 1;
         content[1].style.zIndex = 1;
+        console.log(content[1].style.zIndex)
+        bookButton.style.right = '0vw';
+        bookButton.style.zIndex = 1;
         parent.innerHTML = acontent;
-        document.getElementById('cb1').checked = true;
     }
 
-    document.getElementById('cb2').checked = false;
+    menuButton.style.right = '-1vw';
+    menuButton.style.zIndex = 0;
+    content[0].style.zIndex = 0;
     content[0].style.scale = 0;
 });
