@@ -27,15 +27,6 @@ $keeptab2 = "KeepTab:cb2:";
         </aside>
         <main>
             <aside id="sidebar-menu">
-                <!-- PHP code to generate the checkbox HTML incase keeptab is used to "pre-click" a tab -->
-                <?php
-                if (isset($_GET["ret-msg"]) && !empty($_GET["ret-msg"]) && strpos($_GET["ret-msg"], $keeptab2) !== false) {
-                    echo '<input type="checkbox" id="cb2" checked="checked">';
-                    $_GET["ret-msg"] = str_replace($keeptab2, "", $_GET["ret-msg"]);
-                } else {
-                    echo '<input type="checkbox" id="cb2">';
-                }
-                ?>
                 <!-- Section Content -->
                 <div class="sidebar-tab" id="tab2">
                     <div class="tab-button">
@@ -72,16 +63,6 @@ $keeptab2 = "KeepTab:cb2:";
                     }
                     ?>
                 </div>
-
-                <!-- PHP code to generate the checkbox HTML incase keeptab is used to "pre-click" a tab -->
-                <?php
-                if (isset($_GET["ret-msg"]) && !empty($_GET["ret-msg"]) && strpos($_GET["ret-msg"], $keeptab1) !== false) {
-                    echo '<input type="checkbox" id="cb1" checked="checked">';
-                    $_GET["ret-msg"] = str_replace($keeptab1, "", $_GET["ret-msg"]);
-                } else {
-                    echo '<input type="checkbox" id="cb1">';
-                }
-                ?>
                 <!-- Section Content -->
                 <div class="sidebar-tab" id="tab1">
                     <div class="tab-button">
