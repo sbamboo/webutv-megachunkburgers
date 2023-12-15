@@ -95,8 +95,8 @@ input[type="checkbox"] {
     left: calc( calc(var(--sb-content-width) + var(--sb-content-mv-offset)) * -1);
     border: var(--sb-content-border);
     border-radius: var(--sb-content-border-rad);
-    scale:0;
-    transition:250ms;
+    scale: 0;
+    transition: 0.15s;
 }
 
 /*Colors*/

@@ -10,3 +10,7 @@ dbsetup innehåller en .bat fil för att skapa databaserna så alla slipper skri
 
 Användarnamn för admin är just nu "test"
 Lösen för admin är just nu "test"
+
+
+cb1: Meny
+cb2: Book

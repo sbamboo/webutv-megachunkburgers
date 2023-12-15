@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    color:white;
+}
+body {
+    background-image: url("https://media.discordapp.net/attachments/1180142803855093780/1181537169119133706/photo-1600089091183-cce8468ba5f8.png?ex=65816b3d&is=656ef63d&hm=01bf0d1e45dbb66add1329ce614e8f6531f4dc9b18da8847a2ff77caee050345&=&format=webp&quality=lossless&width=446&height=670");
+}
+header {
+    text-align: center;
+    align-content:center;
+    display:flex;
+}
+main {
+    background-image: url("https://media.discordapp.net/attachments/817494956037111848/1180154606865612800/bild.png?ex=657c63a0&is=6569eea0&hm=868c80a848e852161a1e0443ed77c8f705f6ac796023a84c85cc84d2b226e108&=&format=webp&quality=lossless&width=1067&height=670");
+    width:60vw;
+    margin-left:20vw;
+    height:100%;
+}
+#employees {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-around;
+    align-items: center;
+}
+#owner {
+    text-align:center;
+    align-content: center;
+    width:100%;
+    height:50%;
+}
+.chef {
+    text-align:center;
+    align-content: center;
+    width:30%;
+    height:50%;
+    background-color:white;
+}
+#sidebar-menu {
+    position:fixed;
+    display:flex;
+    flex-direction: column;
+    top:35%;
+    right:0%;
+    padding:10px;
+    height:20%;
+
+}
+#menu-button {
+    height:80px;
+    position:absolute;
+    right:0;
+    top:30;
+    background-color:red;
+    padding-bottom:20px;
+    padding-left:10px;
+    border-radius:10px;
+    border:3px solid black;
+}
+#book-button {
+    height:80px;
+    position:absolute;
+    right:0;
+    bottom:-30px;
+    background-color:orange;
+    padding-top:20px;
+    padding-left:10px;
+    border-radius:10px;
+    border:3px solid black;
+}
+#book-button p, #menu-button p {
+    font-size:15px;
+    margin-top:5px;
+    margin-right:10px;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    color:black;
+    opacity:1;
+}
+#menu-content {
+    width:80%;
+    height:80%;
+    position:fixed;
+    background-color:yellow;
+    top:10%;
+    left:-1500px;
+    transition: 300ms;
+    border: black 5px solid;
+    border-radius:10px;
+}
+#book-content {
+    width:80%;
+    height:80%;
+    position:fixed;
+    background-color: aqua;
+    top:10%;
+    left:-1500px;
+    transition: 300ms;
+    border: black 5px solid;
+    border-radius:10px;
+}

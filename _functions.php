@@ -1,5 +1,22 @@
 <?php
 
+// Function to create a mysqli connection, returning the object in format array(<bool:success>,<str:message>,<mysqli:instance-object>)
+function connectDB(array $sqlargs) {
+    // Extracting values from the arg array
+    list($sql_host, $sql_uname, $sql_password, $sql_database, $sql_table) = $sqlargs;
+
+    // Connect to SQL server UTF8
+    $mysqli = new mysqli($sql_host, $sql_uname, $sql_password, $sql_database);
+    $mysqli->set_charset("utf8");
+
+    // Verify connection to database
+    if ($mysqli->connect_error) {
+        return array(False,"Failed to connect to SQL database (" . $mysqli->connect_error . ")",$mysqli);
+    } else {
+        return array(True,"Successfully connected to database",$mysqli);
+    }
+}
+
 // Function used to return to the landing page, with or without a message
 function toLanding($loc=["index.php","."],$msg=NULL) {
     if ($msg != NULL && !empty($msg)) {
@@ -8,6 +25,28 @@ function toLanding($loc=["index.php","."],$msg=NULL) {
         header("Location:" . $loc[1]);
     }
     exit(); // Exit to end the php execution-chain
+}
+
+// Function to get avaliable tables
+function getTables(array $sqlargs) {
+    // Extracting values from the arg array
+    list($sql_host, $sql_uname, $sql_password, $sql_database, $sql_table) = $sqlargs;
+
+    // Connect to SQL server UTF8
+    $mysqli = new mysqli($sql_host, $sql_uname, $sql_password, $sql_database);
+    $mysqli->set_charset("utf8");
+
+    // Verify connection to database
+    if ($mysqli->connect_error) {
+        return array(False,"Failed to connect to SQL databse (" . $mysqli->connect_error . ")",array());
+    }
+    $sqlcmd = "SELECT TableNr FROM " . $sql_table;
+                
+    $result = $mysqli->query($sqlcmd);
+
+    $result = mysqli_fetch_assoc($result);
+
+    return $result;
 }
 
 // Function to place a table order into the database taking the information

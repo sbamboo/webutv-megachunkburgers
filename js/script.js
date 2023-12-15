@@ -4,8 +4,8 @@ const bookButton = document.querySelector('#tab1');
 
 let content = document.querySelectorAll('.sidebar-content');
 
-const acontent = '<audio autoplay id="music"><source src="media/buttonsound.mp3" type="audio/mp3"></audio>';
-const parent = document.querySelector('#music');
+//const acontent = '<audio autoplay id="music"><source src="media/buttonsound.mp3" type="audio/mp3"></audio>';
+//const parent = document.querySelector('#music');
 
 
 menuButton.addEventListener('mousedown', () => {
@@ -13,13 +13,13 @@ menuButton.addEventListener('mousedown', () => {
         content[0].style.scale = 0;
         content[0].style.zIndex = 0;
         menuButton.style.right = '-1vw';
-        parent.innerHTML = acontent;
+        //parent.innerHTML = acontent;
     }else{
         content[0].style.scale = 1;
         content[0].style.zIndex = 1;
         menuButton.style.right = '0vw';
         menuButton.style.zIndex = 1;
-        parent.innerHTML = acontent;
+        //parent.innerHTML = acontent;
     }
 
     bookButton.style.right = '-1vw';
@@ -32,14 +32,14 @@ bookButton.addEventListener('mousedown', () => {
         content[1].style.scale = 0;
         content[1].style.zIndex = 0;
         bookButton.style.right = '-1vw';
-        parent.innerHTML = acontent;
+        //parent.innerHTML = acontent;
     }else{
         content[1].style.scale = 1;
         content[1].style.zIndex = 1;
         console.log(content[1].style.zIndex)
         bookButton.style.right = '0vw';
         bookButton.style.zIndex = 1;
-        parent.innerHTML = acontent;
+        //parent.innerHTML = acontent;
     }
 
     menuButton.style.right = '-1vw';
