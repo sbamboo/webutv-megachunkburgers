@@ -30,9 +30,9 @@ $keeptab2 = "KeepTab:cb2:";
                 <!-- Section Content -->
                 <div class="sidebar-tab" id="tab2">
                     <div class="tab-button">
-                        <label for="cb2" class="sidebar-label">
+                        <div class="sidebar-label">
                             <p>Book</p>
-                        </label>
+                        </div>
                     </div>
                 </div>
                 <div class="sidebar-content">
@@ -66,9 +66,9 @@ $keeptab2 = "KeepTab:cb2:";
                 <!-- Section Content -->
                 <div class="sidebar-tab" id="tab1">
                     <div class="tab-button">
-                        <label for="cb1" class="sidebar-label">
+                        <div class="sidebar-label">
                             <p>Meny</p>
-                        </label>
+                        </div>
                     </div>
                 </div>
                 <div class="sidebar-content"></div>
