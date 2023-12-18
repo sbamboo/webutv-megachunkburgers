@@ -29,6 +29,11 @@ if(string.includes("keeptab:cb2")) {
     content[0].style.scale = 0;
 }
 
+function changeAmount(item, displayName, amount) {
+    document.querySelector(displayName).innerHTML = parseInt(document.querySelector(displayName).innerHTML) + amount;
+
+}
+
 menuButton.addEventListener('mousedown', () => {
     if(content[0].style.scale == 1) {
         content[0].style.scale = 0;
