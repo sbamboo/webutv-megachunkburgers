@@ -11,6 +11,18 @@ dbsetup innehåller en .bat fil för att skapa databaserna så alla slipper skri
 Användarnamn för admin är just nu "test"
 Lösen för admin är just nu "test"
 
-
 cb1: Meny
 cb2: Book
+
+The php _functions.php file will return "?ret-msg=KeepTab:<tabid>:<msg>" if tab should be kept, examples:
+
+| URL params                            | Tab react:   |Msg:|
+-------------------------------------------------------------
+| "?ret-msg=Hi"                         | no tabs open | Hi |
+-------------------------------------------------------------
+| "?ret-msg=KeepTab:cb1:Hi"             | cb1 open     | Hi |
+-------------------------------------------------------------
+| "?ret-msg=KeepTab:cb2:Hi"             | cb2 open     | Hi |
+-------------------------------------------------------------
+| "?ret-msg=KeepTab:cb2:KeepTab:cb1:Hi" | all open     | Hi |
+-------------------------------------------------------------

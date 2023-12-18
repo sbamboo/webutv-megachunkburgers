@@ -1,0 +1,9 @@
+{
+    "Hamb1": {
+        "category": "hamburgare",
+        "picture": "hamb1.png"
+    },
+    "Hamb2": {
+        "category": "hamburgare"
+    }
+}
