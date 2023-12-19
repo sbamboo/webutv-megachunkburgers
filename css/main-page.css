@@ -127,15 +127,44 @@ main {
 #chef3 {
 }
 
-#about {
-    background-color: rgb(255, 174, 0);
-    margin-top: 100px;
-    width: 60vw;
-    height: 150px;
-}
-#produce {
-    background-color: rgb(235, 13, 13);
+#produces {
+    background-color: rgb(97, 0, 0);
     margin-top: 15px;
+    width: 60vw;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+}
+.produce {
+    display: flex;
+    flex-direction: row;
+    margin-left: 30px;
+}
+.produce-meat {
+
+}
+.produce-greens {
+
+}
+.meat-img {
+    width: 150px;
+    height: 150px;
+    background-color: gray;
+}
+.greens-img {
+    width: 150px;
+    height: 150px;
+    background-color: grey;
+}
+#about {
+    background-color: rgb(33, 134, 33);
+    margin-top: 100px;
     width: 60vw;
     height: 150px;
 }
