@@ -132,14 +132,14 @@ $keeptab2 = "KeepTab:cb2:";
                 <div id="produces">
                     <div class="produce" id="meat">
                         <img src="" class="meat-img">
-                        <div class="produce-meat">
+                        <div class="produce-meat info">
                             <h2> Kött </h2>
                             <p> Vi har bra kött </p>
                         </div>
                     </div>
                     <div class="produce" id="greens">
                         <img src="" class="greens-img">
-                        <div class="produce-greens">
+                        <div class="produce-greens info">
                             <h2> Grönsaker </h2>
                             <p> Vi har bra grönsaker </p>
                         </div>

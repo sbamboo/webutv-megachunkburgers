@@ -136,20 +136,21 @@ main {
     flex-direction: column;
     justify-content: space-evenly;
 }
+.info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+}
 .produce {
     display: flex;
     flex-direction: row;
     margin-left: 30px;
 }
 .produce-meat {
-    display: flex;
-    flex-direction: row;
-    margin-left: 30px;
+
 }
 .produce-greens {
-    display: flex;
-    flex-direction: row;
-    margin-left: 30px;
+
 }
 .meat-img {
     width: 150px;
@@ -162,7 +163,7 @@ main {
     background-color: grey;
 }
 #about {
-    background-color: rgb(41, 158, 22);
+    background-color: rgb(33, 134, 33);
     margin-top: 100px;
     width: 60vw;
     height: 150px;
