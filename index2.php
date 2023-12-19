@@ -2,7 +2,7 @@
 require("_functions.php");
 $sqlargs = array("localhost","root","","megacbur","tb_orders");
 $tables = [1,10];
-$retargs = ["./index2.php","./index2.php"];
+$retargs = ["./index.php","./index.php"];
 $keeptab1 = "KeepTab:cb1:";
 $keeptab2 = "KeepTab:cb2:";
 ?>
@@ -27,26 +27,12 @@ $keeptab2 = "KeepTab:cb2:";
         </aside>
         <main>
             <aside id="sidebar-menu">
-                <!-- PHP code to generate the checkbox HTML incase keeptab is used to "pre-click" a tab -->
-                <?php
-                if (isset($_GET["ret-msg"]) && !empty($_GET["ret-msg"]) && strpos($_GET["ret-msg"], $keeptab2) !== false) {
-                    echo '<input type="checkbox" id="cb2" checked="checked">';
-                    $_GET["ret-msg"] = str_replace($keeptab2, "", $_GET["ret-msg"]);
-                } else {
-                    echo '<input type="checkbox" id="cb2">';
-                }
-                $bookedtables = getTables($sqlargs);
-                if (empty($bookedtables)) {
-                    $bookedtables = "NULL";
-                }
-                echo '<p id="bob">' . $bookedtables . "</p>";
-                ?>
                 <!-- Section Content -->
                 <div class="sidebar-tab" id="tab2">
                     <div class="tab-button">
-                        <label for="cb2" class="sidebar-label">
+                        <div class="sidebar-label">
                             <p>Book</p>
-                        </label>
+                        </div>
                     </div>
                 </div>
                 <div class="sidebar-content">
@@ -77,25 +63,49 @@ $keeptab2 = "KeepTab:cb2:";
                     }
                     ?>
                 </div>
-
-                <!-- PHP code to generate the checkbox HTML incase keeptab is used to "pre-click" a tab -->
-                <?php
-                if (isset($_GET["ret-msg"]) && !empty($_GET["ret-msg"]) && strpos($_GET["ret-msg"], $keeptab1) !== false) {
-                    echo '<input type="checkbox" id="cb1" checked="checked">';
-                    $_GET["ret-msg"] = str_replace($keeptab1, "", $_GET["ret-msg"]);
-                } else {
-                    echo '<input type="checkbox" id="cb1">';
-                }
-                ?>
                 <!-- Section Content -->
                 <div class="sidebar-tab" id="tab1">
                     <div class="tab-button">
-                        <label for="cb1" class="sidebar-label">
+                        <div class="sidebar-label">
                             <p>Meny</p>
-                        </label>
+                        </div>
                     </div>
                 </div>
-                <div class="sidebar-content"></div>
+                <div class="sidebar-content">
+                    <form id="menu-order-form">    
+                        <div class="menu-header">
+                            <p>Meny</p>
+                            <div class="vert-div-smal">
+                            </div><p>Bord:</p>
+                            <input type="text" name="tablenr" placeholder="xx">
+                            <input type="submit" name="food-submit" value="Beställ">
+                        </div>
+                        <div class="menu-main">
+                            <nav class="menu-catsel">
+                                <div class="menu-category" id="menu-cat-hamburgare">
+                                    <p>Hamburgare</p>
+                                </div>
+                                <div class="menu-category" id="menu-cat-annat-kott">
+                                    <p>Andra Kött Rätter</p>
+                                </div>
+                                <div class="menu-category" id="menu-cat-drinks">
+                                    <p>Dryck</p>
+                                </div>
+                                <div class="menu-category" id="menu-cat-deserts">
+                                    <p>Desert</p>
+                                </div>
+                            </nav>
+                            <div class="menu-foodsel" id="menu-food-hamburgare">
+                            </div>
+                            <div class="menu-foodsel" id="menu-food-annat-kott">
+                            </div>
+                            <div class="menu-foodsel" id="menu-food-drinks">
+                            </div>
+                            <div class="menu-foodsel" id="menu-food-deserts">
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </aside>
             <section>
                 <div id="title">
@@ -105,7 +115,7 @@ $keeptab2 = "KeepTab:cb2:";
                     <img src="" class="group-picture">
                 </div>
                 <div id="employees">
-                    <div class="employee" id=chef1">
+                    <div class="employee" id="chef1">
                         <img src="" class="employee-img">
                         <div class="employee-info">
                             <h2>Kock 1</h2>
@@ -128,7 +138,7 @@ $keeptab2 = "KeepTab:cb2:";
                     </div>
                 </div>
                 <div id="about">
-                    <h2>Om oss</h2>
+                    <h2>Big stronk burgers</h2>
                     <p>Vi är ett företag som gör saker</p>
                 </div>
                 <div id="produce">
@@ -151,6 +161,7 @@ $keeptab2 = "KeepTab:cb2:";
         </aside>
         <footer>
         </footer>
+        <div id="music"></div>
         <script src="./js/script.js"></script>
     </body>
 </html>
