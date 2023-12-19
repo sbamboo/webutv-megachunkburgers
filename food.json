@@ -1,9 +1,91 @@
+
 {
-    "Hamb1": {
-        "category": "hamburgare",
-        "picture": "hamb1.png"
+    "Hamburgare": {
+        "Hamb1": {
+            "picture": "hamb1.png",
+            "price": 10
+        },
+        "Hamb2": {
+            "picture": "hamb2.png",
+            "price": 20
+        },
+        "Hamb3": {
+            "picture": "hamb3.png",
+            "price": 30
+        },
+        "Hamb4": {
+            "picture": "hamb4.png",
+            "price": 40
+        },
+        "Hamb5": {
+            "picture": "hamb5.png",
+            "price": 50
+        }
     },
-    "Hamb2": {
-        "category": "hamburgare"
+    "Kott": {
+        "Kott1": {
+            "picture": "kott1.png",
+            "price": 10
+        },
+        "Kott2": {
+            "picture": "kott2.png",
+            "price": 20
+        },
+        "Kott3": {
+            "picture": "kott3.png",
+            "price": 30
+        },
+        "Kott4": {
+            "picture": "kott4.png",
+            "price": 40
+        },
+        "Kott5": {
+            "picture": "kott5.png",
+            "price": 50
+        }
+    },
+    "Dryck": {
+        "Dryck1": {
+            "picture": "dryck1.png",
+            "price": 10
+        },
+        "Dryck2": {
+            "picture": "dryck2.png",
+            "price": 20
+        },
+        "Dryck3": {
+            "picture": "dryck3.png",
+            "price": 30
+        },
+        "Dryck4": {
+            "picture": "dryck4.png",
+            "price": 40
+        },
+        "Dryck5": {
+            "picture": "dryck5.png",
+            "price": 50
+        }
+    },
+    "Desert": {
+        "Desert1": {
+            "picture": "desert1.png",
+            "price": 10
+        },
+        "Desert2": {
+            "picture": "desert2.png",
+            "price": 20
+        },
+        "Desert3": {
+            "picture": "desert3.png",
+            "price": 30
+        },
+        "Desert4": {
+            "picture": "desert4.png",
+            "price": 40
+        },
+        "Desert5": {
+            "picture": "desert5.png",
+            "price": 50
+        }
     }
 }
