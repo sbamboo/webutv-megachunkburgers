@@ -2,90 +2,90 @@
 {
     "Hamburgare": {
         "Hamb1": {
-            "picture": "hamb1.png",
-            "price": 10
+            "picture": "media/food/hamburgare/hamb1.png",
+            "price": 0
         },
         "Hamb2": {
-            "picture": "hamb2.png",
-            "price": 20
+            "picture": "media/food/hamburgare/hamb2.png",
+            "price": 0
         },
         "Hamb3": {
-            "picture": "hamb3.png",
-            "price": 30
+            "picture": "media/food/hamburgare/hamb3.png",
+            "price": 0
         },
         "Hamb4": {
-            "picture": "hamb4.png",
-            "price": 40
+            "picture": "media/food/hamburgare/hamb4.png",
+            "price": 0
         },
         "Hamb5": {
-            "picture": "hamb5.png",
-            "price": 50
+            "picture": "media/food/hamburgare/hamb5.png",
+            "price": 0
         }
     },
     "Kott": {
         "Kott1": {
-            "picture": "kott1.png",
-            "price": 10
+            "picture": "media/food/annat-kott/kott1.png",
+            "price": 0
         },
         "Kott2": {
-            "picture": "kott2.png",
-            "price": 20
+            "picture": "media/food/annat-kott/kott2.png",
+            "price": 0
         },
         "Kott3": {
-            "picture": "kott3.png",
-            "price": 30
+            "picture": "media/food/annat-kott/kott3.png",
+            "price": 0
         },
         "Kott4": {
-            "picture": "kott4.png",
-            "price": 40
+            "picture": "media/food/annat-kott/kott4.png",
+            "price": 0
         },
         "Kott5": {
-            "picture": "kott5.png",
-            "price": 50
+            "picture": "media/food/annat-kott/kott5.png",
+            "price": 0
         }
     },
     "Dryck": {
         "Dryck1": {
-            "picture": "dryck1.png",
-            "price": 10
+            "picture": "media/food/drinks/dryck1.png",
+            "price": 0
         },
         "Dryck2": {
-            "picture": "dryck2.png",
-            "price": 20
+            "picture": "media/food/drinks/dryck2.png",
+            "price": 0
         },
         "Dryck3": {
-            "picture": "dryck3.png",
-            "price": 30
+            "picture": "media/food/drinks/dryck3.png",
+            "price": 0
         },
         "Dryck4": {
-            "picture": "dryck4.png",
-            "price": 40
+            "picture": "media/food/drinks/dryck4.png",
+            "price": 0
         },
         "Dryck5": {
-            "picture": "dryck5.png",
-            "price": 50
+            "picture": "media/food/drinks/dryck5.png",
+            "price": 0
         }
     },
     "Desert": {
         "Desert1": {
-            "picture": "desert1.png",
-            "price": 10
+            "picture": "media/food/deserts/desert1.png",
+            "price": 0
         },
         "Desert2": {
-            "picture": "desert2.png",
-            "price": 20
+            "picture": "media/food/deserts/desert2.png",
+            "price": 0
         },
         "Desert3": {
-            "picture": "desert3.png",
-            "price": 30
+            "picture": "media/food/deserts/desert3.png",
+            "price": 0
         },
         "Desert4": {
-            "picture": "desert4.png",
-            "price": 40
+            "picture": "media/food/deserts/desert4.png",
+            "price": 0
         },
         "Desert5": {
-            "picture": "desert5.png",
-            "price": 50
+            "picture": "media/food/deserts/desert5.png",
+            "price": 0
         }
     }
 }
