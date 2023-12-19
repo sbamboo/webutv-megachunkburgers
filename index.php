@@ -130,7 +130,7 @@ $keeptab2 = "KeepTab:cb2:";
                     </div>
                 </div>
                 <div id="about">
-                    <h2>Om oss</h2>
+                    <h2>Big stronk burgers</h2>
                     <p>Vi är ett företag som gör saker</p>
                 </div>
                 <div id="produce">
