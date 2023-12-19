@@ -154,6 +154,7 @@ $keeptab2 = "KeepTab:cb2:";
         <footer>
         </footer>
         <div id="music"></div>
-        <script src="./js/script.js"></script>
+        <script type="text/javascript" src="./food.js"></script>
+        <script type="text/javascript" src="./js/script.js"></script>
     </body>
 </html>
