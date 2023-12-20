@@ -77,6 +77,31 @@ main {
     padding-bottom: var(--form-select-vpadding);
     background-color: var(--form-inp-bg-color);
 }
+#booking-form-seg1 {
+    display: Block;
+}
+#booking-form-seg2 {
+    display: None;
+}
+#booking-form-seg3 {
+    display: None;
+}
+#form-decrement-btn {
+    display: None;
+}
+#form-increment-btn {
+    display: block;
+}
+#form-send-btn {
+    display: None;
+    background-color: #2f4329;
+}
+#form-increment-btn {
+    background-color: #372f58;
+}
+#form-decrement-btn {
+    background-color: #3c2828;
+}
 
 /*Main content*/
 #title-text {

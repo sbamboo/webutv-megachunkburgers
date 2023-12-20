@@ -2,9 +2,7 @@
 require("_functions.php");
 $sqlargs = array("localhost","root","","megacbur","tb_orders");
 $tables = [1,10];
-$retargs = ["./index.php","./index.php"];
-$keeptab1 = "KeepTab:cb1:";
-$keeptab2 = "KeepTab:cb2:";
+$retargs = ["./index2.php","./index2.php"];
 ?>
 
 <!DOCTYPE html>
@@ -36,22 +34,31 @@ $keeptab2 = "KeepTab:cb2:";
                     </div>
                 </div>
                 <div class="sidebar-content">
-                    <form method="post" action="index.php" class="booking-form">
+                    <form method="post" action="index2.php" class="booking-form">
                         <h1>Book a table:</h1>
                         <div id="booking-form-wrapper">
-                            <p>Which table?</p><select name="tablenr" size="5">
-                                <?php
-                                for ($i = $tables[0]; $i <= $tables[1]; $i++) {
-                                    echo '<option value="' . $i . '">' . $i . '</option>';
-                                }
-                                ?>
-                            </select>
-                            <p>Your full name:</p><input type="text" name="fullname" placeholder="Full name">
-                            <p>Phone Number:</p><input type="text" name="telephone" placeholder="Phone Number">
-                            <p>Email:</p><input type="text" name="email" placeholder="Email">
-                            <p>When do you want to be there?</p><input type="datetime-local" name="time">
-                            <p>Any additional details you want to provide: (Optional)</p><input type="text" name="details">
-                            <input type="submit" value="Send In">
+                            <div id="booking-form-seg1">
+                                <p>When do you want to be there?</p><input type="datetime-local" name="time" id="booking-form-inp-dt">
+                            </div>
+                            <div id="booking-form-seg2">
+                                <p>Which table?</p><select name="tablenr" size="5" id="booking-form-inp-tb">
+                                    <?php
+                                    for ($i = $tables[0]; $i <= $tables[1]; $i++) {
+                                        echo '<option value="' . $i . '">' . $i . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div id="booking-form-seg3">
+                                <p>Your full name:</p><input type="text" name="fullname" placeholder="Full name">
+                                <p>Phone number or Email:</p><input type="text" name="telephone" placeholder="Phone Number"><input type="text" name="email" placeholder="Email">
+                                <p>Any additional details you want to provide: (Optional)</p><input type="text" name="details">
+                            </div>
+                            <div id="booking-form-btns">
+                                <input type="button" value="Back" onclick="decrementBookingFormSegment()" id="form-decrement-btn">
+                                <input type="button" value="Next" onclick="incrementBookingFormSegment()" id="form-increment-btn">
+                                <input type="submit" value="Send In" id="form-send-btn">
+                            </div>
                         </div>
                     </form>
                     <?php
@@ -163,5 +170,6 @@ $keeptab2 = "KeepTab:cb2:";
         </footer>
         <div id="music"></div>
         <script src="./js/script.js"></script>
+        <script src="./js/booking-form-switch.js"></script>
     </body>
 </html>
