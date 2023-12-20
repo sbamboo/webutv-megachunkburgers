@@ -137,17 +137,29 @@ $keeptab2 = "KeepTab:cb2:";
                         </div>
                     </div>
                 </div>
-                <div id="about">
-                    <h2>Big stronk burgers</h2>
-                    <p>Vi är ett företag som gör saker</p>
+                <div id="produces">
+                    <div class="produce" id="meat">
+                        <img src="" class="meat-img">
+                        <div class="produce-meat info">
+                            <h2> Kött </h2>
+                            <p> Vi har bra kött </p>
+                        </div>
+                    </div>
+                    <div class="produce" id="greens">
+                        <img src="" class="greens-img">
+                        <div class="produce-greens info">
+                            <h2> Grönsaker </h2>
+                            <p> Vi har bra grönsaker </p>
+                        </div>
+                    </div>
                 </div>
-                <div id="produce">
-                    <h2>Råvaror</h2>
-                    <p>Vi är ett företag som gör saker</p>
+                <div id="about">
+                    <h2> Om oss </h2>
+                    <p> Vi har dom största och bästa burgarna </p>
                 </div>
                 <div id="contact">
                     <h2>Kontakt</h2>
-                    <p>Vi är ett företag som gör saker</p>
+                    <p>*Telefon *instagram *facebook *mm</p>
                 </div>
             </section>
             <section>
@@ -162,6 +174,7 @@ $keeptab2 = "KeepTab:cb2:";
         <footer>
         </footer>
         <div id="music"></div>
-        <script src="./js/script.js"></script>
+        <script type="text/javascript" src="./food.js"></script>
+        <script type="text/javascript" src="./js/script.js"></script>
     </body>
 </html>
