@@ -8,8 +8,10 @@ let content = document.querySelectorAll('.sidebar-content');
 //const parent = document.querySelector('#music');
 
 // Checks for keeptabcb? in url and if it is there, it will keep the tab open
+
 let url = new URL(window.location.href);
 let params = new URLSearchParams(url.search);
+let paramstring = "?";
 const string = params.get("ret-msg") || "";
 if(string.includes("keeptab:cb2")) {
     console.log(string.split(":")[2]);
@@ -31,11 +33,16 @@ if(string.includes("keeptab:cb1")) {
     content[0].style.scale = 0;
 }
 
+const listButton = document.querySelector('#listButton');
+
 let foodCopy = food;
 
 // Add a variable called "Amount" to every item in foodCopy
 for (let item in foodCopy) {
     foodCopy[item].Amount = 0;
+}
+for(let param in params.get("order").split("§")) {
+    console.log(params.get("order").split("§")[param]);
 }
 
 // This function is used to change the amount of an item in the cart
@@ -43,19 +50,19 @@ function changeAmount(item, displayName, increment) {
     document.querySelector(displayName).innerHTML = parseInt(document.querySelector(displayName).innerHTML) + increment;
     foodCopy[item].Amount += increment;
 }
-
 // When order is ready and shipped, convert items into url param and send to index.php to be caught using GET
 function order() {
-    let result = "";
+    let result = params.get("order").toString();
     for(let item in foodCopy) {
-        if(foodCopy[item].Amount > 0) {
-            result += foodCopy[item].Amount + "x " + item + "\n";
+        for(let i = 0; i < foodCopy[item].Amount; i++) {
+            result += item + "§";
         }
     }
-    if(string.length == 0) {
-        window.location.href = window.location.href + "?order=" + result;
+    params.set("order", result);
+    if(string.length == 0 && string.includes("order=") == false) {
+        window.location.href = "?" + params.toString();
     }else {
-        window.location.href = window.location.href + "&order=" + result;
+        window.location.href = "&" + params.toString();
     }
 }
 
