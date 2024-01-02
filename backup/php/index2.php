@@ -60,7 +60,7 @@ $retargs = ["./index2.php","./index2.php"];
                         addTbOrder($sqlargs,$retargs,$_POST["tablenr"],$_POST["fullname"],$_POST["telephone"],$_POST["email"],$_POST["time"],$_POST["details"]);
                     }
                     if (isset($_GET["ret-msg"]) && !empty($_GET["ret-msg"])) {
-                        echo '<p id="ret-msg">' . str_replace("KeepTab:cb2:","",$_GET["ret-msg"]) . '</p>';
+                        echo '<p id="ret-msg">' . str_replace($keeptab2,"",$_GET["ret-msg"]) . '</p>';
                     }
                     ?>
                 </div>

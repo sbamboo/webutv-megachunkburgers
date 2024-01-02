@@ -7,8 +7,7 @@ let content = document.querySelectorAll('.sidebar-content');
 //const acontent = '<audio autoplay id="music"><source src="media/buttonsound.mp3" type="audio/mp3"></audio>';
 //const parent = document.querySelector('#music');
 
-// Checks for keeptabcb? in url and if it is there, it will keep the tab open
-
+// Checks for KeepTab:cb<id> in url and if it is there, it will keep the tab open
 let url = new URL(window.location.href);
 let params = new URLSearchParams(url.search);
 let paramstring = "?";
@@ -41,8 +40,10 @@ let foodCopy = food;
 for (let item in foodCopy) {
     foodCopy[item].Amount = 0;
 }
-for(let param in params.get("order").split("§")) {
-    console.log(params.get("order").split("§")[param]);
+if (params.get("order") != null) { // SM: Added check to fix null-issue
+    for(let param in params.get("order").split("§")) {
+        console.log(params.get("order").split("§")[param]);
+    }
 }
 
 // This function is used to change the amount of an item in the cart

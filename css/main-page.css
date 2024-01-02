@@ -11,14 +11,18 @@
     --main-bg-color: #252526;
     --main-accent-color: #2d2d2d;
 
-    --form-tx-color: white;
-    --form-inp-bg-color: #2d2d2d;
-    --form-inp-padding: 4px;
-    --form-inp-border: 1px solid #3b3b3b;
-    --form-inp-border-rad: 10px;
-    --form-select-hpadding: 7px;
-    --form-select-vpadding: 5px;
-    --form-p-tmargin: 7px;
+    --bform-tx-color: white;
+    --bform-inp-bg-color: #2d2d2d;
+    --bform-inp-padding: 4px;
+    --bform-inp-border: 1px solid #3b3b3b;
+    --bform-inp-border-rad: 10px;
+    --bform-select-hpadding: 7px;
+    --bform-select-vpadding: 5px;
+    --bform-p-tmargin: 7px;
+    --bform-outer-margin: 20px;
+    --bform-retmsg-suc-color: green;
+    --bform-retmsg-fai-color: red;
+    --bform-retmsg-war-color: orange;
 }
 
 /*Easy to use classes & tags*/
@@ -52,30 +56,42 @@ main {
 /* PAGE CONTENT BELLOW HERE */
 /*Booking*/
 .booking-form {
-    margin: 20px;
+    margin: var(--bform-outer-margin);
+}
+.book-tab-ret-msg {
+    margin: var(--bform-outer-margin);
+}
+.ret-msg-success {
+    color: var(--bform-retmsg-suc-color);
+}
+.ret-msg-failed {
+    color: var(--bform-retmsg-fai-color);
+}
+.ret-msg-warning {
+    color: var(--bform-retmsg-war-color);
 }
 .booking-form h1, .booking-form p, .booking-form input, .booking-form option {
-    color: var(--form-tx-color);
+    color: var(--bform-tx-color);
 }
 .booking-form p {
-    margin-top: var(--form-p-tmargin);
+    margin-top: var(--bform-p-tmargin);
 }
 .booking-form input {
-    background-color: var(--form-inp-bg-color);
-    padding: var(--form-inp-padding);
-    border: var(--form-inp-border);
-    border-radius: var(--form-inp-border-rad);
+    background-color: var(--bform-inp-bg-color);
+    padding: var(--bform-inp-padding);
+    border: var(--bform-inp-border);
+    border-radius: var(--bform-inp-border-rad);
 }
 .booking-form option {
-    background-color: var(--form-inp-bg-color);
+    background-color: var(--bform-inp-bg-color);
 }
 .booking-form select {
-    border-radius: var(--form-inp-border-rad);
-    padding-left: var(--form-select-hpadding);
-    padding-right: var(--form-select-hpadding);
-    padding-top: var(--form-select-vpadding);
-    padding-bottom: var(--form-select-vpadding);
-    background-color: var(--form-inp-bg-color);
+    border-radius: var(--bform-inp-border-rad);
+    padding-left: var(--bform-select-hpadding);
+    padding-right: var(--bform-select-hpadding);
+    padding-top: var(--bform-select-vpadding);
+    padding-bottom: var(--bform-select-vpadding);
+    background-color: var(--bform-inp-bg-color);
 }
 #booking-form-seg1 {
     display: Block;

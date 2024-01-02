@@ -3,6 +3,7 @@ require("_functions.php");
 $sqlargs = array("localhost","root","","megacbur","tb_orders");
 $tables = [1,10];
 $retargs = ["./index.php","./index.php"];
+$formUse = "index.php";
 $keeptab1 = "KeepTab:cb1:";
 $keeptab2 = "KeepTab:cb2:";
 ?>
@@ -36,30 +37,41 @@ $keeptab2 = "KeepTab:cb2:";
                     </div>
                 </div>
                 <div class="sidebar-content">
-                    <form method="post" action="index.php" class="booking-form">
+                    <form method="post" action=<?php echo $formUse?> class="booking-form">
                         <h1>Book a table:</h1>
                         <div id="booking-form-wrapper">
-                            <p>Which table?</p><select name="tablenr" size="5">
-                                <?php
-                                for ($i = $tables[0]; $i <= $tables[1]; $i++) {
-                                    echo '<option value="' . $i . '">' . $i . '</option>';
-                                }
-                                ?>
-                            </select>
-                            <p>Your full name:</p><input type="text" name="fullname" placeholder="Full name">
-                            <p>Phone Number:</p><input type="text" name="telephone" placeholder="Phone Number">
-                            <p>Email:</p><input type="text" name="email" placeholder="Email">
-                            <p>When do you want to be there?</p><input type="datetime-local" name="time">
-                            <p>Any additional details you want to provide: (Optional)</p><input type="text" name="details">
-                            <input type="submit" value="Send In">
+                            <div id="booking-form-seg1">
+                                <p>When do you want to be there?</p><input type="datetime-local" name="time" id="booking-form-inp-dt">
+                            </div>
+                            <div id="booking-form-seg2">
+                                <p>Which table?</p><select name="tablenr" size="5" id="booking-form-inp-tb">
+                                </select>
+                            </div>
+                            <div id="booking-form-seg3">
+                                <p>Your full name:</p><input type="text" name="fullname" placeholder="Full name">
+                                <p>Phone number or Email:</p><input type="text" name="telephone" placeholder="Phone Number"><input type="text" name="email" placeholder="Email">
+                                <p>Any additional details you want to provide: (Optional)</p><input type="text" name="details">
+                            </div>
+                            <div id="booking-form-btns">
+                                <input type="button" value="Back" onclick="decrementBookingFormSegment()" id="form-decrement-btn">
+                                <input type="button" value="Next" onclick="incrementBookingFormSegment()" id="form-increment-btn">
+                                <input type="submit" value="Send In" id="form-send-btn">
+                            </div>
                         </div>
                     </form>
                     <?php
                     if ( isset($_POST["tablenr"]) && isset($_POST["fullname"]) && isset($_POST["telephone"]) && isset($_POST["email"]) && isset($_POST["time"]) && isset($_POST["details"]) ) {
-                        addOrder($sqlargs,$retargs,$_POST["tablenr"],$_POST["fullname"],$_POST["telephone"],$_POST["email"],$_POST["time"],$_POST["details"]);
+                        addTbOrder($sqlargs,$retargs,$_POST["tablenr"],$_POST["fullname"],$_POST["telephone"],$_POST["email"],$_POST["time"],$_POST["details"]);
                     }
                     if (isset($_GET["ret-msg"]) && !empty($_GET["ret-msg"])) {
-                        echo '<p id="ret-msg">' . $_GET["ret-msg"] . '</p>';
+                        $retmsg = str_replace($keeptab2,"",$_GET["ret-msg"]);
+                        if (str_contains($retmsg,"failed")) {
+                            echo '<p id="ret-msg" class="book-tab-ret-msg ret-msg-failed">' . $retmsg . '</p>';
+                        } elseif (str_contains($retmsg,'Please')) {
+                            echo '<p id="ret-msg" class="book-tab-ret-msg ret-msg-warning">' . $retmsg . '</p>';
+                        } else {
+                            echo '<p id="ret-msg" class="book-tab-ret-msg ret-msg-success">' . $retmsg . '</p>';
+                        }
                     }
                     ?>
                 </div>
@@ -176,5 +188,6 @@ $keeptab2 = "KeepTab:cb2:";
         <div id="music"></div>
         <script type="text/javascript" src="./js/food.js"></script>
         <script type="text/javascript" src="./js/script.js"></script>
+        <script src="./js/booking-form-switch.js"></script>
     </body>
 </html>
