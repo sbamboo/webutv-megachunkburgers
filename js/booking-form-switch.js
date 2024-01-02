@@ -6,9 +6,40 @@ const decrBtn = document.getElementById('form-decrement-btn');
 const incrBtn = document.getElementById('form-increment-btn');
 const sendBtn = document.getElementById('form-send-btn');
 
+const datepic = document.getElementById('booking-form-inp-dt');
+const tablpic = document.getElementById('booking-form-inp-tb')
+
 let segIndex = 0;
 const min = 0;
 const max = 2;
+
+function updateTbAvaliability(index) {
+    unavaliable = [];
+    if (index == 1) {
+        // Get date
+        choosenDate = datepic.value.split("T")[0]  //yyyy-MM-ddThh-mm  =>  yyyy-MM-dd T hh-mm  =>  yyyy-MM-dd
+        // Get Dates from php by calling
+        fetch("_get-booked-dates_helper.php?datetime=".concat(choosenDate), {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(response => {
+            strBuild = "";
+            for (let elem in response) {
+                elem = response[elem];
+                strBuild += '<option value="'.concat(elem,'">',elem,'</option>')
+            }
+            console.log(response);
+            console.log(strBuild);
+            tablpic.innerHTML = strBuild
+        }
+        )
+    }
+    console.log(unavaliable);
+}
 
 function setSegment(index) {
     if (index == 0) {
@@ -47,6 +78,7 @@ function incrementBookingFormSegment() {
     if (segIndex > max) { segIndex = max };
     setSegment(segIndex);
     updBtns(segIndex);
+    updateTbAvaliability(segIndex);
 }
 
 function decrementBookingFormSegment() {

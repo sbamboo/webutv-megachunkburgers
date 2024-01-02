@@ -13,7 +13,7 @@ let url = new URL(window.location.href);
 let params = new URLSearchParams(url.search);
 let paramstring = "?";
 const string = params.get("ret-msg") || "";
-if(string.includes("keeptab:cb2")) {
+if(string.includes("KeepTab:cb2")) {
     console.log(string.split(":")[2]);
     content[0].style.scale = 1;
     content[0].style.zIndex = 1;
@@ -23,7 +23,7 @@ if(string.includes("keeptab:cb2")) {
     content[1].style.zIndex = 0;
     content[1].style.scale = 0;
 }
-if(string.includes("keeptab:cb1")) {
+if(string.includes("KeepTab:cb1")) {
     content[1].style.scale = 1;
     content[1].style.zIndex = 1;
     bookButton.style.right = '0vw';

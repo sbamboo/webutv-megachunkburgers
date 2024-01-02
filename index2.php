@@ -1,7 +1,6 @@
 <?php
 require("_functions.php");
 $sqlargs = array("localhost","root","","megacbur","tb_orders");
-$tables = [1,10];
 $retargs = ["./index2.php","./index2.php"];
 ?>
 
@@ -42,11 +41,6 @@ $retargs = ["./index2.php","./index2.php"];
                             </div>
                             <div id="booking-form-seg2">
                                 <p>Which table?</p><select name="tablenr" size="5" id="booking-form-inp-tb">
-                                    <?php
-                                    for ($i = $tables[0]; $i <= $tables[1]; $i++) {
-                                        echo '<option value="' . $i . '">' . $i . '</option>';
-                                    }
-                                    ?>
                                 </select>
                             </div>
                             <div id="booking-form-seg3">
@@ -63,10 +57,10 @@ $retargs = ["./index2.php","./index2.php"];
                     </form>
                     <?php
                     if ( isset($_POST["tablenr"]) && isset($_POST["fullname"]) && isset($_POST["telephone"]) && isset($_POST["email"]) && isset($_POST["time"]) && isset($_POST["details"]) ) {
-                        addOrder($sqlargs,$retargs,$_POST["tablenr"],$_POST["fullname"],$_POST["telephone"],$_POST["email"],$_POST["time"],$_POST["details"]);
+                        addTbOrder($sqlargs,$retargs,$_POST["tablenr"],$_POST["fullname"],$_POST["telephone"],$_POST["email"],$_POST["time"],$_POST["details"]);
                     }
                     if (isset($_GET["ret-msg"]) && !empty($_GET["ret-msg"])) {
-                        echo '<p id="ret-msg">' . $_GET["ret-msg"] . '</p>';
+                        echo '<p id="ret-msg">' . str_replace("KeepTab:cb2:","",$_GET["ret-msg"]) . '</p>';
                     }
                     ?>
                 </div>
@@ -169,6 +163,7 @@ $retargs = ["./index2.php","./index2.php"];
         <footer>
         </footer>
         <div id="music"></div>
+        <script src="./js/food.js"></script>
         <script src="./js/script.js"></script>
         <script src="./js/booking-form-switch.js"></script>
     </body>
