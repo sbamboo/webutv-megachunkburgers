@@ -1,27 +1,27 @@
 let food = {
     "hamb1": {
         "category": "hamburger",
-        "picture": "media/food/hamburgare/hamb1.png",
+        "picture": "media/food/hamburgers/hamb1.png",
         "price": 0,
     },
     "hamb2": {
         "category": "hamburger",
-        "picture": "media/food/hamburgare/hamb2.png",
+        "picture": "media/food/hamburgers/hamb2.png",
         "price": 0,
     },
     "hamb3": {
         "category": "hamburger",
-        "picture": "media/food/hamburgare/hamb3.png",
+        "picture": "media/food/hamburgers/hamb3.png",
         "price": 0,
     },
     "hamb4": {
         "category": "hamburger",
-        "picture": "media/food/hamburgare/hamb4.png",
+        "picture": "media/food/hamburgers/hamb4.png",
         "price": 0,
     },
     "hamb5": {
         "category": "hamburger",
-        "picture": "media/food/hamburgare/hamb5.png",
+        "picture": "media/food/hamburgers/hamb5.png",
         "price": 0,
     },
     "meat1": {
