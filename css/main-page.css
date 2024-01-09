@@ -23,6 +23,10 @@
     --bform-retmsg-suc-color: green;
     --bform-retmsg-fai-color: red;
     --bform-retmsg-war-color: orange;
+
+    --group-pic-margin: 30px;
+    --group-pic-width: 800px;
+    --group-pic-height: 270px;
 }
 
 /*Easy to use classes & tags*/
@@ -133,14 +137,17 @@ main {
     display: flex;
     width: 100%;
     justify-content: center;
+    height: var(--group-pic-height);
 }
 
 .group-picture {
-    width: 800px;
-    height: 270px;
     background-color: gray;
-    margin-left: 30px;
-    margin-top: 30px;
+    margin: var(--group-pic-margin);
+    width: auto;
+    height: auto;
+    max-width: var(--group-pic-width);
+    max-height: var(--group-pic-height);
+    object-fit: contain;
 }
 
 #employees {
@@ -214,4 +221,9 @@ main {
     margin-top: 33px;
     width: 60vw;
     height:50px;
+}
+
+.vert-space-top {
+    display: block;
+    margin-top: 15px;
 }

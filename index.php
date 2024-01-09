@@ -175,8 +175,8 @@ $keeptab2 = "KeepTab:cb2:";
                 </div>
             </section>
             <section>
-                <p>Här är lite tråkig information om oss</p>
-                <a href="./admin.php">Admin</a>
+                <p class="vert-space-top">Här är lite tråkig information om oss</p>
+                <a href="./admin.php" class="vert-space-top">Admin</a>
             </section>
         </main>
         <aside class="page-decor" id="page-decor-right">
