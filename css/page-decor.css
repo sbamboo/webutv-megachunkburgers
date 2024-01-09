@@ -13,9 +13,10 @@ body {
 
 .side-decor-img {
     width: var(--pg-dec-img-width);
-    height: 100vh;
+    height: 100%;
     background-repeat: repeat-y;
-    background-size: cover;
+    background-size: contain;
+    background-position: top right;
 }
 
 #page-decor-left {
