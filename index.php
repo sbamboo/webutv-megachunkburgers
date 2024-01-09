@@ -124,25 +124,25 @@ $keeptab2 = "KeepTab:cb2:";
                     <h1 id="title-text">MegaChomp Burgers</h1>
                 </div>
                 <div class="group-picture-wrapper">
-                    <img src="" class="group-picture">
+                    <img src="./media/group-picture.png" class="group-picture">
                 </div>
                 <div id="employees">
                     <div class="employee" id="chef1">
-                        <img src="" class="employee-img">
+                        <img src="./media/employee-1.png" class="employee-img">
                         <div class="employee-info">
                             <h2>Kock 1</h2>
                             <p>Vi är ett företag som gör saker</p>
                         </div>
                     </div>
                     <div class="employee" id="chef2">
-                        <img src="" class="employee-img">
+                        <img src="./media/employee-2.png" class="employee-img">
                         <div class="employee-info">
                             <h2>Kock 2</h2>
                             <p>Vi är ett företag som gör saker</p>
                         </div>
                     </div>
                     <div class="employee" id="chef3">
-                        <img src="" class="employee-img">
+                        <img src="./media/employee-3.png" class="employee-img">
                         <div class="employee-info">
                             <h2>Kock 3</h2>
                             <p>Vi är ett företag som gör saker</p>
@@ -151,14 +151,14 @@ $keeptab2 = "KeepTab:cb2:";
                 </div>
                 <div id="produces">
                     <div class="produce" id="meat">
-                        <img src="" class="meat-img">
+                        <img src="./media/produce_meat.png" class="meat-img">
                         <div class="produce-meat info">
                             <h2> Kött </h2>
                             <p> Vi har bra kött </p>
                         </div>
                     </div>
                     <div class="produce" id="greens">
-                        <img src="" class="greens-img">
+                        <img src="./media/produce_greens.png" class="greens-img">
                         <div class="produce-greens info">
                             <h2> Grönsaker </h2>
                             <p> Vi har bra grönsaker </p>
