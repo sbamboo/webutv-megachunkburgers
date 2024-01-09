@@ -171,7 +171,7 @@ $keeptab2 = "KeepTab:cb2:";
                 </div>
                 <div id="contact">
                     <h2>Kontakt oss</h2>
-                    <p>*Telefon: +46 (0)7 23 64 90 *instagram: @MegaChopBurgers *Facebook: MegaChop Burgers *mm</p>
+                    <p>*Telefon: +46 (0)7 23 64 90 *instagram: @MegaChopBurgers *Mail: megachop@burgers.com</p>
                 </div>
             </section>
             <section>
