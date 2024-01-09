@@ -1,10 +1,7 @@
 <?php
 require("_functions.php");
 $sqlargs = array("localhost","root","","megacbur","tb_orders");
-$tables = [1,10];
 $retargs = ["./index2.php","./index2.php"];
-$keeptab1 = "KeepTab:cb1:";
-$keeptab2 = "KeepTab:cb2:";
 ?>
 
 <!DOCTYPE html>
@@ -27,75 +24,89 @@ $keeptab2 = "KeepTab:cb2:";
         </aside>
         <main>
             <aside id="sidebar-menu">
-                <!-- PHP code to generate the checkbox HTML incase keeptab is used to "pre-click" a tab -->
-                <?php
-                if (isset($_GET["ret-msg"]) && !empty($_GET["ret-msg"]) && strpos($_GET["ret-msg"], $keeptab2) !== false) {
-                    echo '<input type="checkbox" id="cb2" checked="checked">';
-                    $_GET["ret-msg"] = str_replace($keeptab2, "", $_GET["ret-msg"]);
-                } else {
-                    echo '<input type="checkbox" id="cb2">';
-                }
-                $bookedtables = getTables($sqlargs);
-                if (empty($bookedtables)) {
-                    $bookedtables = "NULL";
-                }
-                echo '<p id="bob">' . $bookedtables . "</p>";
-                ?>
                 <!-- Section Content -->
                 <div class="sidebar-tab" id="tab2">
                     <div class="tab-button">
-                        <label for="cb2" class="sidebar-label">
+                        <div class="sidebar-label">
                             <p>Book</p>
-                        </label>
+                        </div>
                     </div>
                 </div>
                 <div class="sidebar-content">
-                    <form method="post" action="index.php" class="booking-form">
+                    <form method="post" action="index2.php" class="booking-form">
                         <h1>Book a table:</h1>
                         <div id="booking-form-wrapper">
-                            <p>Which table?</p><select name="tablenr" size="5">
-                                <?php
-                                for ($i = $tables[0]; $i <= $tables[1]; $i++) {
-                                    echo '<option value="' . $i . '">' . $i . '</option>';
-                                }
-                                ?>
-                            </select>
-                            <p>Your full name:</p><input type="text" name="fullname" placeholder="Full name">
-                            <p>Phone Number:</p><input type="text" name="telephone" placeholder="Phone Number">
-                            <p>Email:</p><input type="text" name="email" placeholder="Email">
-                            <p>When do you want to be there?</p><input type="datetime-local" name="time">
-                            <p>Any additional details you want to provide: (Optional)</p><input type="text" name="details">
-                            <input type="submit" value="Send In">
+                            <div id="booking-form-seg1">
+                                <p>When do you want to be there?</p><input type="datetime-local" name="time" id="booking-form-inp-dt">
+                            </div>
+                            <div id="booking-form-seg2">
+                                <p>Which table?</p><select name="tablenr" size="5" id="booking-form-inp-tb">
+                                </select>
+                            </div>
+                            <div id="booking-form-seg3">
+                                <p>Your full name:</p><input type="text" name="fullname" placeholder="Full name">
+                                <p>Phone number or Email:</p><input type="text" name="telephone" placeholder="Phone Number"><input type="text" name="email" placeholder="Email">
+                                <p>Any additional details you want to provide: (Optional)</p><input type="text" name="details">
+                            </div>
+                            <div id="booking-form-btns">
+                                <input type="button" value="Back" onclick="decrementBookingFormSegment()" id="form-decrement-btn">
+                                <input type="button" value="Next" onclick="incrementBookingFormSegment()" id="form-increment-btn">
+                                <input type="submit" value="Send In" id="form-send-btn">
+                            </div>
                         </div>
                     </form>
                     <?php
                     if ( isset($_POST["tablenr"]) && isset($_POST["fullname"]) && isset($_POST["telephone"]) && isset($_POST["email"]) && isset($_POST["time"]) && isset($_POST["details"]) ) {
-                        addOrder($sqlargs,$retargs,$_POST["tablenr"],$_POST["fullname"],$_POST["telephone"],$_POST["email"],$_POST["time"],$_POST["details"]);
+                        addTbOrder($sqlargs,$retargs,$_POST["tablenr"],$_POST["fullname"],$_POST["telephone"],$_POST["email"],$_POST["time"],$_POST["details"]);
                     }
                     if (isset($_GET["ret-msg"]) && !empty($_GET["ret-msg"])) {
-                        echo '<p id="ret-msg">' . $_GET["ret-msg"] . '</p>';
+                        echo '<p id="ret-msg">' . str_replace($keeptab2,"",$_GET["ret-msg"]) . '</p>';
                     }
                     ?>
                 </div>
-
-                <!-- PHP code to generate the checkbox HTML incase keeptab is used to "pre-click" a tab -->
-                <?php
-                if (isset($_GET["ret-msg"]) && !empty($_GET["ret-msg"]) && strpos($_GET["ret-msg"], $keeptab1) !== false) {
-                    echo '<input type="checkbox" id="cb1" checked="checked">';
-                    $_GET["ret-msg"] = str_replace($keeptab1, "", $_GET["ret-msg"]);
-                } else {
-                    echo '<input type="checkbox" id="cb1">';
-                }
-                ?>
                 <!-- Section Content -->
                 <div class="sidebar-tab" id="tab1">
                     <div class="tab-button">
-                        <label for="cb1" class="sidebar-label">
+                        <div class="sidebar-label">
                             <p>Meny</p>
-                        </label>
+                        </div>
                     </div>
                 </div>
-                <div class="sidebar-content"></div>
+                <div class="sidebar-content">
+                    <form id="menu-order-form">    
+                        <div class="menu-header">
+                            <p>Meny</p>
+                            <div class="vert-div-smal">
+                            </div><p>Bord:</p>
+                            <input type="text" name="tablenr" placeholder="xx">
+                            <input type="submit" name="food-submit" value="Beställ">
+                        </div>
+                        <div class="menu-main">
+                            <nav class="menu-catsel">
+                                <div class="menu-category" id="menu-cat-hamburgare">
+                                    <p>Hamburgare</p>
+                                </div>
+                                <div class="menu-category" id="menu-cat-annat-kott">
+                                    <p>Andra Kött Rätter</p>
+                                </div>
+                                <div class="menu-category" id="menu-cat-drinks">
+                                    <p>Dryck</p>
+                                </div>
+                                <div class="menu-category" id="menu-cat-deserts">
+                                    <p>Desert</p>
+                                </div>
+                            </nav>
+                            <div class="menu-foodsel" id="menu-food-hamburgare">
+                            </div>
+                            <div class="menu-foodsel" id="menu-food-annat-kott">
+                            </div>
+                            <div class="menu-foodsel" id="menu-food-drinks">
+                            </div>
+                            <div class="menu-foodsel" id="menu-food-deserts">
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </aside>
             <section>
                 <div id="title">
@@ -105,7 +116,7 @@ $keeptab2 = "KeepTab:cb2:";
                     <img src="" class="group-picture">
                 </div>
                 <div id="employees">
-                    <div class="employee" id=chef1">
+                    <div class="employee" id="chef1">
                         <img src="" class="employee-img">
                         <div class="employee-info">
                             <h2>Kock 1</h2>
@@ -128,7 +139,7 @@ $keeptab2 = "KeepTab:cb2:";
                     </div>
                 </div>
                 <div id="about">
-                    <h2>Om oss</h2>
+                    <h2>Big stronk burgers</h2>
                     <p>Vi är ett företag som gör saker</p>
                 </div>
                 <div id="produce">
@@ -151,6 +162,9 @@ $keeptab2 = "KeepTab:cb2:";
         </aside>
         <footer>
         </footer>
+        <div id="music"></div>
+        <script src="./js/food.js"></script>
         <script src="./js/script.js"></script>
+        <script src="./js/booking-form-switch.js"></script>
     </body>
 </html>

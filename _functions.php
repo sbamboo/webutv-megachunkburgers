@@ -49,8 +49,13 @@ function getTables(array $sqlargs) {
     return $result;
 }
 
+// Function to check what tables are booked on a date
+function checkTbAva(array $sqlargs, string $datetime) {
+    
+}
+
 // Function to place a table order into the database taking the information
-function addOrder(array $sqlargs, array $retargs, int $tableNr, string $fullName, string $telephone, string $email, string $time, string $details, bool $phoneOrMail=true) {
+function addTbOrder(array $sqlargs, array $retargs, int $tableNr, string $fullName, string $telephone, string $email, string $time, string $details, bool $phoneOrMail=true) {
     // Validate telephone or email requirement (if $phoneOrMail is true either phone or mail is required but not both, if set to false both are needed)
     $contactValid = false;
     if ($phoneOrMail == true) {

@@ -29,6 +29,7 @@
     --sb-content-to-offset: -10vh;
     --sb-content-border: 2px solid #686868;
     --sb-content-border-rad: 30px;
+    --sb-content-anim-dur: 0.15s;
 }
 
 /*Sidebar*/
@@ -91,7 +92,12 @@
     border: var(--sb-content-border);
     border-radius: var(--sb-content-border-rad);
     scale: 0;
-    transition: 0.15s;
+}
+/*For accessibility if someone has problems with motion-sickness this will not use the scale anim and instantly "pop" in our out */
+@media (prefers-reduced-motion: no-preference) {
+    .sidebar-content {
+        transition: var(--sb-content-anim-dur);
+    }
 }
 
 /*Colors*/
