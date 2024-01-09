@@ -130,22 +130,22 @@ $keeptab2 = "KeepTab:cb2:";
                     <div class="employee" id="chef1">
                         <img src="./media/employee-1.png" class="employee-img">
                         <div class="employee-info">
-                            <h2>Kock 1</h2>
-                            <p>Vi är ett företag som gör saker</p>
+                            <h2>Emil Bergström</h2>
+                            <p>Professionel kock. har studerat I frankrike och har 25 år av yrkes erfarenhet där han har jobbat i diverse top resturanger i Frankrike, även skaparen av "Fuego Kick" burgaren.</p>
                         </div>
                     </div>
                     <div class="employee" id="chef2">
                         <img src="./media/employee-2.png" class="employee-img">
                         <div class="employee-info">
-                            <h2>Kock 2</h2>
-                            <p>Vi är ett företag som gör saker</p>
+                            <h2>Oscar Lindqvist</h2>
+                            <p>Vinnare av Sveriges mästerkock år 2013. Oscar hoppade omkring mellan resturanger innuti stockholm i 19 tills han landade hos oss, skaparen av "Firestorm" burgaren.</p>
                         </div>
                     </div>
                     <div class="employee" id="chef3">
                         <img src="./media/employee-3.png" class="employee-img">
                         <div class="employee-info">
-                            <h2>Kock 3</h2>
-                            <p>Vi är ett företag som gör saker</p>
+                            <h2>Viktor Nilsson</h2>
+                            <p>Har rest världen i utforskande om matscenen i alla världens hörn. Har jobbat på ett fleratal toppresturanger världen över och skaparen av "Salsa Blaze" burgaren.</p>
                         </div>
                     </div>
                 </div>
@@ -170,8 +170,8 @@ $keeptab2 = "KeepTab:cb2:";
                     <p> Vi har dom största och bästa burgarna </p>
                 </div>
                 <div id="contact">
-                    <h2>Kontakt</h2>
-                    <p>*Telefon *instagram *facebook *mm</p>
+                    <h2>Kontakt oss</h2>
+                    <p>*Telefon: +46 (0)7 23 64 90 *instagram: @MegaChopBurgers *Mail: megachop@burgers.com</p>
                 </div>
             </section>
             <section>
