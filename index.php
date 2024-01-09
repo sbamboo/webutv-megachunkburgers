@@ -17,6 +17,7 @@ $keeptab2 = "KeepTab:cb2:";
         <link type="text/css" rel="stylesheet" href="css/main-page.css">
         <link type="text/css" rel="stylesheet" href="css/sidebar.css">
         <link type="text/css" rel="stylesheet" href="css/page-decor.css">
+        <script src="./js/phpErrorCheck.js"></script>
     </head>
     <body>
         <header>
@@ -36,7 +37,7 @@ $keeptab2 = "KeepTab:cb2:";
                         </div>
                     </div>
                 </div>
-                <div class="sidebar-content">
+                <div class="sidebar-content" id="tab2-content">
                     <form method="post" action=<?php echo $formUse?> class="booking-form">
                         <h1>Book a table:</h1>
                         <div id="booking-form-wrapper">
@@ -44,7 +45,7 @@ $keeptab2 = "KeepTab:cb2:";
                                 <p>When do you want to be there?</p><input type="datetime-local" name="time" id="booking-form-inp-dt">
                             </div>
                             <div id="booking-form-seg2">
-                                <p>Which table?</p><select name="tablenr" size="5" id="booking-form-inp-tb">
+                                <p>Which table?<i>  (Filtered by avaliability for your selected day)</i></p><select name="tablenr" size="5" id="booking-form-inp-tb" selected?>
                                 </select>
                             </div>
                             <div id="booking-form-seg3">
@@ -65,9 +66,9 @@ $keeptab2 = "KeepTab:cb2:";
                     }
                     if (isset($_GET["ret-msg"]) && !empty($_GET["ret-msg"])) {
                         $retmsg = str_replace($keeptab2,"",$_GET["ret-msg"]);
-                        if (str_contains($retmsg,"failed")) {
+                        if (str_contains($retmsg,"failed") || str_contains($retmsg,"Failed")) {
                             echo '<p id="ret-msg" class="book-tab-ret-msg ret-msg-failed">' . $retmsg . '</p>';
-                        } elseif (str_contains($retmsg,'Please')) {
+                        } elseif (str_contains($retmsg,'Please') || str_contains($retmsg,'please') || str_contains($retmsg,'Warning: ')) {
                             echo '<p id="ret-msg" class="book-tab-ret-msg ret-msg-warning">' . $retmsg . '</p>';
                         } else {
                             echo '<p id="ret-msg" class="book-tab-ret-msg ret-msg-success">' . $retmsg . '</p>';
@@ -83,7 +84,7 @@ $keeptab2 = "KeepTab:cb2:";
                         </div>
                     </div>
                 </div>
-                <div class="sidebar-content">
+                <div class="sidebar-content" id="tab1-content">
                     <form id="menu-order-form">    
                         <div class="menu-header">
                             <p>Meny</p>
@@ -153,15 +154,15 @@ $keeptab2 = "KeepTab:cb2:";
                     <div class="produce" id="meat">
                         <img src="./media/produce_meat.png" class="meat-img">
                         <div class="produce-meat info">
-                            <h2> Kött </h2>
-                            <p> Vi har bra kött </p>
+                            <h2>Kött</h2>
+                            <p>Vi har bra kött</p>
                         </div>
                     </div>
                     <div class="produce" id="greens">
                         <img src="./media/produce_greens.png" class="greens-img">
                         <div class="produce-greens info">
-                            <h2> Grönsaker </h2>
-                            <p> Vi har bra grönsaker </p>
+                            <h2>Grönsaker</h2>
+                            <p>Vi har bra grönsaker</p>
                         </div>
                     </div>
                 </div>
@@ -177,6 +178,7 @@ $keeptab2 = "KeepTab:cb2:";
             <section>
                 <p class="vert-space-top">Här är lite tråkig information om oss</p>
                 <a href="./admin.php" class="vert-space-top">Admin</a>
+                <button onclick="removeRetMsg()" id="relWithoutRetMsg">Reload Without Messages</button>
             </section>
         </main>
         <aside class="page-decor" id="page-decor-right">
@@ -189,5 +191,6 @@ $keeptab2 = "KeepTab:cb2:";
         <script type="text/javascript" src="./js/food.js"></script>
         <script type="text/javascript" src="./js/script.js"></script>
         <script src="./js/booking-form-switch.js"></script>
+        <script src="./js/hideRetMsgPostShow.js"></script>
     </body>
 </html>

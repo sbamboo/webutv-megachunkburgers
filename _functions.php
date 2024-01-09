@@ -6,12 +6,17 @@ function connectDB(array $sqlargs) {
     list($sql_host, $sql_uname, $sql_password, $sql_database, $sql_table) = $sqlargs;
 
     // Connect to SQL server UTF8
-    $mysqli = new mysqli($sql_host, $sql_uname, $sql_password, $sql_database);
-    $mysqli->set_charset("utf8");
+    try {
+        $mysqli = new mysqli($sql_host, $sql_uname, $sql_password, $sql_database);
+        $mysqli->set_charset("utf8");
+    } catch (Exception $e) {
+        // Handle exceptions and return message
+        return array(False,"Failed to connect to SQL database (" . $e->getMessage() . ")",NULL);
+    }
 
     // Verify connection to database
     if ($mysqli->connect_error) {
-        return array(False,"Failed to connect to SQL database (" . $mysqli->connect_error . ")",$mysqli);
+        return array(False,"Failed to connect to SQL database (" . $mysqli->connect_error . ")",NULL);
     } else {
         return array(True,"Successfully connected to database",$mysqli);
     }
@@ -33,12 +38,17 @@ function getTables(array $sqlargs) {
     list($sql_host, $sql_uname, $sql_password, $sql_database, $sql_table) = $sqlargs;
 
     // Connect to SQL server UTF8
-    $mysqli = new mysqli($sql_host, $sql_uname, $sql_password, $sql_database);
-    $mysqli->set_charset("utf8");
+    try {
+        $mysqli = new mysqli($sql_host, $sql_uname, $sql_password, $sql_database);
+        $mysqli->set_charset("utf8");
+    } catch (Exception $e) {
+        // Handle exceptions and return message
+        return array(False,"Failed to connect to SQL database (" . $e->getMessage() . ")",array());
+    }
 
     // Verify connection to database
     if ($mysqli->connect_error) {
-        return array(False,"Failed to connect to SQL databse (" . $mysqli->connect_error . ")",array());
+        return array(False,"Failed to connect to SQL database (" . $mysqli->connect_error . ")",array());
     }
     $sqlcmd = "SELECT TableNr FROM " . $sql_table;
                 
@@ -47,11 +57,6 @@ function getTables(array $sqlargs) {
     $result = mysqli_fetch_assoc($result);
 
     return $result;
-}
-
-// Function to check what tables are booked on a date
-function checkTbAva(array $sqlargs, string $datetime) {
-    
 }
 
 // Function to place a table order into the database taking the information
@@ -77,12 +82,17 @@ function addTbOrder(array $sqlargs, array $retargs, int $tableNr, string $fullNa
     list($sql_host, $sql_uname, $sql_password, $sql_database, $sql_table) = $sqlargs;
 
     // Connect to SQL server UTF8
-    $mysqli = new mysqli($sql_host, $sql_uname, $sql_password, $sql_database);
-    $mysqli->set_charset("utf8");
+    try {
+        $mysqli = new mysqli($sql_host, $sql_uname, $sql_password, $sql_database);
+        $mysqli->set_charset("utf8");
+    } catch (Exception $e) {
+        // Handle exceptions and return message
+        toLanding($retargs,"KeepTab:cb2:Failed to connect to SQL database (" . $e->getMessage() . ")");
+    }
 
     // Verify connection to database
     if ($mysqli->connect_error) {
-        return array(False,"KeepTab:cb2:Failed to connect to SQL databse (" . $mysqli->connect_error . ")",array());
+        toLanding($retargs,"KeepTab:cb2:Failed to connect to SQL database (" . $mysqli->connect_error . ")");
     }
 
     // Here we now use ? as a placeholder for our later values
@@ -122,12 +132,17 @@ function validateLoginDetails(array $sqlargs, string $username, string $password
     list($sql_host, $sql_uname, $sql_password, $sql_database, $sql_table) = $sqlargs;
 
     // Connect to SQL server UTF8
-    $mysqli = new mysqli($sql_host, $sql_uname, $sql_password, $sql_database);
-    $mysqli->set_charset("utf8");
+    try {
+        $mysqli = new mysqli($sql_host, $sql_uname, $sql_password, $sql_database);
+        $mysqli->set_charset("utf8");
+    } catch (Exception $e) {
+        // Handle exceptions and return message
+        return array(False,"Failed to connect to SQL database (" . $e->getMessage() . ")",array());
+    }
 
     // Verify connection to database
     if ($mysqli->connect_error) {
-        return array(False,"Failed to connect to SQL databse (" . $mysqli->connect_error . ")",array());
+        return array(False,"Failed to connect to SQL database (" . $mysqli->connect_error . ")",array());
     }
 
     // Here we now use ? as a placeholder for our later values
@@ -170,8 +185,13 @@ function updUserData(array $sqlargs, string $username, string $password, string 
     list($sql_host, $sql_uname, $sql_password, $sql_database, $sql_table) = $sqlargs;
 
     // Connect to SQL server UTF8
-    $mysqli = new mysqli($sql_host, $sql_uname, $sql_password, $sql_database);
-    $mysqli->set_charset("utf8");
+    try {
+        $mysqli = new mysqli($sql_host, $sql_uname, $sql_password, $sql_database);
+        $mysqli->set_charset("utf8");
+    } catch (Exception $e) {
+        // Handle exceptions and return message
+        return array(False,"Failed to connect to SQL database (" . $e->getMessage() . ")",array());
+    }
 
     // Verify connection to database
     if ($mysqli->connect_error) {
@@ -236,12 +256,17 @@ function getOrders(array $sqlargs) {
     list($sql_host, $sql_uname, $sql_password, $sql_database, $sql_table) = $sqlargs;
 
     // Connect to SQL server UTF8
-    $mysqli = new mysqli($sql_host, $sql_uname, $sql_password, $sql_database);
-    $mysqli->set_charset("utf8");
+    try {
+        $mysqli = new mysqli($sql_host, $sql_uname, $sql_password, $sql_database);
+        $mysqli->set_charset("utf8");
+    } catch (Exception $e) {
+        // Handle exceptions and return message
+        return array(False,"Failed to connect to SQL database (" . $e->getMessage() . ")",array());
+    }
 
     // Verify connection to database
     if ($mysqli->connect_error) {
-        return array(False,"Failed to connect to SQL databse (" . $mysqli->connect_error . ")",array());
+        return array(False,"Failed to connect to SQL database (" . $mysqli->connect_error . ")",array());
     }
     $sqlcmd = "SELECT * FROM " . $sql_table;
                 
@@ -262,12 +287,17 @@ function clearOrders(array $sqlargs) {
     list($sql_host, $sql_uname, $sql_password, $sql_database, $sql_table) = $sqlargs;
 
     // Connect to SQL server UTF8
-    $mysqli = new mysqli($sql_host, $sql_uname, $sql_password, $sql_database);
-    $mysqli->set_charset("utf8");
+    try {
+        $mysqli = new mysqli($sql_host, $sql_uname, $sql_password, $sql_database);
+        $mysqli->set_charset("utf8");
+    } catch (Exception $e) {
+        // Handle exceptions and return message
+        return array(False,"Failed to connect to SQL database (" . $e->getMessage() . ")",array());
+    }
 
     // Verify connection to database
     if ($mysqli->connect_error) {
-        return array(False,"Failed to connect to SQL databse (" . $mysqli->connect_error . ")",array());
+        return array(False,"Failed to connect to SQL database (" . $mysqli->connect_error . ")",array());
     }
     $sqlcmd = "TRUNCATE TABLE " . $sql_table;
                 

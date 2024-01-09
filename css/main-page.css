@@ -13,6 +13,8 @@
 
     --bform-tx-color: white;
     --bform-inp-bg-color: #2d2d2d;
+    --bform-tx-color-sel: rgb(79, 255, 79);
+    --bform-inp-bg-color-sel: #646464;
     --bform-inp-padding: 4px;
     --bform-inp-border: 1px solid #3b3b3b;
     --bform-inp-border-rad: 10px;
@@ -89,6 +91,10 @@ main {
 .booking-form option {
     background-color: var(--bform-inp-bg-color);
 }
+.booking-form option:checked {
+    background-color: var(--bform-inp-bg-color-sel);
+    color: var(--bform-tx-color-sel);
+}
 .booking-form select {
     border-radius: var(--bform-inp-border-rad);
     padding-left: var(--bform-select-hpadding);
@@ -124,6 +130,14 @@ main {
 }
 
 /*Main content*/
+#relWithoutRetMsg {
+    border: none;
+    background-color: rgba(0,0,0,0);
+    text-decoration: underline;
+}
+#relWithoutRetMsg:hover {
+    cursor: pointer;
+}
 #title-text {
     width: 70%;
     text-align: center;
@@ -162,8 +176,13 @@ main {
     margin-left: 30px;
 }
 .employee-img {
-    width: 150px;
-    height: 150px;
+    min-width: 140px;
+    min-height: 140px;
+    max-width: 140px;
+    max-height: 140px;
+    margin-right: 15px;
+    object-fit: cover;
+    overflow: hidden;
     background-color: gray;
 }
 #owner {

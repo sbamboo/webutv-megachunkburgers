@@ -75,7 +75,13 @@ function updateTbAvaliability(index) {
         .then(response => {
             strBuild = "";
             for (let elem in response) {
-                strBuild += '<option value="'.concat(elem,'">',elem,'</option>')
+                // Preselect first element
+                elem = response[elem];
+                if (elem == response[0]) {
+                    strBuild = '<option value="'.concat(elem,'" selected>',elem,'</option>');
+                } else {
+                    strBuild += '<option value="'.concat(elem,'">',elem,'</option>');
+                }
             }
             console.log(response);
             console.log(strBuild);
