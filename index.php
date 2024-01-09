@@ -145,7 +145,7 @@ $keeptab2 = "KeepTab:cb2:";
                         <img src="./media/employee-3.png" class="employee-img">
                         <div class="employee-info">
                             <h2>Viktor Nilsson</h2>
-                            <p>Har rest världen i utforskande om matscenen i alla världens hörn. Har jobbat på ett fleratal toppresturanger världen över och skaparen av "Salsa Blaze" burgaren</p>
+                            <p>Har rest världen i utforskande om matscenen i alla världens hörn. Har jobbat på ett fleratal toppresturanger världen över och skaparen av "Salsa Blaze" burgaren.</p>
                         </div>
                     </div>
                 </div>
@@ -170,8 +170,8 @@ $keeptab2 = "KeepTab:cb2:";
                     <p> Vi har dom största och bästa burgarna </p>
                 </div>
                 <div id="contact">
-                    <h2>Kontakt</h2>
-                    <p>*Telefon *instagram *facebook *mm</p>
+                    <h2>Kontakt oss</h2>
+                    <p>*Telefon: +46 (0)7 23 64 90 *instagram: @MegaChopBurgers *Facebook: MegaChop Burgers *mm</p>
                 </div>
             </section>
             <section>
