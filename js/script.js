@@ -2,6 +2,10 @@
 const menuButton = document.querySelector('#tab2');
 const bookButton = document.querySelector('#tab1');
 
+// Get labels to be able to change their position for visibility
+const menuLabel = document.querySelector('#tab1-label');
+const bookLabel = document.querySelector('#tab2-label');
+
 let content = document.querySelectorAll('.sidebar-content');
 
 //const acontent = '<audio autoplay id="music"><source src="media/buttonsound.mp3" type="audio/mp3"></audio>';
@@ -79,6 +83,11 @@ menuButton.addEventListener('mousedown', () => {
         menuButton.style.right = '0vw';
         menuButton.style.zIndex = 1;
         //parent.innerHTML = acontent;
+
+        //To move the other buttons label up to be visible
+        menuLabel.style.position = "absolute";
+        menuLabel.style.top = "15px";
+        bookLabel.style.position = "relative";
     }
 
     bookButton.style.right = '-1vw';
@@ -100,6 +109,11 @@ bookButton.addEventListener('mousedown', () => {
         bookButton.style.right = '0vw';
         bookButton.style.zIndex = 1;
         //parent.innerHTML = acontent;
+
+        //To move the other buttons label down to be visible
+        bookLabel.style.position = "absolute";
+        bookLabel.style.bottom = "15px";
+        menuLabel.style.position = "relative";
     }
 
     menuButton.style.right = '-1vw';

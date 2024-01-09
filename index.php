@@ -33,7 +33,7 @@ $keeptab2 = "KeepTab:cb2:";
                 <div class="sidebar-tab" id="tab2">
                     <div class="tab-button">
                         <div class="sidebar-label">
-                            <p>Book</p>
+                            <p id="tab2-label">Book</p>
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@ $keeptab2 = "KeepTab:cb2:";
                 <div class="sidebar-tab" id="tab1">
                     <div class="tab-button">
                         <div class="sidebar-label">
-                            <p>Meny</p>
+                            <p id="tab1-label">Meny</p>
                         </div>
                     </div>
                 </div>
@@ -167,8 +167,8 @@ $keeptab2 = "KeepTab:cb2:";
                     </div>
                 </div>
                 <div id="about">
-                    <h2> Om oss </h2>
-                    <p> Vi har dom största och bästa burgarna </p>
+                    <h2>Om oss</h2>
+                    <p>Vi har dom största och bästa burgarna</p>
                 </div>
                 <div id="contact">
                     <h2>Kontakt oss</h2>
