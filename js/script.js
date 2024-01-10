@@ -8,6 +8,20 @@ const bookLabel = document.querySelector('#tab2-label');
 
 let content = document.querySelectorAll('.sidebar-content');
 
+const hamburgerButton = document.querySelector('#hamburger-category-button');
+const meatButton = document.querySelector('#meat-category-button');
+const saladButton = document.querySelector('#salad-category-button');
+const drinkButton = document.querySelector('#drinks-category-button');
+const desertButton = document.querySelector('#deserts-category-button');
+const cartButton = document.querySelector('#cart-button');
+
+const hamburgerContent = document.querySelector('#hamburger-content');
+const meatContent = document.querySelector('#meat-content');
+const saladContent = document.querySelector('#salad-content');
+const drinkContent = document.querySelector('#drinks-content');
+const desertContent = document.querySelector('#deserts-content');
+const cartContent = document.querySelector('#cart-content');
+
 //const acontent = '<audio autoplay id="music"><source src="media/buttonsound.mp3" type="audio/mp3"></audio>';
 //const parent = document.querySelector('#music');
 
@@ -52,12 +66,18 @@ if (params.get("order") != null) { // SM: Added check to fix null-issue
 
 // This function is used to change the amount of an item in the cart
 function changeAmount(item, displayName, increment) {
-    document.querySelector(displayName).innerHTML = parseInt(document.querySelector(displayName).innerHTML) + increment;
+    document.querySelector(displayName).innerHTML = parseInt(document.querySelector(displayName).innerHTML) + increment <= 0 ? 0 : parseInt(document.querySelector(displayName).innerHTML) + increment;
+
     foodCopy[item].Amount += increment;
 }
 // When order is ready and shipped, convert items into url param and send to index.php to be caught using GET
 function order() {
-    let result = params.get("order").toString();
+    let result = params.get("order");
+    if(result != null) {
+        result = result.toString();
+    }else {
+        result = "";
+    }
     for(let item in foodCopy) {
         for(let i = 0; i < foodCopy[item].Amount; i++) {
             result += item + "§";
@@ -120,4 +140,60 @@ bookButton.addEventListener('mousedown', () => {
     menuButton.style.zIndex = 0;
     content[0].style.zIndex = 0;
     content[0].style.scale = 0;
+});
+
+
+hamburgerButton.addEventListener('mousedown', () => {
+    hamburgerContent.style.display = "block";
+    meatContent.style.display = "none";
+    saladContent.style.display = "none";
+    drinkContent.style.display = "none";
+    desertContent.style.display = "none";
+    cartContent.style.display = "none";
+    console.log("HAMBURGER")
+});
+meatButton.addEventListener('mousedown', () => {
+    hamburgerContent.style.display = "none";
+    meatContent.style.display = "block";
+    saladContent.style.display = "none";
+    drinkContent.style.display = "none";
+    desertContent.style.display = "none";
+    cartContent.style.display = "none";
+    console.log("MEAT")
+});
+saladButton.addEventListener('mousedown', () => {
+    hamburgerContent.style.display = "none";
+    meatContent.style.display = "none";
+    saladContent.style.display = "block";
+    drinkContent.style.display = "none";
+    desertContent.style.display = "none";
+    cartContent.style.display = "none";
+    console.log("SALAD")
+});
+drinkButton.addEventListener('mousedown', () => {
+    hamburgerContent.style.display = "none";
+    meatContent.style.display = "none";
+    saladContent.style.display = "none";
+    drinkContent.style.display = "block";
+    desertContent.style.display = "none";
+    cartContent.style.display = "none";
+    console.log("DRINK")
+});
+desertButton.addEventListener('mousedown', () => {
+    hamburgerContent.style.display = "none";
+    meatContent.style.display = "none";
+    saladContent.style.display = "none";
+    drinkContent.style.display = "none";
+    desertContent.style.display = "block";
+    cartContent.style.display = "none";
+    console.log("DESERT")
+});
+cartButton.addEventListener('mousedown', () => {
+    hamburgerContent.style.display = "none";
+    meatContent.style.display = "none";
+    saladContent.style.display = "none";
+    drinkContent.style.display = "none";
+    desertContent.style.display = "none";
+    cartContent.style.display = "block";
+    console.log("CART")
 });

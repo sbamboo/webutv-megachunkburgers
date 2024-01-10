@@ -85,39 +85,86 @@ $keeptab2 = "KeepTab:cb2:";
                     </div>
                 </div>
                 <div class="sidebar-content" id="tab1-content">
-                    <form id="menu-order-form">    
-                        <div class="menu-header">
-                            <p>Meny</p>
-                            <div class="vert-div-smal">
-                            </div><p>Bord:</p>
-                            <input type="text" name="tablenr" placeholder="xx">
-                            <input type="submit" name="food-submit" value="Beställ">
+                    <div id="menu-order-upper">
+                        <div id="menu-category-segment">
+                            <img id="hamburger-category-button" src="media/food/hamburgers/hamb1.png" draggable="false">
+                            <img id="meat-category-button" src="media/food/meat/meat1.png" draggable="false">
+                            <img id="salad-category-button" src="media/food/hamburgers/hamb1.png" draggable="false">
+                            <img id="drinks-category-button" src="media/food/drinks/drink1.png" draggable="false">
+                            <img id="deserts-category-button" src="media/food/deserts/desert1.png" draggable="false">
+                            <img id="cart-button" src="media/cart-icon.png" draggable="false">
                         </div>
-                        <div class="menu-main">
-                            <nav class="menu-catsel">
-                                <div class="menu-category" id="menu-cat-hamburgare">
-                                    <p>Hamburgare</p>
+                        <div class="menu-content" id="hamburger-content">
+                            <div class="menu-item">
+                                <img src="media/food/hamburgers/hamb1.png">
+                                <div class="menu-item-info">
+                                    <h2>Spicy Borger</h2>
+                                    <div class="menu-items-btn-div">
+                                        <button class="menu-items-btn-positive" onclick="changeAmount('hamb1','#hamb1-counter', 1)">+</button>
+                                        <p class="increment-counter" id="hamb1-counter">0</p>
+                                        <button class="menu-items-btn-negative" onclick="changeAmount('hamb1','#hamb1-counter', -1)">-</button>
+                                    </div>
+                                    <p>7.99</p>
                                 </div>
-                                <div class="menu-category" id="menu-cat-annat-kott">
-                                    <p>Andra Kött Rätter</p>
-                                </div>
-                                <div class="menu-category" id="menu-cat-drinks">
-                                    <p>Dryck</p>
-                                </div>
-                                <div class="menu-category" id="menu-cat-deserts">
-                                    <p>Desert</p>
-                                </div>
-                            </nav>
-                            <div class="menu-foodsel" id="menu-food-hamburgare">
-                            </div>
-                            <div class="menu-foodsel" id="menu-food-annat-kott">
-                            </div>
-                            <div class="menu-foodsel" id="menu-food-drinks">
-                            </div>
-                            <div class="menu-foodsel" id="menu-food-deserts">
                             </div>
                         </div>
-                    </form>
+                        <div class="menu-content" id="meat-content">
+                            <div class="menu-item">
+                                <img src="media/food/meat/meat1.png">
+                                <div class="menu-item-info">
+                                    <h2>Spicy meat</h2>
+                                    <div class="menu-items-btn-div">
+                                        <button class="menu-items-btn-positive" onclick="changeAmount('meat1','#meat1-counter', 1)">+</button>
+                                        <p class="increment-counter" id="meat1-counter">0</p>
+                                        <button class="menu-items-btn-negative" onclick="changeAmount('meat1','#meat1-counter', -1)">-</button>
+                                    </div>
+                                    <p>7.99</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-content" id="salad-content">
+                            <div class="menu-item">
+                                <img src="media/food/hamburgers/hamb1.png">
+                                <div class="menu-item-info">
+                                    <h2>Spicy Salad</h2>
+                                    <div class="menu-items-btn-div">
+                                        <button class="menu-items-btn-positive" onclick="changeAmount('salad1','#salad1-counter', 1)">+</button>
+                                        <p class="increment-counter" id="salad1-counter">0</p>
+                                        <button class="menu-items-btn-negative" onclick="changeAmount('salad1','#salad1-counter', -1)">-</button>
+                                    </div>
+                                    <p>7.99</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-content" id="drinks-content">
+                            <div class="menu-item">
+                                <img src="media/food/drinks/drink1.png">
+                                <div class="menu-item-info">
+                                    <h2>Spicy Drink</h2>
+                                    <div class="menu-items-btn-div">
+                                        <button class="menu-items-btn-positive" onclick="changeAmount('drink1','#drink1-counter', 1)">+</button>
+                                        <p class="increment-counter" id="drink1-counter">0</p>
+                                        <button class="menu-items-btn-negative" onclick="changeAmount('drink1','#drink1-counter', -1)">-</button>
+                                    </div>
+                                    <p>7.99</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-content" id="deserts-content">
+                            <div class="menu-item">
+                                <img src="media/food/deserts/desert1.png">
+                                <div class="menu-item-info">
+                                    <h2>Spicy desert</h2>
+                                    <div class="menu-items-btn-div">
+                                        <button class="menu-items-btn-positive" onclick="changeAmount('desert1','#desert1-counter', 1)">+</button>
+                                        <p class="increment-counter" id="desert1-counter">0</p>
+                                        <button class="menu-items-btn-negative" onclick="changeAmount('desert1','#desert1-counter', -1)">-</button>
+                                    </div>
+                                    <p>7.99</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </aside>
             <section>

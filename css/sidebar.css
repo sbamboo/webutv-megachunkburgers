@@ -120,3 +120,67 @@
 #tab2 + .sidebar-content {
     background-color: var(--sb-tab2-bg-color);
 }
+
+#menu-order-upper {
+    display:flex;
+    border: var(--sb-content-border);
+    border-top-right-radius: var(--sb-content-border-rad);
+    border-top-left-radius: var(--sb-content-border-rad);
+    background-color:yellow;
+    height:80%;
+    width:100%;
+}
+#menu-category-segment {
+    display:flex;
+    flex-wrap:wrap;
+    width:30%;
+    height:100%;
+    background-color:green;
+    border-top-left-radius: var(--sb-content-border-rad);
+}
+#menu-category-segment img {
+    width:50%;
+}
+.menu-content {
+    display:flex;
+    flex-wrap:wrap;
+    width:70%;
+    height:100%;
+    background-color:blue;
+    border: var(--sb-content-border);
+    border-top-right-radius: var(--sb-content-border-rad);
+}
+.menu-item {
+    padding:0 5% 3% 0;
+    width:20%;
+}
+.menu-item img {
+    width:100%;
+}
+.menu-item-info {
+    text-align:center;
+}
+.menu-items-btn-positive {
+    width:20%;
+    background-color:greenyellow;
+    border-radius:100%;
+}
+.menu-items-btn-negative {
+    width:20%;
+    background-color:red;
+    border-radius:100%;
+}
+.menu-items-btn-div {
+    display:flex;
+    justify-content:space-around;
+    width:100%;
+}
+.menu-content {
+    display:none;
+}
+#hamburger-content {
+    display:block;
+}
+#meat-content {
+    background-color: black;
+}

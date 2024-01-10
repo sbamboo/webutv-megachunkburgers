@@ -49,6 +49,31 @@ let food = {
         "picture": "media/food/meat/meat5.png",
         "price": 0,
     },
+    "salad1": {
+        "category": "salad",
+        "picture": "media/food/salad/salad1.png",
+        "price": 0,
+    },
+    "salad2": {
+        "category": "salad",
+        "picture": "media/food/salad/salad2.png",
+        "price": 0,
+    },
+    "salad3": {
+        "category": "salad",
+        "picture": "media/food/salad/salad3.png",
+        "price": 0,
+    },
+    "salad4": {
+        "category": "salad",
+        "picture": "media/food/salad/salad4.png",
+        "price": 0,
+    },
+    "salad5": {
+        "category": "salad",
+        "picture": "media/food/salad/salad5.png",
+        "price": 0,
+    },
     "drink1": {
         "category": "drink",
         "picture": "media/food/drink/drink1.png",
