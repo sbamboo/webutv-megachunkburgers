@@ -184,6 +184,7 @@ main {
     object-fit: cover;
     overflow: hidden;
     background-color: gray;
+    border-radius:10px;
 }
 #owner {
 }

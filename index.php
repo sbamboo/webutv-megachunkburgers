@@ -176,7 +176,11 @@ $keeptab2 = "KeepTab:cb2:";
                 </div>
                 <div id="employees">
                     <div class="employee" id="chef1">
+<<<<<<< Updated upstream
                         <img src="./media/employee-1.png" class="employee-img">
+=======
+                        <img src="media/Chefs/kock1.png" class="employee-img">
+>>>>>>> Stashed changes
                         <div class="employee-info">
                             <h2>Emil Bergström</h2>
                             <p>Professionel kock. har studerat I frankrike och har 25 år av yrkes erfarenhet där han har jobbat i diverse top resturanger i Frankrike, även skaparen av "Fuego Kick" burgaren.</p>
