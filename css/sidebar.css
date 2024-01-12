@@ -177,10 +177,30 @@
 }
 .menu-content {
     display:none;
+    overflow-y:scroll;
+    overflow-x:hidden;
 }
 #hamburger-content {
-    display:block;
+    display:flex;
 }
 #meat-content {
     background-color: black;
+}
+.cart-content {
+    display:none;
+}
+#menu-order-bottom {
+    display:flex;
+    flex-direction:row;
+}
+#price-display {
+    width:40%;
+    font-size:50px;
+}
+#table-number {
+    width:40%;
+    color:black;
+}
+#order-button {
+    width:20%;
 }

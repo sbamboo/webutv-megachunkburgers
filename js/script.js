@@ -60,15 +60,24 @@ for (let item in foodCopy) {
 }
 if (params.get("order") != null) { // SM: Added check to fix null-issue
     for(let param in params.get("order").split("§")) {
-        console.log(params.get("order").split("§")[param]);
     }
 }
 
 // This function is used to change the amount of an item in the cart
 function changeAmount(item, displayName, increment) {
-    document.querySelector(displayName).innerHTML = parseInt(document.querySelector(displayName).innerHTML) + increment <= 0 ? 0 : parseInt(document.querySelector(displayName).innerHTML) + increment;
+    let displays = document.querySelectorAll(displayName);
+    let priceDisplay = document.querySelector('#price-display');
+
+    displays[0].innerHTML = parseInt(displays[0].innerHTML) + increment <= 0 ? 0 : parseInt(displays[0].innerHTML) + increment;
+    displays[1].innerHTML = parseInt(displays[1].innerHTML) + increment <= 0 ? 0 : parseInt(displays[1].innerHTML) + increment;
 
     foodCopy[item].Amount += increment;
+
+    if(parseFloat(priceDisplay.innerHTML.split("$")[1]) + foodCopy[item].price * increment <= 0) {
+        priceDisplay.innerHTML = `Price: $0`;
+    }else {
+        priceDisplay.innerHTML = `Price: $${parseFloat(priceDisplay.innerHTML.split("$")[1]) + foodCopy[item].price * increment}`;
+    }
 }
 // When order is ready and shipped, convert items into url param and send to index.php to be caught using GET
 function order() {
@@ -125,7 +134,6 @@ bookButton.addEventListener('mousedown', () => {
     }else{
         content[1].style.scale = 1;
         content[1].style.zIndex = 1;
-        console.log(content[1].style.zIndex)
         bookButton.style.right = '0vw';
         bookButton.style.zIndex = 1;
         //parent.innerHTML = acontent;
@@ -144,49 +152,44 @@ bookButton.addEventListener('mousedown', () => {
 
 
 hamburgerButton.addEventListener('mousedown', () => {
-    hamburgerContent.style.display = "block";
+    hamburgerContent.style.display = "flex";
     meatContent.style.display = "none";
     saladContent.style.display = "none";
     drinkContent.style.display = "none";
     desertContent.style.display = "none";
     cartContent.style.display = "none";
-    console.log("HAMBURGER")
 });
 meatButton.addEventListener('mousedown', () => {
     hamburgerContent.style.display = "none";
-    meatContent.style.display = "block";
+    meatContent.style.display = "flex";
     saladContent.style.display = "none";
     drinkContent.style.display = "none";
     desertContent.style.display = "none";
     cartContent.style.display = "none";
-    console.log("MEAT")
 });
 saladButton.addEventListener('mousedown', () => {
     hamburgerContent.style.display = "none";
     meatContent.style.display = "none";
-    saladContent.style.display = "block";
+    saladContent.style.display = "flex";
     drinkContent.style.display = "none";
     desertContent.style.display = "none";
     cartContent.style.display = "none";
-    console.log("SALAD")
 });
 drinkButton.addEventListener('mousedown', () => {
     hamburgerContent.style.display = "none";
     meatContent.style.display = "none";
     saladContent.style.display = "none";
-    drinkContent.style.display = "block";
+    drinkContent.style.display = "flex";
     desertContent.style.display = "none";
     cartContent.style.display = "none";
-    console.log("DRINK")
 });
 desertButton.addEventListener('mousedown', () => {
     hamburgerContent.style.display = "none";
     meatContent.style.display = "none";
     saladContent.style.display = "none";
     drinkContent.style.display = "none";
-    desertContent.style.display = "block";
+    desertContent.style.display = "flex";
     cartContent.style.display = "none";
-    console.log("DESERT")
 });
 cartButton.addEventListener('mousedown', () => {
     hamburgerContent.style.display = "none";
@@ -194,6 +197,13 @@ cartButton.addEventListener('mousedown', () => {
     saladContent.style.display = "none";
     drinkContent.style.display = "none";
     desertContent.style.display = "none";
-    cartContent.style.display = "block";
-    console.log("CART")
+    cartContent.style.display = "flex";
+    for(let item in foodCopy) {
+        console.log(item)
+        if(foodCopy[item].Amount == 0) {
+            document.querySelector('#' + item + '-cart').style.display = "none";
+        }else {
+            document.querySelector('#' + item + '-cart').style.display = "block";
+        }
+    }
 });
