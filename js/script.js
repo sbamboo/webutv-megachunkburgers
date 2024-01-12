@@ -69,7 +69,7 @@ function changeAmount(item, displayName, increment) {
     let priceDisplay = document.querySelector('#price-display');
 
     for(let i = 0; i < displays.length; i++) {
-        displays[i].innerHTML = parseInt(displays[i].innerHTML) + increment <= 0 ? 0 : parseInt(displays[i].innerHTML) + increment;
+        displays[i].innerHTML = parseInt(displays[i].innerHTML.split(" ")[0]) + increment <= 0 ? 0 : parseInt(displays[i].innerHTML.split(" ")[0]) + increment + " st";
     }
     foodCopy[item].Amount += increment;
 
@@ -217,7 +217,7 @@ cartButton.addEventListener('mousedown', () => {
                     <h2>Spicy ${item}</h2>
                     <div class="menu-items-btn-div">
                         <button class="menu-items-btn-negative" onclick="changeAmount('${item}','.${item}-counter', -1)">-</button>
-                        <p class="increment-counter ${item}-counter">${document.querySelectorAll("." + item + "-counter")[0].innerHTML}</p>
+                        <p class="increment-counter ${item}-counter">${document.querySelectorAll("." + item + "-counter")[0].innerHTML} st</p>
                         <button class="menu-items-btn-positive" onclick="changeAmount('${item}','.${item}-counter', 1)">+</button>
                     </div>
                     <p>${foodCopy[item].price}kr</p>
@@ -265,7 +265,7 @@ for (let togen_item in foodCopy) {
             <h2>${togen_item.name}</h2>
             <div class="menu-items-btn-div">
                 <button class="menu-items-btn-negative" onclick="changeAmount('${togen_id}','.${togen_id}-counter', -1)">-</button>
-                <p class="increment-counter ${togen_id}-counter">0</p>st
+                <p class="increment-counter ${togen_id}-counter">0 st</p>
                 <button class="menu-items-btn-positive" onclick="changeAmount('${togen_id}','.${togen_id}-counter', 1)">+</button>
             </div>
             <p>${togen_item.price}kr</p>

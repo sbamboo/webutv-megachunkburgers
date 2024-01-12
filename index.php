@@ -134,7 +134,7 @@ $keeptab2 = "KeepTab:cb2:";
                         </div>
                     </div>
                     <div class="employee" id="chef2">
-                        <img src="./media/employee-2.png" class="employee-img">
+                        <img src="./media/employee-2.jpg" class="employee-img">
                         <div class="employee-info">
                             <h2>Oscar Lindqvist</h2>
                             <p>Vinnare av Sveriges mästerkock år 2013. Oscar hoppade omkring mellan resturanger innuti stockholm i 19 tills han landade hos oss, skaparen av "Firestorm" burgaren.</p>
