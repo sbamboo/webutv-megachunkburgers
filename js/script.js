@@ -20,7 +20,7 @@ const meatContent = document.querySelector('#meat-content');
 const saladContent = document.querySelector('#salad-content');
 const drinkContent = document.querySelector('#drinks-content');
 const desertContent = document.querySelector('#deserts-content');
-const cartContent = document.querySelector('#cart-content');
+let cartContent = document.querySelector('#cart-content');
 
 //const acontent = '<audio autoplay id="music"><source src="media/buttonsound.mp3" type="audio/mp3"></audio>';
 //const parent = document.querySelector('#music');
@@ -68,10 +68,14 @@ function changeAmount(item, displayName, increment) {
     let displays = document.querySelectorAll(displayName);
     let priceDisplay = document.querySelector('#price-display');
 
-    displays[0].innerHTML = parseInt(displays[0].innerHTML) + increment <= 0 ? 0 : parseInt(displays[0].innerHTML) + increment;
-    displays[1].innerHTML = parseInt(displays[1].innerHTML) + increment <= 0 ? 0 : parseInt(displays[1].innerHTML) + increment;
-
+    for(let i = 0; i < displays.length; i++) {
+        displays[i].innerHTML = parseInt(displays[i].innerHTML) + increment <= 0 ? 0 : parseInt(displays[i].innerHTML) + increment;
+    }
     foodCopy[item].Amount += increment;
+
+    if(foodCopy[item].Amount <= 0) {
+        document.querySelector('#' + item + '-cart').remove();
+    }
 
     if(parseFloat(priceDisplay.innerHTML.split("$")[1]) + foodCopy[item].price * increment <= 0) {
         priceDisplay.innerHTML = `Price: $0`;
@@ -158,6 +162,7 @@ hamburgerButton.addEventListener('mousedown', () => {
     drinkContent.style.display = "none";
     desertContent.style.display = "none";
     cartContent.style.display = "none";
+    cartContent.innerHTML = "";
 });
 meatButton.addEventListener('mousedown', () => {
     hamburgerContent.style.display = "none";
@@ -166,6 +171,7 @@ meatButton.addEventListener('mousedown', () => {
     drinkContent.style.display = "none";
     desertContent.style.display = "none";
     cartContent.style.display = "none";
+    cartContent.innerHTML = "";
 });
 saladButton.addEventListener('mousedown', () => {
     hamburgerContent.style.display = "none";
@@ -174,6 +180,7 @@ saladButton.addEventListener('mousedown', () => {
     drinkContent.style.display = "none";
     desertContent.style.display = "none";
     cartContent.style.display = "none";
+    cartContent.innerHTML = "";
 });
 drinkButton.addEventListener('mousedown', () => {
     hamburgerContent.style.display = "none";
@@ -182,6 +189,7 @@ drinkButton.addEventListener('mousedown', () => {
     drinkContent.style.display = "flex";
     desertContent.style.display = "none";
     cartContent.style.display = "none";
+    cartContent.innerHTML = "";
 });
 desertButton.addEventListener('mousedown', () => {
     hamburgerContent.style.display = "none";
@@ -190,6 +198,7 @@ desertButton.addEventListener('mousedown', () => {
     drinkContent.style.display = "none";
     desertContent.style.display = "flex";
     cartContent.style.display = "none";
+    cartContent.innerHTML = "";
 });
 cartButton.addEventListener('mousedown', () => {
     hamburgerContent.style.display = "none";
@@ -199,11 +208,21 @@ cartButton.addEventListener('mousedown', () => {
     desertContent.style.display = "none";
     cartContent.style.display = "flex";
     for(let item in foodCopy) {
-        console.log(item)
-        if(foodCopy[item].Amount == 0) {
-            document.querySelector('#' + item + '-cart').style.display = "none";
-        }else {
-            document.querySelector('#' + item + '-cart').style.display = "block";
+        if(foodCopy[item].Amount > 0) {
+            console.log(item)
+            cartContent.innerHTML += `
+            <div class="menu-item" id="${item}-cart">
+                <img src="media/food/${foodCopy[item].category}/${item}.png">
+                <div class="menu-item-info">
+                    <h2>Spicy ${item}</h2>
+                    <div class="menu-items-btn-div">
+                        <button class="menu-items-btn-positive" onclick="changeAmount('${item}','.${item}-counter', 1)">+</button>
+                        <p class="increment-counter ${item}-counter">${document.querySelectorAll("." + item + "-counter")[0].innerHTML}</p>
+                        <button class="menu-items-btn-negative" onclick="changeAmount('${item}','.${item}-counter', -1)">-</button>
+                    </div>
+                    <p>${foodCopy[item].price}</p>
+                </div>
+            </div>`
         }
     }
 });
