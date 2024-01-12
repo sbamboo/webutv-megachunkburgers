@@ -209,7 +209,6 @@ cartButton.addEventListener('mousedown', () => {
     cartContent.style.display = "flex";
     for(let item in foodCopy) {
         if(foodCopy[item].Amount > 0) {
-            console.log(item)
             cartContent.innerHTML += `
             <div class="menu-item" id="${item}-cart">
                 <img src="media/food/${foodCopy[item].category}/${item}.png">
@@ -217,7 +216,7 @@ cartButton.addEventListener('mousedown', () => {
                     <h2>Spicy ${item}</h2>
                     <div class="menu-items-btn-div">
                         <button class="menu-items-btn-negative" onclick="changeAmount('${item}','.${item}-counter', -1)">-</button>
-                        <p class="increment-counter ${item}-counter">${document.querySelectorAll("." + item + "-counter")[0].innerHTML} st</p>
+                        <p class="increment-counter ${item}-counter">${document.querySelectorAll("." + item + "-counter")[0].innerHTML}</p>
                         <button class="menu-items-btn-positive" onclick="changeAmount('${item}','.${item}-counter', 1)">+</button>
                     </div>
                     <p>${foodCopy[item].price}kr</p>
