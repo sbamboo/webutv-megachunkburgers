@@ -26,6 +26,22 @@
     --bform-retmsg-fai-color: red;
     --bform-retmsg-war-color: orange;
 
+    --menu-upper-height: 80%;
+    --menu-order-height: 50%;
+    --menu-bottom-height: 20%;
+    --menu-categories-bgcolor: yellow;
+    --menu-fooditems-bgcolor: blue;
+    --menu-order-bgcolor: rgba(0,0,0,0);
+    --menu-category-bgcolor: green;
+    --menu-addbtn-bgcolor: greenyellow;
+    --menu-rembtn-bgcolor: red;
+
+    --menu-hambcat-bgcolor: black;
+    --menu-meatcat-bgcolor: black;
+    --menu-salacat-bgcolor: black;
+    --menu-drincat-bgcolor: black;
+    --menu-dsrtcat-bgcolor: black;
+
     --group-pic-margin: 30px;
     --group-pic-width: 800px;
     --group-pic-height: 270px;
@@ -127,6 +143,105 @@ main {
 }
 #form-decrement-btn {
     background-color: #3c2828;
+}
+
+/*menu*/
+#menu-order-upper {
+    display: flex;
+    border-top-right-radius: var(--sb-content-border-rad);
+    border-top-left-radius: var(--sb-content-border-rad);
+    height: var(--menu-upper-height);
+    width: 100%;
+}
+#menu-category-segment {
+    display: flex;
+    flex-wrap: wrap;
+    width: 30%;
+    height: 100%;
+    background-color: var(--menu-categories-bgcolor);
+    border-top-left-radius: var(--sb-content-border-rad);
+    align-content: flex-start
+}
+#menu-category-segment img {
+    width: 50%;
+    object-fit: contain;
+    background-color: var(--menu-category-bgcolor);
+}
+.menu-content {
+    display: none;
+    flex-wrap: wrap;
+    width: 70%;
+    height: 100%;
+    background-color: var(--menu-fooditems-bgcolor);
+    border: var(--sb-content-border);
+    border-top-right-radius: var(--sb-content-border-rad);
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.menu-item {
+    padding: 0 5% 3% 0;
+    width: 20%;
+}
+.menu-item img {
+    width: 100%;
+}
+.menu-item-info {
+    text-align: center;
+}
+.menu-items-btn-positive {
+    width: 20%;
+    background-color: var(--menu-addbtn-bgcolor);
+    border-radius: 100%;
+}
+.menu-items-btn-negative {
+    width: 20%;
+    background-color: var(--menu-rembtn-bgcolor);
+    border-radius: 100%;
+}
+.menu-items-btn-div {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.cart-content {
+    display: none;
+}
+#menu-order-bottom {
+    height: var(--menu-bottom-height);
+}
+#menu-order-main {
+    display: flex;
+    flex-direction: row;
+    height: var(--menu-order-height);
+    background-color: var(--menu-order-bgcolor);
+}
+#price-display {
+    width: 40%;
+    font-size: 50px;
+}
+#table-number {
+    width: 40%;
+    color: black;
+}
+#order-button {
+    width: 20%;
+}
+
+#hamburger-content {
+    background-color: var(--menu-hambcat-bgcolor);
+}
+#meat-content {
+    background-color: var(--menu-meatcat-bgcolor);
+}
+#salad-content {
+    background-color: var(--menu-salacat-bgcolor);
+}
+#drinks-content {
+    background-color: var(--menu-drincat-bgcolor);
+}
+#deserts-content {
+    background-color: var(--menu-dsrtcat-bgcolor);
 }
 
 /*Main content*/

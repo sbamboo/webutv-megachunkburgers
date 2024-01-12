@@ -77,10 +77,10 @@ function changeAmount(item, displayName, increment) {
         document.querySelector('#' + item + '-cart').remove();
     }
 
-    if(parseFloat(priceDisplay.innerHTML.split("$")[1]) + foodCopy[item].price * increment <= 0) {
-        priceDisplay.innerHTML = `Price: $0`;
+    if(parseFloat(priceDisplay.innerHTML.split(": ")[1].replace("kr","")) + foodCopy[item].price * increment <= 0) {
+        priceDisplay.innerHTML = `Price: 0kr`;
     }else {
-        priceDisplay.innerHTML = `Price: $${parseFloat(priceDisplay.innerHTML.split("$")[1]) + foodCopy[item].price * increment}`;
+        priceDisplay.innerHTML = `Price: ${parseFloat(priceDisplay.innerHTML.split(": ")[1].replace("kr","")) + foodCopy[item].price * increment}kr`;
     }
 }
 // When order is ready and shipped, convert items into url param and send to index.php to be caught using GET
@@ -216,13 +216,62 @@ cartButton.addEventListener('mousedown', () => {
                 <div class="menu-item-info">
                     <h2>Spicy ${item}</h2>
                     <div class="menu-items-btn-div">
-                        <button class="menu-items-btn-positive" onclick="changeAmount('${item}','.${item}-counter', 1)">+</button>
-                        <p class="increment-counter ${item}-counter">${document.querySelectorAll("." + item + "-counter")[0].innerHTML}</p>
                         <button class="menu-items-btn-negative" onclick="changeAmount('${item}','.${item}-counter', -1)">-</button>
+                        <p class="increment-counter ${item}-counter">${document.querySelectorAll("." + item + "-counter")[0].innerHTML}</p>
+                        <button class="menu-items-btn-positive" onclick="changeAmount('${item}','.${item}-counter', 1)">+</button>
                     </div>
-                    <p>${foodCopy[item].price}</p>
+                    <p>${foodCopy[item].price}kr</p>
                 </div>
             </div>`
         }
     }
 });
+
+let togen_use_category;
+
+// Menu HTML generator
+console.groupCollapsed("Menu generator:");
+console.log("Starting generation/population of food items...");
+for (let togen_item in foodCopy) {
+    togen_id = togen_item
+    togen_item = foodCopy[togen_item]
+    // Hamburger
+    if (togen_item.category === "hamburgers") {
+        togen_use_category = hamburgerContent
+    }
+    // Meat
+    if (togen_item.category === "meat") {
+        togen_use_category = meatContent
+    }
+    // Salad
+    if (togen_item.category === "salad") {
+        togen_use_category = saladContent
+    }
+    // Drinks
+    if (togen_item.category === "drinks") {
+        togen_use_category = drinkContent
+    }
+    // Deserts
+    if (togen_item.category === "deserts") {
+        togen_use_category = desertContent
+    }
+    
+    // Generate
+    console.log("Populating '"+togen_item.category+"' with item: '"+togen_id+"', name: '"+togen_item.name+"'")
+    togen_use_category.innerHTML += `
+    <div class="menu-item">
+        <img src="${togen_item.picture}">
+        <div class="menu-item-info">
+            <h2>${togen_item.name}</h2>
+            <div class="menu-items-btn-div">
+                <button class="menu-items-btn-negative" onclick="changeAmount('${togen_id}','.${togen_id}-counter', -1)">-</button>
+                <p class="increment-counter ${togen_id}-counter">0</p>st
+                <button class="menu-items-btn-positive" onclick="changeAmount('${togen_id}','.${togen_id}-counter', 1)">+</button>
+            </div>
+            <p>${togen_item.price}kr</p>
+        </div>
+    </div>
+    `
+}
+console.log("Done!");
+console.groupEnd();
