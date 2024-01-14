@@ -20,7 +20,7 @@ const meatContent = document.querySelector('#meat-content');
 const saladContent = document.querySelector('#salad-content');
 const drinkContent = document.querySelector('#drinks-content');
 const desertContent = document.querySelector('#deserts-content');
-let cartContent = document.querySelector('#cart-content');
+const cartContent = document.querySelector('#cart-content');
 
 //const acontent = '<audio autoplay id="music"><source src="media/buttonsound.mp3" type="audio/mp3"></audio>';
 //const parent = document.querySelector('#music');
@@ -50,17 +50,11 @@ if(string.includes("KeepTab:cb1")) {
     content[0].style.scale = 0;
 }
 
-const listButton = document.querySelector('#listButton');
-
 let foodCopy = food;
 
 // Add a variable called "Amount" to every item in foodCopy
 for (let item in foodCopy) {
     foodCopy[item].Amount = 0;
-}
-if (params.get("order") != null) { // SM: Added check to fix null-issue
-    for(let param in params.get("order").split("§")) {
-    }
 }
 
 // This function is used to change the amount of an item in the cart
@@ -74,7 +68,12 @@ function changeAmount(item, displayName, increment) {
     foodCopy[item].Amount += increment;
 
     if(foodCopy[item].Amount <= 0) {
-        document.querySelector('#' + item + '-cart').remove();
+        try{
+            document.querySelector('#' + item + '-cart').remove();
+        }
+        catch(error){
+
+        }
     }
 
     if(parseFloat(priceDisplay.innerHTML.split(": ")[1].replace("kr","")) + foodCopy[item].price * increment <= 0) {
