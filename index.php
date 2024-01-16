@@ -153,14 +153,14 @@ $keeptab2 = "KeepTab:cb2:";
                         <img src="./media/produce_meat.png" class="meat-img">
                         <div class="produce-meat info">
                             <h2>Kött</h2>
-                            <p>Vi har bra kött</p>
+                            <p>Vårat kött är inköpt lokalt från Berghagens bondgård där kossorna är får ströva fritt och är bra omhändertagna. Vi köper in fläskkött från PrärieSvinet som är känt för deras kvalite och humanitära behandlande av grisarna. Vår kyckling bistår våran egna kock Viktor Nilsson med då han Föder egna. </p>
                         </div>
                     </div>
                     <div class="produce" id="greens">
                         <img src="./media/produce_greens.png" class="greens-img">
                         <div class="produce-greens info">
                             <h2>Grönsaker</h2>
-                            <p>Vi har bra grönsaker</p>
+                            <p>Våra grönsaker är inköpta lokalt från flera bondgårdar runt om I sverige. Våra anställda odlar även några grönsaker själv som sedan används av oss. Dom bondgårad vi köper in ifrån är EkoÄngen Gård, Solhaga Gård och Bondens Paradis </p>
                         </div>
                     </div>
                 </div>
