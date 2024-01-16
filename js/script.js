@@ -30,9 +30,6 @@ const cartContentString = `
     </div>
     `
 
-//const acontent = '<audio autoplay id="music"><source src="media/buttonsound.mp3" type="audio/mp3"></audio>';
-//const parent = document.querySelector('#music');
-
 // Checks for KeepTab:cb<id> in url and if it is there, it will keep the tab open
 let url = new URL(window.location.href);
 let params = new URLSearchParams(url.search);
@@ -78,9 +75,7 @@ function changeAmount(item, displayName, increment) {
         try{
             document.querySelector('#' + item + '-cart').remove();
         }
-        catch(error){
-
-        }
+        catch(error){}
         if(document.querySelector('.cart-item') == null) {
             cartContent.innerHTML = cartContentString;
         }
@@ -112,18 +107,17 @@ function order() {
     }
 }
 
+//Open up the menu content and close the book content
 menuButton.addEventListener('mousedown', () => {
     if(content[0].style.scale == 1) {
         content[0].style.scale = 0;
         content[0].style.zIndex = 0;
         menuButton.style.right = '-1vw';
-        //parent.innerHTML = acontent;
     }else{
         content[0].style.scale = 1;
         content[0].style.zIndex = 1;
         menuButton.style.right = '0vw';
         menuButton.style.zIndex = 1;
-        //parent.innerHTML = acontent;
 
         //To move the other buttons label up to be visible
         menuLabel.style.position = "absolute";
@@ -137,18 +131,17 @@ menuButton.addEventListener('mousedown', () => {
     content[1].style.scale = 0;
 });
 
+//Open up the book content and close the menu content
 bookButton.addEventListener('mousedown', () => {
     if(content[1].style.scale == 1) {
         content[1].style.scale = 0;
         content[1].style.zIndex = 0;
         bookButton.style.right = '-1vw';
-        //parent.innerHTML = acontent;
     }else{
         content[1].style.scale = 1;
         content[1].style.zIndex = 1;
         bookButton.style.right = '0vw';
         bookButton.style.zIndex = 1;
-        //parent.innerHTML = acontent;
 
         //To move the other buttons label down to be visible
         bookLabel.style.position = "absolute";
