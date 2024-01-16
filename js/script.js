@@ -28,7 +28,6 @@ const cartContent = document.querySelector('#cart-content');
 // Checks for KeepTab:cb<id> in url and if it is there, it will keep the tab open
 let url = new URL(window.location.href);
 let params = new URLSearchParams(url.search);
-let paramstring = "?";
 const string = params.get("ret-msg") || "";
 if(string.includes("KeepTab:cb2")) {
     console.log(string.split(":")[2]);
@@ -96,11 +95,7 @@ function order() {
         }
     }
     params.set("order", result);
-    if(string.length == 0 && string.includes("order=") == false) {
-        window.location.href = "?" + params.toString();
-    }else {
-        window.location.href = "&" + params.toString();
-    }
+    window.location.href = "?" + params.toString();
 }
 
 menuButton.addEventListener('mousedown', () => {
