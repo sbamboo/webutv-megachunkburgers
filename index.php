@@ -20,6 +20,17 @@ $keeptab2 = "KeepTab:cb2:";
         <script src="./js/phpErrorCheck.js"></script>
     </head>
     <body>
+        <noscript>
+            <style type="text/css">
+                header {display:none;}
+                main {display:none;}
+                aside {display:none;}
+                footer {display:none;}
+            </style>
+            <div class="noscriptmsg">
+                <div><p>You don't have javascript enabled, this website sadly relies on javascript to function.<br></p></div>
+            </div>
+        </noscript>
         <header>
             <img src="">
         </header>
