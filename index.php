@@ -130,21 +130,21 @@ $keeptab2 = "KeepTab:cb2:";
                         <img src="./media/employee-1.png" class="employee-img">
                         <div class="employee-info">
                             <h2>Emil Bergström</h2>
-                            <p>Professionel kock. har studerat I frankrike och har 25 år av yrkes erfarenhet där han har jobbat i diverse top resturanger i Frankrike, även skaparen av "Fuego Kick" burgaren.</p>
+                            <p>Professionel kock. har studerat I frankrike och har 25 år av yrkes erfarenhet där han har jobbat i diverse top resturanger i Frankrike, även skaparen av "Fuego Kick" burgaren. Emil har varigt huvudkock på vår resturang i 4 år.</p>
                         </div>
                     </div>
                     <div class="employee" id="chef2">
                         <img src="./media/employee-2.png" class="employee-img">
                         <div class="employee-info">
                             <h2>Oscar Lindqvist</h2>
-                            <p>Vinnare av Sveriges mästerkock år 2013. Oscar hoppade omkring mellan resturanger innuti stockholm i 19 tills han landade hos oss, skaparen av "Firestorm" burgaren.</p>
+                            <p>Vinnare av Sveriges mästerkock år 2013. Oscar hoppade omkring mellan resturanger innuti stockholm i 19 tills han landade hos oss, skaparen av "Firestorm" och "Cajun Kick" burgarna. Älskar allt grönt och odlar även egna öreter till resturangen.</p>
                         </div>
                     </div>
                     <div class="employee" id="chef3">
                         <img src="./media/employee-3.png" class="employee-img">
                         <div class="employee-info">
                             <h2>Viktor Nilsson</h2>
-                            <p>Har rest världen i utforskande om matscenen i alla världens hörn. Har jobbat på ett fleratal toppresturanger världen över och skaparen av "Salsa Blaze" burgaren.</p>
+                            <p>Har rest världen i utforskande om matscenen i alla världens hörn. Har jobbat på ett fleratal toppresturanger världen över och skaparen av "Salsa Blaze" och "Buffalo Heatwave" burgarna. Älskar djur och föder egen kyckling till resturangen.</p>
                         </div>
                     </div>
                 </div>
@@ -153,7 +153,7 @@ $keeptab2 = "KeepTab:cb2:";
                         <img src="./media/produce_meat.png" class="meat-img">
                         <div class="produce-meat info">
                             <h2>Kött</h2>
-                            <p>Vårat kött är inköpt lokalt från Berghagens bondgård där kossorna är får ströva fritt och är bra omhändertagna. Vi köper in fläskkött från PrärieSvinet som är känt för deras kvalite och humanitära behandlande av grisarna. Vår kyckling bistår våran egna kock Viktor Nilsson med då han Föder egna. </p>
+                            <p>Vårat kött är inköpt lokalt från Berghagens bondgård där kossorna är får ströva fritt och är bra omhändertagna. Vi köper in fläskkött från PrärieSvinet som är känt för deras kvalite och humanitära behandlande av grisarna. Vår kyckling bistår vår egna kock Viktor Nilsson med då han Föder egna. </p>
                         </div>
                     </div>
                     <div class="produce" id="greens">
@@ -166,7 +166,7 @@ $keeptab2 = "KeepTab:cb2:";
                 </div>
                 <div id="about">
                     <h2>Om oss</h2>
-                    <p>Vi har dom största och bästa burgarna</p>
+                    <p>Vi är en resturang som tar hålbarhet och kvalitet på allvar och därför köper vi endast från vältablerade gårdar i Sverige med fokus på lokalt. Vi har en större inrikting på kryddiga rätter men vi har även det traditionella som alla tycker om. Vi har några av dom mest omtallade kockarna i Sverige Emil Bergström, Oscar Lindqvist och Viktor Nilsson som alla jobbar hårt för att ge alla besökande en oförglömlig upplevelse.  </p>
                 </div>
                 <div id="contact">
                     <h2>Kontakt oss</h2>
@@ -174,7 +174,7 @@ $keeptab2 = "KeepTab:cb2:";
                 </div>
             </section>
             <section>
-                <p class="vert-space-top">Här är lite tråkig information om oss</p>
+                <p class="vert-space-top"></p>
                 <a href="./admin.php" class="vert-space-top">Admin</a>
                 <button onclick="removeRetMsg()" id="relWithoutRetMsg">Reload Without Messages</button>
             </section>

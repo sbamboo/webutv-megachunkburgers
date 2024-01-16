@@ -75,7 +75,7 @@ let food = {
         "category": "salad",
         "picture": "media/food/salad/salad3.png",
         "price": 100,
-        "name": "Kycklingsallad",
+        "name": "Kyckling sallad",
     },
     "salad4": {
         "category": "salad",
