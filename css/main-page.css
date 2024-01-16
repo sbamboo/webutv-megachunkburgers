@@ -33,13 +33,13 @@
     --menu-fooditems-bgcolor: black;
     --menu-order-bgcolor: rgba(0,0,0,0);
     --menu-category-bgcolor: #2d2d2d;
-    --menu-category-sel-bgcolor: #3e3e3e;
+    --menu-category-sel-bgcolor: #454545;
     --menu-addbtn-bgcolor: rgb(69, 166, 17);
     --menu-rembtn-bgcolor: rgb(166, 2, 2);
 
     --menu-category-border-width: 1px;
     --menu-category-border: var(--menu-category-border-width) solid #414141;
-    --menu-category-sel-border: var(--menu-category-border-width) solid #414141;
+    --menu-category-sel-border: var(--menu-category-border-width) solid #717171;
     --menu-category-margin: 2px;
 
     --menu-hambcat-bgcolor: black;
@@ -186,7 +186,7 @@ main {
     border: var(--menu-upper-border);
     border-width: 0 0 var(--menu-upper-border-size) 0;
 }
-#menu-category-segment {
+.menu-category-segment {
     display: flex;
     flex-wrap: wrap;
     width: 30%;
@@ -195,20 +195,15 @@ main {
     border-top-left-radius: var(--sb-content-border-rad);
     align-content: flex-start
 }
-#menu-category-segment img:first-child {
+.menu-category-segment img:first-child {
     border-radius: var(--sb-content-border-rad) 0 0 0;
 }
-#menu-category-segment img {
+.menu-category-segment img {
     width: calc(50% - var(--menu-category-margin) - calc( var(--menu-category-border-width) * 6 ) );
     object-fit: contain;
     background-color: var(--menu-category-bgcolor);
     border: var(--menu-category-border);
     margin: var(--menu-category-margin);
-}
-
-.selected-menu-category {
-    background-color: var(--menu-category-sel-bgcolor);
-    border: var(--menu-category-sel-border);
 }
 
 .menu-content {
@@ -291,6 +286,11 @@ main {
     margin-left: var(--menu-orderbtn-margin-w);
     margin-right: var(--menu-orderbtn-margin-w);
     font-size: var(--menu-orderbtn-fontsize);
+}
+
+.menu-category-segment .selected-menu-category {
+    background-color: var(--menu-category-sel-bgcolor);
+    border: var(--menu-category-sel-border);
 }
 
 #hamburger-content {
