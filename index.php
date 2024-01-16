@@ -92,6 +92,7 @@ $keeptab2 = "KeepTab:cb2:";
                             <img id="hamburger-category-button" src="media/food/hamburgers/hamb1.png" draggable="false">
 =======
                         <div id="menu-category-segment">
+                        <h2 id="menu-order-title">Kategorier</h2>
                             <img id="hamburger-category-button" class="selected-menu-category" src="media/food/hamburgers/hamb1.png" draggable="false">
 >>>>>>> Stashed changes
                             <img id="meat-category-button" src="media/food/meat/meat1.png" draggable="false">
