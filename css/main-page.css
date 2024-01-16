@@ -59,6 +59,20 @@
 
     --menu-price-font-size: 40px;
 
+    --menu-tablenr-width: 30%;
+    --menu-tablenr-color: white;
+    --menu-tablenr-bgcolor: #333333;
+    --menu-tablenr-margin-h: 1.9vh;
+    --menu-tablenr-margin-w: 1vw;
+    --menu-tablenr-fontsize: 20px;
+
+    --menu-orderbtn-width: 30%;
+    --menu-orderbtn-color: white;
+    --menu-orderbtn-bgcolor: #333333;
+    --menu-orderbtn-margin-h: 1.9vh;
+    --menu-orderbtn-margin-v: 1vw;
+    --menu-orderbtn-fontsize: 20px;
+
     --group-pic-margin: 30px;
     --group-pic-width: 800px;
     --group-pic-height: 270px;
@@ -257,20 +271,26 @@ main {
     text-align: center;
 }
 #table-number {
-    width: 30%;
-    color: white;
-    background-color: #333333;
+    width: var(--menu-tablenr-width);
+    color: var(--menu-tablenr-color);
+    background-color: var(--menu-tablenr-bgcolor);
     text-align: center;
-    margin: 20px;
-    font-size: 20px;
+    margin-top: var(--menu-tablenr-margin-h);
+    margin-bottom: var(--menu-tablenr-margin-h);
+    margin-left: var(--menu-tablenr-margin-w);
+    margin-right: var(--menu-tablenr-margin-w);
+    font-size: var(--menu-tablenr-fontsize);
 }
 #order-button {
-    width: 30%;
-    color: white;
-    background-color: #333333;
+    width: var(--menu-orderbtn-width);
+    color: var(--menu-orderbtn-color);
+    background-color: var(--menu-orderbtn-bgcolor);
     text-align: center;
-    margin: 20px;
-    font-size: 20px;
+    margin-top: var(--menu-orderbtn-margin-h);
+    margin-bottom: var(--menu-orderbtn-margin-h);
+    margin-left: var(--menu-orderbtn-margin-w);
+    margin-right: var(--menu-orderbtn-margin-w);
+    font-size: var(--menu-orderbtn-fontsize);
 }
 
 #hamburger-content {
