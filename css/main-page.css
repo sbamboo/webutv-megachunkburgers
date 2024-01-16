@@ -29,18 +29,35 @@
     --menu-upper-height: 80%;
     --menu-order-height: 50%;
     --menu-bottom-height: 20%;
-    --menu-categories-bgcolor: yellow;
-    --menu-fooditems-bgcolor: blue;
+    --menu-categories-bgcolor: #353535;
+    --menu-fooditems-bgcolor: black;
     --menu-order-bgcolor: rgba(0,0,0,0);
-    --menu-category-bgcolor: green;
-    --menu-addbtn-bgcolor: greenyellow;
-    --menu-rembtn-bgcolor: red;
+    --menu-category-bgcolor: #2d2d2d;
+    --menu-category-sel-bgcolor: #3e3e3e;
+    --menu-addbtn-bgcolor: rgb(69, 166, 17);
+    --menu-rembtn-bgcolor: rgb(166, 2, 2);
+
+    --menu-category-border-width: 1px;
+    --menu-category-border: var(--menu-category-border-width) solid #414141;
+    --menu-category-sel-border: var(--menu-category-border-width) solid #414141;
+    --menu-category-margin: 2px;
 
     --menu-hambcat-bgcolor: black;
     --menu-meatcat-bgcolor: black;
     --menu-salacat-bgcolor: black;
     --menu-drincat-bgcolor: black;
     --menu-dsrtcat-bgcolor: black;
+
+    --menu-content-border: 1px solid gray;
+    --menu-content-border-size: 2px;
+
+    --menu-upper-border: 1px solid gray;
+    --menu-upper-border-size: 2px;
+
+    --menu-order-main-border: 1px solid #333333;
+    --menu-order-main-border-size: 2px;
+
+    --menu-price-font-size: 40px;
 
     --group-pic-margin: 30px;
     --group-pic-width: 800px;
@@ -152,6 +169,8 @@ main {
     border-top-left-radius: var(--sb-content-border-rad);
     height: var(--menu-upper-height);
     width: 100%;
+    border: var(--menu-upper-border);
+    border-width: 0 0 var(--menu-upper-border-size) 0;
 }
 #menu-category-segment {
     display: flex;
@@ -162,11 +181,22 @@ main {
     border-top-left-radius: var(--sb-content-border-rad);
     align-content: flex-start
 }
+#menu-category-segment img:first-child {
+    border-radius: var(--sb-content-border-rad) 0 0 0;
+}
 #menu-category-segment img {
-    width: 50%;
+    width: calc(50% - var(--menu-category-margin) - calc( var(--menu-category-border-width) * 6 ) );
     object-fit: contain;
     background-color: var(--menu-category-bgcolor);
+    border: var(--menu-category-border);
+    margin: var(--menu-category-margin);
 }
+
+.selected-menu-category {
+    background-color: var(--menu-category-sel-bgcolor);
+    border: var(--menu-category-sel-border);
+}
+
 .menu-content {
     display: none;
     flex-wrap: wrap;
@@ -177,6 +207,8 @@ main {
     border-top-right-radius: var(--sb-content-border-rad);
     overflow-y: scroll;
     overflow-x: hidden;
+    border: var(--menu-content-border);
+    border-width: 0 0 0 var(--menu-content-border-size);
 }
 .menu-item {
     padding: 0 5% 3% 0;
@@ -215,20 +247,34 @@ main {
     flex-direction: row;
     height: var(--menu-order-height);
     background-color: var(--menu-order-bgcolor);
+    border: var(--menu-order-main-border);
+    border-width: 0 0 var(--menu-order-main-border-size) 0;
 }
 #price-display {
     width: 40%;
-    font-size: 50px;
+    font-size: var(--menu-price-font-size);
+    align-self: center;
+    text-align: center;
 }
 #table-number {
-    width: 40%;
-    color: black;
+    width: 30%;
+    color: white;
+    background-color: #333333;
+    text-align: center;
+    margin: 20px;
+    font-size: 20px;
 }
 #order-button {
-    width: 20%;
+    width: 30%;
+    color: white;
+    background-color: #333333;
+    text-align: center;
+    margin: 20px;
+    font-size: 20px;
 }
 
 #hamburger-content {
+    display: flex;
     background-color: var(--menu-hambcat-bgcolor);
 }
 #meat-content {
