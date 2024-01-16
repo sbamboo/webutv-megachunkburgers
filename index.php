@@ -111,7 +111,7 @@ $keeptab2 = "KeepTab:cb2:";
                     </div>
                     <div id="menu-order-bottom">
                         <div id="menu-order-main">
-                            <p id="price-display">Price: 0.00kr</p>
+                            <p id="price-display">Price: 0kr</p>
                             <input type="number" id="table-number" placeholder="Table Number">
                             <button id="order-button" onclick="order()">Order</button>
                         </div>
