@@ -29,6 +29,24 @@ let food = {
         "price": 140,
         "name": "Buffalo Heatwave",
     },
+    "hamb6": {
+        "category": "hamburgers",
+        "picture": "media/food/hamburgers/hamb6.png",
+        "price": 130,
+        "name": "Elemental Dream",
+    },
+    "hamb7": {
+        "category": "hamburgers",
+        "picture": "media/food/hamburgers/hamb7.png",
+        "price": 130,
+        "name": "Buffalo Bacon",
+    },
+    "hamb8": {
+        "category": "hamburgers",
+        "picture": "media/food/hamburgers/hamb8.png",
+        "price": 140,
+        "name": "Venturous Vegan",
+    },
     "meat1": {
         "category": "meat",
         "picture": "media/food/meat/meat1.png",
@@ -69,13 +87,13 @@ let food = {
         "category": "salad",
         "picture": "media/food/salad/salad2.png",
         "price": 90,
-        "name": "Grekisk salld",
+        "name": "Grekisk sallad",
     },
     "salad3": {
         "category": "salad",
         "picture": "media/food/salad/salad3.png",
         "price": 100,
-        "name": "Kycklingsallad",
+        "name": "Kyckling sallad",
     },
     "salad4": {
         "category": "salad",
@@ -87,7 +105,7 @@ let food = {
         "category": "salad",
         "picture": "media/food/salad/salad5.png",
         "price": 110,
-        "name": "Quinoasallad",
+        "name": "Quinosallad",
     },
     "drink1": {
         "category": "drinks",
@@ -99,19 +117,19 @@ let food = {
         "category": "drinks",
         "picture": "media/food/drinks/drink2.png",
         "price": 25,
-        "name": "Fanta",
+        "name": "Läsk (Val senare)",
     },
     "drink3": {
         "category": "drinks",
         "picture": "media/food/drinks/drink3.png",
         "price": 25,
-        "name": "Coca Cola",
+        "name": "Kaffe",
     },
     "drink4": {
         "category": "drinks",
         "picture": "media/food/drinks/drink4.png",
         "price": 30,
-        "name": "Kaffe",
+        "name": "Vin (Val senare)",
     },
     "drink5": {
         "category": "drinks",
@@ -129,7 +147,7 @@ let food = {
         "category": "deserts",
         "picture": "media/food/deserts/desert2.png",
         "price": 110,
-        "name": "Chokladfondant",
+        "name": "Choklad-fondant",
     },
     "desert3": {
         "category": "deserts",

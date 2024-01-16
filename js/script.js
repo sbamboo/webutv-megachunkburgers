@@ -22,8 +22,13 @@ const drinkContent = document.querySelector('#drinks-content');
 const desertContent = document.querySelector('#deserts-content');
 const cartContent = document.querySelector('#cart-content');
 
-//const acontent = '<audio autoplay id="music"><source src="media/buttonsound.mp3" type="audio/mp3"></audio>';
-//const parent = document.querySelector('#music');
+const tableNumbers = [1,10]
+const cartContentString = `
+    <div id="cart-info">
+        <h1 id="cart-info-title">Har hamnar det rätter du beställer.</h1>
+        <p>Gå in på en kategori till vänster ock klicka på + för att lägga till i korgen och - för att ta bort från korgen. Smaklig måltid! </p>
+    </div>
+    `
 
 // Checks for KeepTab:cb<id> in url and if it is there, it will keep the tab open
 let url = new URL(window.location.href);
@@ -70,8 +75,9 @@ function changeAmount(item, displayName, increment) {
         try{
             document.querySelector('#' + item + '-cart').remove();
         }
-        catch(error){
-
+        catch(error){}
+        if(document.querySelector('.cart-item') == null) {
+            cartContent.innerHTML = cartContentString;
         }
     }
 
@@ -83,33 +89,35 @@ function changeAmount(item, displayName, increment) {
 }
 // When order is ready and shipped, convert items into url param and send to index.php to be caught using GET
 function order() {
-    let result = params.get("order");
-    if(result != null) {
-        result = result.toString();
-    }else {
-        result = "";
-    }
-    for(let item in foodCopy) {
-        for(let i = 0; i < foodCopy[item].Amount; i++) {
-            result += item + "§";
+    if(document.querySelector('#table-number').value >= tableNumbers[0] && document.querySelector('#table-number').value <= tableNumbers[1]) {
+        let result = ""
+        for(let item in foodCopy) {
+            for(let i = 0; i < foodCopy[item].Amount; i++) {
+                result += item + "§";
+            }
         }
+        if(result.length > 0) {
+            params.set("order", result);
+            window.location.href = "?" + params.toString() + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§" + "tablenr:" + document.querySelector('#table-number').value;
+        }else{
+            alert("You have no items in your cart!");
+        }
+    }else{
+        alert(`Please enter a valid table number (${tableNumbers[0]}-${tableNumbers[1]})`);
     }
-    params.set("order", result);
-    window.location.href = "?" + params.toString();
 }
 
+//Open up the menu content and close the book content
 menuButton.addEventListener('mousedown', () => {
     if(content[0].style.scale == 1) {
         content[0].style.scale = 0;
         content[0].style.zIndex = 0;
         menuButton.style.right = '-1vw';
-        //parent.innerHTML = acontent;
     }else{
         content[0].style.scale = 1;
         content[0].style.zIndex = 1;
         menuButton.style.right = '0vw';
         menuButton.style.zIndex = 1;
-        //parent.innerHTML = acontent;
 
         //To move the other buttons label up to be visible
         menuLabel.style.position = "absolute";
@@ -123,18 +131,17 @@ menuButton.addEventListener('mousedown', () => {
     content[1].style.scale = 0;
 });
 
+//Open up the book content and close the menu content
 bookButton.addEventListener('mousedown', () => {
     if(content[1].style.scale == 1) {
         content[1].style.scale = 0;
         content[1].style.zIndex = 0;
         bookButton.style.right = '-1vw';
-        //parent.innerHTML = acontent;
     }else{
         content[1].style.scale = 1;
         content[1].style.zIndex = 1;
         bookButton.style.right = '0vw';
         bookButton.style.zIndex = 1;
-        //parent.innerHTML = acontent;
 
         //To move the other buttons label down to be visible
         bookLabel.style.position = "absolute";
@@ -155,53 +162,55 @@ function foodContentDisplay(flex){
     drinkContent.style.display = "none";
     desertContent.style.display = "none";
     cartContent.style.display = "none";
+    hamburgerButton.classList.remove("selected-menu-category")
+    meatButton.classList.remove("selected-menu-category")
+    saladButton.classList.remove("selected-menu-category")
+    drinkButton.classList.remove("selected-menu-category")
+    desertButton.classList.remove("selected-menu-category")
+    cartButton.classList.remove("selected-menu-category")
     cartContent.innerHTML = "";
     switch(flex){
         case 'hamburger':
             hamburgerContent.style.display = "flex"
+            hamburgerButton.classList.add("selected-menu-category")
             break;
         case 'meat':
             meatContent.style.display = "flex"
+            meatButton.classList.add("selected-menu-category")
             break;
         case 'salad':
             saladContent.style.display = "flex"
+            saladButton.classList.add("selected-menu-category")
             break;
         case 'drink':
             drinkContent.style.display = "flex"
+            drinkButton.classList.add("selected-menu-category")
             break;
         case 'desert':
             desertContent.style.display = "flex"
+            desertButton.classList.add("selected-menu-category")
             break;
         case 'cart':
             cartContent.style.display = "flex"
+            cartButton.classList.add("selected-menu-category")
             break;
     }
 }
 
-hamburgerButton.addEventListener('mousedown', () => {
-   foodContentDisplay("hamburger")
-});
-meatButton.addEventListener('mousedown', () => {
-    foodContentDisplay("meat")
-});
-saladButton.addEventListener('mousedown', () => {
-    foodContentDisplay("salad")
-});
-drinkButton.addEventListener('mousedown', () => {
-    foodContentDisplay("drink")
-});
-desertButton.addEventListener('mousedown', () => {
-    foodContentDisplay("desert")
-});
+hamburgerButton.addEventListener('mousedown', () => {foodContentDisplay("hamburger")});
+meatButton.addEventListener('mousedown', () => {foodContentDisplay("meat")});
+saladButton.addEventListener('mousedown', () => {foodContentDisplay("salad")});
+drinkButton.addEventListener('mousedown', () => {foodContentDisplay("drink")});
+desertButton.addEventListener('mousedown', () => {foodContentDisplay("desert")});
 cartButton.addEventListener('mousedown', () => {
     foodContentDisplay("cart")
     for(let item in foodCopy) {
         if(foodCopy[item].Amount > 0) {
             cartContent.innerHTML += `
-            <div class="menu-item" id="${item}-cart">
+            <div class="menu-item cart-item" id="${item}-cart">
                 <img src="media/food/${foodCopy[item].category}/${item}.png">
                 <div class="menu-item-info">
-                    <h2>Spicy ${item}</h2>
+                    <h2>${foodCopy[item].name}</h2>
                     <div class="menu-items-btn-div">
                         <button class="menu-items-btn-negative" onclick="changeAmount('${item}','.${item}-counter', -1)">-</button>
                         <p class="increment-counter ${item}-counter">${document.querySelectorAll("." + item + "-counter")[0].innerHTML}</p>
@@ -211,6 +220,9 @@ cartButton.addEventListener('mousedown', () => {
                 </div>
             </div>`
         }
+    }
+    if(cartContent.innerHTML == "") {
+        cartContent.innerHTML = cartContentString;
     }
 });
 
