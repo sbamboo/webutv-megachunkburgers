@@ -87,7 +87,7 @@ $keeptab2 = "KeepTab:cb2:";
                 <div class="sidebar-content" id="tab1-content">
                     <div id="menu-order-upper">
                         <div id="menu-category-segment" class="menu-category-segment">
-                            <h2 id="menu-order-title">Categories:</h2>
+                            <h2 id="menu-order-title">Kategorier</h2>
                             <img id="hamburger-category-button" src="media/food/hamburgers/hamb1.png" draggable="false">
                             <img id="meat-category-button" src="media/food/meat/meat1.png" draggable="false">
                             <img id="salad-category-button" src="media/food/salad/salad1.png" draggable="false">

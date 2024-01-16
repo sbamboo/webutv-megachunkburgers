@@ -293,6 +293,17 @@ main {
     border: var(--menu-category-sel-border);
 }
 
+#menu-order-title {
+    text-align: center;
+    width: 100%;
+    font-size: 30px;
+    color: rgb(211, 211, 211);
+    border: var(--menu-category-border);
+    border-width: 0 0 2px 0;
+    margin-bottom: 10px;
+    margin-top: 10x;
+}
+
 #hamburger-content {
     display: flex;
     background-color: var(--menu-hambcat-bgcolor);
