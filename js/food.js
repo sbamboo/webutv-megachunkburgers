@@ -129,7 +129,7 @@ let food = {
         "category": "deserts",
         "picture": "media/food/deserts/desert2.png",
         "price": 110,
-        "name": "Chokladfondant",
+        "name": "Choklad-fondant",
     },
     "desert3": {
         "category": "deserts",
