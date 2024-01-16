@@ -148,59 +148,53 @@ bookButton.addEventListener('mousedown', () => {
     content[0].style.scale = 0;
 });
 
+function foodContentDisplay(flex){
+    hamburgerContent.style.display = "none";
+    meatContent.style.display = "none";
+    saladContent.style.display = "none";
+    drinkContent.style.display = "none";
+    desertContent.style.display = "none";
+    cartContent.style.display = "none";
+    cartContent.innerHTML = "";
+    switch(flex){
+        case 'hamburger':
+            hamburgerContent.style.display = "flex"
+            break;
+        case 'meat':
+            meatContent.style.display = "flex"
+            break;
+        case 'salad':
+            saladContent.style.display = "flex"
+            break;
+        case 'drink':
+            drinkContent.style.display = "flex"
+            break;
+        case 'desert':
+            desertContent.style.display = "flex"
+            break;
+        case 'cart':
+            cartContent.style.display = "flex"
+            break;
+    }
+}
 
 hamburgerButton.addEventListener('mousedown', () => {
-    hamburgerContent.style.display = "flex";
-    meatContent.style.display = "none";
-    saladContent.style.display = "none";
-    drinkContent.style.display = "none";
-    desertContent.style.display = "none";
-    cartContent.style.display = "none";
-    cartContent.innerHTML = "";
+   foodContentDisplay("hamburger")
 });
 meatButton.addEventListener('mousedown', () => {
-    hamburgerContent.style.display = "none";
-    meatContent.style.display = "flex";
-    saladContent.style.display = "none";
-    drinkContent.style.display = "none";
-    desertContent.style.display = "none";
-    cartContent.style.display = "none";
-    cartContent.innerHTML = "";
+    foodContentDisplay("meat")
 });
 saladButton.addEventListener('mousedown', () => {
-    hamburgerContent.style.display = "none";
-    meatContent.style.display = "none";
-    saladContent.style.display = "flex";
-    drinkContent.style.display = "none";
-    desertContent.style.display = "none";
-    cartContent.style.display = "none";
-    cartContent.innerHTML = "";
+    foodContentDisplay("salad")
 });
 drinkButton.addEventListener('mousedown', () => {
-    hamburgerContent.style.display = "none";
-    meatContent.style.display = "none";
-    saladContent.style.display = "none";
-    drinkContent.style.display = "flex";
-    desertContent.style.display = "none";
-    cartContent.style.display = "none";
-    cartContent.innerHTML = "";
+    foodContentDisplay("drink")
 });
 desertButton.addEventListener('mousedown', () => {
-    hamburgerContent.style.display = "none";
-    meatContent.style.display = "none";
-    saladContent.style.display = "none";
-    drinkContent.style.display = "none";
-    desertContent.style.display = "flex";
-    cartContent.style.display = "none";
-    cartContent.innerHTML = "";
+    foodContentDisplay("desert")
 });
 cartButton.addEventListener('mousedown', () => {
-    hamburgerContent.style.display = "none";
-    meatContent.style.display = "none";
-    saladContent.style.display = "none";
-    drinkContent.style.display = "none";
-    desertContent.style.display = "none";
-    cartContent.style.display = "flex";
+    foodContentDisplay("cart")
     for(let item in foodCopy) {
         if(foodCopy[item].Amount > 0) {
             cartContent.innerHTML += `
