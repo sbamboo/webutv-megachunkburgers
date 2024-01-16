@@ -25,7 +25,8 @@ const cartContent = document.querySelector('#cart-content');
 const tableNumbers = [1,10]
 const cartContentString = `
     <div id="cart-info">
-        <h1 id="cart-info-title">Please add items to your cart</h1>
+        <h1 id="cart-info-title">Har hamnar det rätter du beställer.</h1>
+        <p>Gå in på en kategori till vänster ock klicka på + för att lägga till i korgen och - för att ta bort från korgen. Smaklig måltid! </p>
     </div>
     `
 
