@@ -86,15 +86,9 @@ $keeptab2 = "KeepTab:cb2:";
                 </div>
                 <div class="sidebar-content" id="tab1-content">
                     <div id="menu-order-upper">
-<<<<<<< Updated upstream
                         <div id="menu-category-segment" class="menu-category-segment">
                             <h2 id="menu-order-title">Kategorier</h2>
                             <img id="hamburger-category-button" src="media/food/hamburgers/hamb1.png" draggable="false">
-=======
-                        <div id="menu-category-segment">
-                        <h2 id="menu-order-title">Kategorier</h2>
-                            <img id="hamburger-category-button" class="selected-menu-category" src="media/food/hamburgers/hamb1.png" draggable="false">
->>>>>>> Stashed changes
                             <img id="meat-category-button" src="media/food/meat/meat1.png" draggable="false">
                             <img id="salad-category-button" src="media/food/salad/salad1.png" draggable="false">
                             <img id="drinks-category-button" src="media/food/drinks/drink1.png" draggable="false">
