@@ -60,17 +60,17 @@
     --menu-price-font-size: 40px;
 
     --menu-tablenr-width: 30%;
-    --menu-tablenr-color: white;
+    --menu-tablenr-color: rgb(211, 211, 211);;
     --menu-tablenr-bgcolor: #333333;
     --menu-tablenr-margin-h: 1.9vh;
     --menu-tablenr-margin-w: 1vw;
     --menu-tablenr-fontsize: 20px;
 
     --menu-orderbtn-width: 30%;
-    --menu-orderbtn-color: white;
+    --menu-orderbtn-color: rgb(211, 211, 211);;
     --menu-orderbtn-bgcolor: #333333;
     --menu-orderbtn-margin-h: 1.9vh;
-    --menu-orderbtn-margin-v: 1vw;
+    --menu-orderbtn-margin-w: 1vw;
     --menu-orderbtn-fontsize: 20px;
 
     --group-pic-margin: 30px;
@@ -185,6 +185,7 @@ main {
     width: 100%;
     border: var(--menu-upper-border);
     border-width: 0 0 var(--menu-upper-border-size) 0;
+    overflow-y: hidden;
 }
 .menu-category-segment {
     display: flex;
@@ -218,15 +219,17 @@ main {
     overflow-x: hidden;
     border: var(--menu-content-border);
     border-width: 0 0 0 var(--menu-content-border-size);
+    padding-left: 15px;
+    padding-top: 15px;
 }
 .menu-item {
-    padding: 0 5% 3% 0;
+    padding: 0 5% 5% 5%;
     width: 20%;
 }
 .menu-item img {
     width: 100%;
 }
-.menu-item-info {
+.menu-item-info h2 {
     text-align: center;
 }
 .menu-items-btn-positive {
@@ -264,6 +267,7 @@ main {
     font-size: var(--menu-price-font-size);
     align-self: center;
     text-align: center;
+    color: rgb(211, 211, 211);
 }
 #table-number {
     width: var(--menu-tablenr-width);
@@ -319,6 +323,20 @@ main {
 }
 #deserts-content {
     background-color: var(--menu-dsrtcat-bgcolor);
+}
+
+#cart-info {
+    padding: 20px;
+}
+#cart-info * {
+    color: rgb(211, 211, 211);
+}
+
+.menu-item-info p {
+    color: rgb(211, 211, 211);
+}
+.menu-item-info div p {
+    color: rgb(211, 211, 211);
 }
 
 /*Main content*/
