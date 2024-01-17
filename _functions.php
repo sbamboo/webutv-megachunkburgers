@@ -395,4 +395,37 @@ function saveFoodOrder(array $sqlargs, array $retargs, array $amntFoods, string 
     // Return
     toLanding2($retargs,"KeepTab:cb1:Order successfully placed!");
 }
+
+// Function to clear the orders in the SQL-order database with a given id
+function clearOrdersId(array $sqlargs, int $id) {
+    // Extracting values from the arg array
+    list($sql_host, $sql_uname, $sql_password, $sql_database, $sql_table) = $sqlargs;
+
+    // Connect to SQL server UTF8
+    try {
+        $mysqli = new mysqli($sql_host, $sql_uname, $sql_password, $sql_database);
+        $mysqli->set_charset("utf8");
+    } catch (Exception $e) {
+        // Handle exceptions and return message
+        return array(False,"Failed to connect to SQL database (" . $e->getMessage() . ")",array());
+    }
+
+    // Verify connection to database
+    if ($mysqli->connect_error) {
+        return array(False,"Failed to connect to SQL database (" . $mysqli->connect_error . ")",array());
+    }
+    $sqlcmd = 'DELETE FROM ' . $sql_table . ' WHERE id = ?';
+    // We also create a stmt (statement) and use the mysqli.prepare method on it to load it as a prepared-statement
+    $prepped_statement = $mysqli->prepare($sqlcmd);
+    // We use bind_param to bind our placeholders with their wanted values making sure to use the correct data type:
+    // i: int
+    // This effectively says to php/sql that the content must be an int, making injection less likely.
+    $prepped_statement->bind_param("i", $id);
+                
+    // Execute the prepared statement (Same as our query)
+    $prepped_statement->execute();
+
+    // Close the statement connection since we don't need this connection to our SQL database.
+    $prepped_statement->close();
+}
 ?>

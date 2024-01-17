@@ -2,6 +2,7 @@
 require("./_functions.php");
 $sqlargs = array("localhost","root","","megacbur","admin_pg");
 $sqlargs2 = array("localhost","root","","megacbur","tb_orders");
+$sqlargs3 = array("localhost","root","","megacbur","fd_orders");
 ?>
 
 <!DOCTYPE html>
@@ -39,13 +40,15 @@ $sqlargs2 = array("localhost","root","","megacbur","tb_orders");
                         <input type="hidden" name="olduname" value="' . $_POST["usrnme"] .  '">
                         <input type="submit" name="submit_2" value="Save/LogOut">
                     </form></div>
-                    ';
+                    ';//      ↑
+                      //  Here is the end of the "loginbox" div
                 }
             }
         } elseif ( isset($_POST["usrnme_2"]) && isset($_POST["usrpsw_2"]) && isset($_POST["submit_2"]) && isset($_POST["olduname"]) ) {
             $funcres = updUserData($sqlargs,$_POST["usrnme_2"],$_POST["usrpsw_2"],$_POST["olduname"]);
             echo $funcres[1] . "</div>";
         }
+        // TABLE ORDERS BELLOW
         echo '
         <div id="entriesbox">
             <h2>Current booking entries:</h2>';
@@ -136,6 +139,101 @@ $sqlargs2 = array("localhost","root","","megacbur","tb_orders");
         echo '<th class="tab_det tab_title">Details</th>';
         foreach ($details as $detail) {
             echo '<th class="tab_det">' . $detail . '</th>';
+        }
+        echo '</tr>';
+        echo '</table></div>';
+
+        // TABLE FOOD ORDERS BELLOW
+        echo '
+        <div id="entriesbox">
+            <h2>Current food orders:</h2>';
+        if ( isset($_POST["usrnme"]) && isset($_POST["usrpsw"]) ) {
+            echo '
+            <form method="post" action="admin.php" id="fdorders-ops">
+                <input type="submit" name="submit_4" value="Clear Food-Orders"><p id="order-clear-warn">(Use with caution, will clear al orders)</p>
+                <input type="hidden" name="usrnme" value="' . $_POST["usrnme"] . '">
+                <input type="hidden" name="usrpsw" value="' . $_POST["usrpsw"] . '">
+                <input type="hidden" name="submit" value="true">
+            </form><br>
+            ';
+        }
+        echo '   <table border="1">';
+        if ( isset($_POST["submit_4"]) ) {
+            clearOrders($sqlargs3);
+        }
+        $orders = getOrders($sqlargs3);
+        $ids = array();
+        $tablenrs = array();
+        $prices = array();
+        $times = array();
+        $foods = array();
+        foreach ($orders as $order) {
+            $ids[] = $order["ID"];
+            $tablenrs[] = $order["TableNr"];
+            $prices[] = $order["Price"];
+            $times[] = $order["Time"];
+            $foods[] = $order["Food"];
+        }
+        if (count($ids) == 0) {
+            $ids[] = "NO ENTRIES";
+        }
+        if (count($tablenrs) == 0) {
+            $tablenrs[] = "NO ENTRIES";
+        }
+        if (count($prices) == 0) {
+            $prices[] = "NO ENTRIES";
+        }
+        if (count($times) == 0) {
+            $times[] = "NO ENTRIES";
+        }
+        if (count($foods) == 0) {
+            $foods[] = "NO ENTRIES";
+        }
+        echo '<tr>';
+        echo '<th class="tab_id tab_title">ID</th>';
+        foreach ($ids as $id) {
+            echo '<th class="tab_id">' . $id . '</th>';
+        }
+        echo '</tr><tr>';
+        echo '<th class="tab_tnr tab_title">TableNr</th>';
+        foreach ($tablenrs as $tablenr) {
+            echo '<th class="tab_nr">' . $tablenr . '</th>';
+        }
+        echo '</tr><tr>';
+        echo '<th class="tab_fnm tab_title">Price</th>';
+        foreach ($prices as $price) {
+            echo '<th class="tab_fnm">' . $price . '</th>';
+        }
+        echo '</tr><tr>';
+        echo '<th class="tab_tim tab_title">Time</th>';
+        foreach ($times as $time) {
+            echo '<th class="tab_tim">' . $time . '</th>';
+        }
+        echo '</tr><tr>';
+        echo '<th class="tab_det tab_title">Foods</th>';
+        foreach ($foods as $food) {
+            echo '<th class="tab_det">' . $food . '</th>';
+        }
+        echo '</tr><tr>';
+        echo '<th class="tab_rem tab_title">Remove</th>';
+        if ($id == "NO ENTRIES") {
+            echo '<th class="tab_rem">' . $id . '</th>';
+        } else {
+            foreach ($times as $time) {
+                echo '<th class="tab_rem">
+                <form method="post" action="admin.php" id="fdorders-ops">
+                    <input type="submit" name="submit_5" value="Press to remove">
+                    <p>(Reload page to update)</p>
+                    <input type="hidden" name="usrnme" value="' . $_POST["usrnme"] . '">
+                    <input type="hidden" name="usrpsw" value="' . $_POST["usrpsw"] . '">
+                    <input type="hidden" name="toremid" value="' . $id . '">
+                    <input type="hidden" name="submit" value="true">
+                </form>
+                </th>';
+            }
+        }
+        if ( isset($_POST["submit_5"]) && isset($_POST["toremid"]) ) {
+            clearOrdersId($sqlargs3,$_POST["toremid"]);
         }
         echo '</tr>';
         echo '</table></div>';
