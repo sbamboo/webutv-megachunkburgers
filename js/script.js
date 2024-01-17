@@ -30,7 +30,7 @@ const cartContentString = `
     </div>
     `
 
-var xhr = new XMLHttpRequest();
+//var xhr = new XMLHttpRequest();
 
 // Checks for KeepTab:cb<id> in url and if it is there, it will keep the tab open
 let url = new URL(window.location.href);
@@ -99,9 +99,11 @@ function order() {
             }
         }
         if(result.length > 0) {
-            xhr.open("POST", window.location.href, true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(JSON.stringify({order: result}));
+            params.set("order", result);
+            window.location.href = "?" + params.toString() + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§" + "tablenr:" + document.querySelector('#table-number').value;
+            //xhr.open("POST", window.location.href, true);
+            //xhr.setRequestHeader('Content-Type', 'application/json');
+            //xhr.send(JSON.stringify({order: result}));
         }else{
             alert("You have no items in your cart!");
         }

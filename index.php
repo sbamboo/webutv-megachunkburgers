@@ -1,6 +1,7 @@
 <?php
 require("_functions.php");
 $sqlargs = array("localhost","root","","megacbur","tb_orders");
+$sqlargs3 = array("localhost","root","","megacbur","fd_orders");
 $tables = [1,10];
 $retargs = ["./index.php","./index.php"];
 $formUse = "index.php";
@@ -127,6 +128,22 @@ $keeptab2 = "KeepTab:cb2:";
                             <input type="number" id="table-number" placeholder="Table Number">
                             <button id="order-button" onclick="order()">Order</button>
                         </div>
+                        <?php
+                            if (isset($_GET["order"]) && !empty($_GET["order"])) {
+                                $tempData = parseOrderStr($_GET["order"]);
+                                saveFoodOrder($sqlargs3,$retargs,$tempData[0],$tempData[1],$tempData[2]);
+                            }
+                            if (isset($_GET["ret-msg"]) && !empty($_GET["ret-msg"])) {
+                                $retmsg = str_replace($keeptab1,"",$_GET["ret-msg"]);
+                                if (str_contains($retmsg,"failed") || str_contains($retmsg,"Failed")) {
+                                    echo '<div id="menu-ret-msg"><p id="ret-msg-p">Order Info:</p><p id="ret-msg-m" class="menu-tab-ret-msg ret-msg-failed">' . $retmsg . '</p></div>';
+                                } elseif (str_contains($retmsg,'Please') || str_contains($retmsg,'please') || str_contains($retmsg,'Warning: ')) {
+                                    echo '<div id="menu-ret-msg"><p id="ret-msg-p">Order Info:</p><p id="ret-msg-m" class="menu-tab-ret-msg ret-msg-warning">' . $retmsg . '</p></div>';
+                                } else {
+                                    echo '<div id="menu-ret-msg"><p id="ret-msg-p">Order Info:</p><p id="ret-msg-m" class="menu-tab-ret-msg ret-msg-success">' . $retmsg . '</p></div>';
+                                }
+                            }
+                        ?>
                     </div>
                 </div>
             </aside>

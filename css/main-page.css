@@ -67,11 +67,13 @@
     --menu-tablenr-fontsize: 20px;
 
     --menu-orderbtn-width: 30%;
-    --menu-orderbtn-color: rgb(211, 211, 211);;
+    --menu-orderbtn-color: rgb(211, 211, 211);
     --menu-orderbtn-bgcolor: #333333;
     --menu-orderbtn-margin-h: 1.9vh;
     --menu-orderbtn-margin-w: 1vw;
     --menu-orderbtn-fontsize: 20px;
+
+    --menu-general-text-color: rgb(211, 211, 211);
 
     --group-pic-margin: 30px;
     --group-pic-width: 800px;
@@ -267,7 +269,7 @@ main {
     font-size: var(--menu-price-font-size);
     align-self: center;
     text-align: center;
-    color: rgb(211, 211, 211);
+    color: var(--menu-general-text-color);
 }
 #table-number {
     width: var(--menu-tablenr-width);
@@ -301,7 +303,7 @@ main {
     text-align: center;
     width: 100%;
     font-size: 30px;
-    color: rgb(211, 211, 211);
+    color: var(--menu-general-text-color);
     border: var(--menu-category-border);
     border-width: 0 0 2px 0;
     margin-bottom: 10px;
@@ -329,14 +331,24 @@ main {
     padding: 20px;
 }
 #cart-info * {
-    color: rgb(211, 211, 211);
+    color: var(--menu-general-text-color);
 }
 
 .menu-item-info p {
-    color: rgb(211, 211, 211);
+    color: var(--menu-general-text-color);
 }
 .menu-item-info div p {
-    color: rgb(211, 211, 211);
+    color: var(--menu-general-text-color);
+}
+
+#menu-ret-msg {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    font-size: 25px;
+}
+#ret-msg-p {
+    margin-right: 5px;
 }
 
 /*Main content*/

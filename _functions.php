@@ -31,6 +31,14 @@ function toLanding($loc=["index.php","."],$msg=NULL) {
     }
     exit(); // Exit to end the php execution-chain
 }
+function toLanding2($loc=["index.php","."],$msg=NULL) {
+    if ($msg != NULL && !empty($msg)) {
+        echo '<script>window.location.href = "'.$loc[0]."?ret-msg=$msg".'";</script>';
+    } else {
+        echo '<script>window.location.href = "'.$loc[1].'";</script>';
+    }
+exit(); // Exit to end the php execution-chain
+}
 
 // Function to get avaliable tables
 function getTables(array $sqlargs) {
@@ -310,20 +318,81 @@ function clearOrders(array $sqlargs) {
 function parseOrderStr(string $unparsed) {
     $split = explode("§",$unparsed);
     $foods = array();
-    $price = 0;
-    $tablenr = 0;
+    $price = "";
+    $tableNr = "";
     foreach ($split as $segment) {
         $segment = strval($segment);
         if (str_contains($segment,"price:")) {
             $subsegments = explode(":",$segment);
-            $price = intval($subsegments[-1]);
+            $price = strval($subsegments[1]);
         } else if (str_contains($segment,"tablenr:")) {
             $subsegments = explode(":",$segment);
-            $tablenr = intval($subsegments[-1]);
+            $tableNr = strval($subsegments[1]);
         } else {
             $foods[] = $segment;
         }
     }
-    return array($foods,$price,$tablenr);
+    // Make it to a amount-assoicated array
+    $amntFoods = array_count_values($foods);
+    return array($amntFoods,$price,$tableNr);
+}
+
+// Function to save a given food-order to SQL
+function saveFoodOrder(array $sqlargs, array $retargs, array $amntFoods, string $price, string $tableNr) {
+    // Basic validation of inputted values
+    if (empty($amntFoods) || empty($price) || empty($tableNr)) {
+        //return array(False,"Order placement failed! (Empty form input)",array());
+        toLanding2($retargs,"KeepTab:cb1:Order placement failed! (Empty form input)");
+    }
+
+    // Extracting values from the arg array
+    list($sql_host, $sql_uname, $sql_password, $sql_database, $sql_table) = $sqlargs;
+
+    // Connect to SQL server UTF8
+    try {
+        $mysqli = new mysqli($sql_host, $sql_uname, $sql_password, $sql_database);
+        $mysqli->set_charset("utf8");
+    } catch (Exception $e) {
+        // Handle exceptions and return message
+        toLanding($retargs,"KeepTab:cb1:Failed to connect to SQL database (" . $e->getMessage() . ")");
+    }
+
+    // Verify connection to database
+    if ($mysqli->connect_error) {
+        toLanding2($retargs,"KeepTab:cb1:Failed to connect to SQL database (" . $mysqli->connect_error . ")");
+    }
+    
+    // Parse foods into string
+    $foods = '';
+    foreach ($amntFoods as $key => $value) {
+        $foods .= $key . ':' . $value . ',';
+    }
+    $foods = rtrim($foods, ',');
+
+    // Generate timestamp
+    $timestamp = time(); // Get the current timestamp
+
+    // Format the timestamp as "Y-m-d\TH:i" (Ex 2024-01-17T21:27) HTML/Web format
+    $timestamp = date("Y-m-d\TH:i", $timestamp);
+
+    // Add order to SQL ? as placeholders
+    $sqlcmd = "INSERT INTO " . $sql_table . " (TableNr, Price, Time, Food) VALUES (?, ?, ?, ?)";
+
+    // We also create a stmt (statement) and use the mysqli.prepare method on it to load it as a prepared-statement
+    $prepped_statement = $mysqli->prepare($sqlcmd);
+
+    // We use bind_param to bind our placeholders with their wanted values making sure to use the correct data type:
+    // s: String
+    // This effectively says to php/sql that the content must be string, making injection less likely.
+    $prepped_statement->bind_param("ssss", $tableNr, $price, $timestamp, $foods);
+
+    // Execute the prepared statement (Same as our query)
+    $prepped_statement->execute();
+
+    // Close the statement connection since we don't need this connection to our SQL database.
+    $prepped_statement->close();
+
+    // Return
+    toLanding2($retargs,"KeepTab:cb1:Order successfully placed!");
 }
 ?>
