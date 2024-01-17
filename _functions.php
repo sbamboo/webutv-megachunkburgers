@@ -305,4 +305,25 @@ function clearOrders(array $sqlargs) {
 
     return $result;
 }
+
+// Function to parse a food-order string to its components
+function parseOrderStr(string $unparsed) {
+    $split = explode("§",$unparsed);
+    $foods = array();
+    $price = 0;
+    $tablenr = 0;
+    foreach ($split as $segment) {
+        $segment = strval($segment);
+        if (str_contains($segment,"price:")) {
+            $subsegments = explode(":",$segment);
+            $price = intval($subsegments[-1]);
+        } else if (str_contains($segment,"tablenr:")) {
+            $subsegments = explode(":",$segment);
+            $tablenr = intval($subsegments[-1]);
+        } else {
+            $foods[] = $segment;
+        }
+    }
+    return array($foods,$price,$tablenr);
+}
 ?>

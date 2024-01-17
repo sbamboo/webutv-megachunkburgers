@@ -12,6 +12,19 @@ CREATE TABLE tb_orders (
     Details varchar(255)
 );
 
+CREATE TABLE fd_orders (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    `TableNr` varchar(45),
+    Price varchar(45),
+    Time varchar(20)
+)
+
+CREATE TABLE food_in_orders (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    FoodType varchar(255),
+    Amount varchar(45)
+)
+
 CREATE TABLE admin_pg (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     Username varchar(45),
