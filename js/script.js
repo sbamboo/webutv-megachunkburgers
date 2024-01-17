@@ -30,6 +30,8 @@ const cartContentString = `
     </div>
     `
 
+var xhr = new XMLHttpRequest();
+
 // Checks for KeepTab:cb<id> in url and if it is there, it will keep the tab open
 let url = new URL(window.location.href);
 let params = new URLSearchParams(url.search);
@@ -97,8 +99,9 @@ function order() {
             }
         }
         if(result.length > 0) {
-            params.set("order", result);
-            window.location.href = "?" + params.toString() + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§" + "tablenr:" + document.querySelector('#table-number').value;
+            xhr.open("POST", window.location.href, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({order: result}));
         }else{
             alert("You have no items in your cart!");
         }
@@ -115,7 +118,7 @@ menuButton.addEventListener('mousedown', () => {
         menuButton.style.right = '-1vw';
     }else{
         content[0].style.scale = 1;
-        content[0].style.zIndex = 1;
+        content[0].style.zIndex = 10;
         menuButton.style.right = '0vw';
         menuButton.style.zIndex = 1;
 
@@ -139,7 +142,7 @@ bookButton.addEventListener('mousedown', () => {
         bookButton.style.right = '-1vw';
     }else{
         content[1].style.scale = 1;
-        content[1].style.zIndex = 1;
+        content[1].style.zIndex = 10;
         bookButton.style.right = '0vw';
         bookButton.style.zIndex = 1;
 

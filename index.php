@@ -135,25 +135,25 @@ $keeptab2 = "KeepTab:cb2:";
                     <h1 id="title-text">MegaChomp Burgers</h1>
                 </div>
                 <div class="group-picture-wrapper">
-                    <img src="./media/group-picture.png" class="group-picture">
+                    <img src="./media/group-picture.png" class="group-picture main-img">
                 </div>
                 <div id="employees">
                     <div class="employee" id="chef1">
-                        <img src="./media/employee-1.png" class="employee-img">
+                        <img src="./media/employee-1.png" class="employee-img main-img">
                         <div class="employee-info">
                             <h2>Emil Bergström</h2>
                             <p>Professionell kock. har studerat I Frankrike och har 25 år av yrkeserfarenhet där han har jobbat i diverse topp restauranger i Frankrike, även skaparen av "Fuego Kick" burgaren. Emil har varigt huvudkock på vår restaurang i 4 år.</p>
                         </div>
                     </div>
                     <div class="employee" id="chef2">
-                        <img src="./media/employee-2.png" class="employee-img">
+                        <img src="./media/employee-2.png" class="employee-img main-img">
                         <div class="employee-info">
                             <h2>Oscar Lindqvist</h2>
                             <p>Vinnare av Sveriges mästerkock år 2013. Oscar hoppade omkring mellan restauranger inuti Stockholm i 19 tills han landade hos oss, skaparen av "Firestorm" och "Cajun Kick" burgarna. Älskar allt grönt och odlar även egna örter till restaurangen.</p>
                         </div>
                     </div>
                     <div class="employee" id="chef3">
-                        <img src="./media/employee-3.png" class="employee-img">
+                        <img src="./media/employee-3.png" class="employee-img main-img">
                         <div class="employee-info">
                             <h2>Viktor Nilsson</h2>
                             <p>Har rest världen i utforskande om mat scenen i alla världens hörn. Har jobbat på ett flertal toppresturanger världen över och skaparen av "Salsa Blaze" och "Buffalo Heatwave" burgarna. Älskar djur och föder egen kyckling till restaurangen.</p>
@@ -162,14 +162,14 @@ $keeptab2 = "KeepTab:cb2:";
                 </div>
                 <div id="produces">
                     <div class="produce" id="meat">
-                        <img src="./media/produce_meat.png" class="meat-img">
+                        <img src="./media/produce_meat.png" class="meat-img main-img">
                         <div class="produce-meat info">
                             <h2>Kött</h2>
                             <p>Vårt kött är inköpt lokalt från Berghagens bondgård där kossorna är får ströva fritt och är bra omhändertagna. Vi köper in fläskkött från PrärieSvinet som är känt för deras kvalité och humanitära behandlande av grisarna. Vår kyckling bistår vår egen kock Viktor Nilsson med då han Föder egna. </p>
                         </div>
                     </div>
                     <div class="produce" id="greens">
-                        <img src="./media/produce_greens.png" class="greens-img">
+                        <img src="./media/produce_greens.png" class="greens-img main-img">
                         <div class="produce-greens info">
                             <h2>Grönsaker</h2>
                             <p>Våra grönsaker är inköpta lokalt från flera bondgårdar runt om i Sverige. Våra anställda odlar även några grönsaker själv som sedan används av oss. Dom bondgårdar vi köper in ifrån är EkoÄngen Gård, Solhaga Gård och Bondens Paradis </p>
