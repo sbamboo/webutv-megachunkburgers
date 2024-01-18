@@ -161,8 +161,8 @@ $keeptab2 = "KeepTab:cb2:";
                     <div class="employee" id="chef2">
                         <img src="./media/employee-2.png" class="employee-img main-img" alt="Bild på en av våra kockar.">
                         <div class="employee-info">
-                            <h2>Oscar Lindqvist</h2>
-                            <p>Vinnare av Sveriges mästerkock år 2013. Oscar hoppade omkring mellan restauranger inuti Stockholm i 19 tills han landade hos oss, skaparen av "Firestorm" och "Cajun Kick" burgarna. Älskar allt grönt och odlar även egna örter till restaurangen.</p>
+                            <h2>Rita Lindqvist</h2>
+                            <p>Vinnare av Sveriges mästerkock år 2013. Rita hoppade omkring mellan restauranger inuti Stockholm i 19 tills han landade hos oss, skaparen av "Firestorm" och "Cajun Kick" burgarna. Älskar allt grönt och odlar även egna örter till restaurangen.</p>
                         </div>
                     </div>
                     <div class="employee" id="chef3">
