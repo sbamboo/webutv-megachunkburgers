@@ -154,8 +154,8 @@ $keeptab2 = "KeepTab:cb2:";
                     <div class="employee" id="chef1">
                         <img src="./media/employee-1.png" class="employee-img main-img" alt="Bild på en av våra kockar.">
                         <div class="employee-info">
-                            <h2>Emil Bergström</h2>
-                            <p>Professionell kock. har studerat I Frankrike och har 25 år av yrkeserfarenhet där han har jobbat i diverse topp restauranger i Frankrike, även skaparen av "Fuego Kick" burgaren. Emil har varigt huvudkock på vår restaurang i 4 år.</p>
+                            <h2>Lena Bergström</h2>
+                            <p>Professionell kock. har studerat I Frankrike och har 25 år av yrkeserfarenhet där hon har jobbat i diverse topp restauranger i Frankrike, även skaparen av "Fuego Kick" burgaren. Lena har varigt huvudkock på vår restaurang i 4 år.</p>
                         </div>
                     </div>
                     <div class="employee" id="chef2">
