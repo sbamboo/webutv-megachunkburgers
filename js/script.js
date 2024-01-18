@@ -100,10 +100,22 @@ function order() {
         }
         if(result.length > 0) {
             params.set("order", result);
-            window.location.href = "?" + params.toString() + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§" + "tablenr:" + document.querySelector('#table-number').value;
-            //xhr.open("POST", window.location.href, true);
-            //xhr.setRequestHeader('Content-Type', 'application/json');
-            //xhr.send(JSON.stringify({order: result}));
+            window.location.href = window.location.href.replace("index.php", "_foodHelper.php") + "?" + params.toString() + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§" + "tablenr:" + document.querySelector('#table-number').value;
+            /* Attempted to use POST instead of GET to place orders but couldn't get it to work
+            fetch(window.location.href.replace("index.php","_foodHelper.php"), {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({order: result})
+            })
+            for(let item in foodCopy) {
+                foodCopy[item].Amount = 0;
+                document.querySelectorAll("." + item + "-counter")[0].innerHTML = "0 st";
+            }
+            document.querySelector('#price-display').innerHTML = "Price: 0kr";
+            document.querySelector('#table-number').value = "";
+            */
         }else{
             alert("You have no items in your cart!");
         }
