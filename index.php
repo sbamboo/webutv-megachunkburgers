@@ -129,10 +129,6 @@ $keeptab2 = "KeepTab:cb2:";
                             <button id="order-button" onclick="order()">Order</button>
                         </div>
                         <?php
-                            if (isset($_GET["order"]) && !empty($_GET["order"])) {
-                                $tempData = parseOrderStr($_GET["order"]);
-                                saveFoodOrder($sqlargs3,$retargs,$tempData[0],$tempData[1],$tempData[2]);
-                            }
                             if (isset($_GET["ret-msg"]) && !empty($_GET["ret-msg"])) {
                                 $retmsg = str_replace($keeptab1,"",$_GET["ret-msg"]);
                                 if (str_contains($retmsg,"failed") || str_contains($retmsg,"Failed")) {
