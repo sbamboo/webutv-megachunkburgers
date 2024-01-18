@@ -352,6 +352,10 @@ main {
 }
 
 /*Main content*/
+.main-img {
+    z-index: auto;
+}
+
 #relWithoutRetMsg {
     border: none;
     background-color: rgba(0,0,0,0);
