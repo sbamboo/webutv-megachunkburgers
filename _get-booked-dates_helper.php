@@ -9,15 +9,26 @@ $date = $_GET["datetime"];
 $dateMatches = array();
 $orders = getOrders($sqlargs);
 
-foreach ($orders as $order) {
-    $ordTime = explode("T",$order["Time"])[0];
-    if ($ordTime == $date) {
-        $dateMatches[] = $order["TableNr"];
-    }
+function customErrorHandler($errno, $errstr, $errfile, $errline) {
+    throw new Exception("Warning: $errstr in $errfile on line $errline\n");
 }
+set_error_handler('customErrorHandler', E_WARNING);
 
-// Filter out al tableNrs that was found on the matching date
-$tables = array_diff($tables, $dateMatches);
+try {
+    foreach ($orders as $order) {
+        $ordTime = explode("T",$order["Time"])[0];
+        if ($ordTime == $date) {
+            $dateMatches[] = $order["TableNr"];
+        }
+    }
 
-echo json_encode($tables);
+    // Filter out al tableNrs that was found on the matching date
+    $tables = array_diff($tables, $dateMatches);
+    $returnData = $tables;
+} catch (Exception $e) {
+    $returnData = $orders;
+}
+restore_error_handler();
+echo json_encode($returnData);
+
 ?>

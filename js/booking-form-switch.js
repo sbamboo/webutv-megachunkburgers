@@ -71,23 +71,33 @@ function updateTbAvaliability(index) {
                 'Accept': 'application/json',
             },
         })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(response => {
-            strBuild = "";
-            for (let elem in response) {
-                // Preselect first element
-                elem = response[elem];
-                if (elem == response[0]) {
-                    strBuild = '<option value="'.concat(elem,'" selected>',elem,'</option>');
-                } else {
-                    strBuild += '<option value="'.concat(elem,'">',elem,'</option>');
+            try {
+                response = JSON.parse(response);
+                strBuild = "";
+                for (let elem in response) {
+                    // Preselect first element
+                    elem = response[elem];
+                    if (response[0] == false) {
+                        throw new Error('No elem: '.concat(response));
+                    }
+                    if (elem == response[0]) {
+                        strBuild = '<option value="'.concat(elem,'" selected>',elem,'</option>');
+                    } else {
+                        strBuild += '<option value="'.concat(elem,'">',elem,'</option>');
+                    }
                 }
+                console.log(response);
+                console.log(strBuild);
+                tablpic.innerHTML = strBuild;
+            } catch (error) {
+                formSeg2.innerHTML += '<p class="whiteText"><b>PHP Error: </b><p class="book-form-error-php">'.concat(response[1]).concat("</p></p>");
+                console.log(error);
             }
-            console.log(response);
-            console.log(strBuild);
-            tablpic.innerHTML = strBuild
         }
         )
+       //.then(response => console.log(response.text()))
     }
     console.log(unavaliable);
 }

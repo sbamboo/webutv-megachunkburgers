@@ -227,7 +227,7 @@ cartButton.addEventListener('mousedown', () => {
             <div class="menu-item cart-item" id="${item}-cart">
                 <img src="media/food/${foodCopy[item].category}/${item}.png">
                 <div class="menu-item-info">
-                    <h2>${foodCopy[item].name}</h2>
+                    <h2 class="whiteText">${foodCopy[item].name}</h2>
                     <div class="menu-items-btn-div">
                         <button class="menu-items-btn-negative" onclick="changeAmount('${item}','.${item}-counter', -1)">-</button>
                         <p class="increment-counter ${item}-counter">${document.querySelectorAll("." + item + "-counter")[0].innerHTML}</p>
@@ -278,7 +278,7 @@ for (let togen_item in foodCopy) {
     <div class="menu-item">
         <img src="${togen_item.picture}">
         <div class="menu-item-info">
-            <h2>${togen_item.name}</h2>
+            <h2 class="whiteText">${togen_item.name}</h2>
             <div class="menu-items-btn-div">
                 <button class="menu-items-btn-negative" onclick="changeAmount('${togen_id}','.${togen_id}-counter', -1)">-</button>
                 <p class="increment-counter ${togen_id}-counter">0 st</p>

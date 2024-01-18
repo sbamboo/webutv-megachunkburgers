@@ -145,7 +145,7 @@ $keeptab2 = "KeepTab:cb2:";
             </aside>
             <section>
                 <div id="title">
-                    <h1 id="title-text">MegaChomp Burgers</h1>
+                    <h1 id="title-text" class="whiteText">MegaChomp Burgers</h1>
                 </div>
                 <div class="group-picture-wrapper">
                     <img src="./media/group-picture.png" class="group-picture main-img" alt="Grupp bild av våra anställda.">
@@ -200,8 +200,8 @@ $keeptab2 = "KeepTab:cb2:";
             </section>
             <section>
                 <p class="vert-space-top"></p>
-                <a href="./admin.php" class="vert-space-top">Admin</a>
-                <button onclick="removeRetMsg()" id="relWithoutRetMsg">Reload Without Messages</button>
+                <a href="./admin.php" class="vert-space-top btlink">Admin</a>
+                <button onclick="removeRetMsg()" id="relWithoutRetMsg" class="btlink">Reload Without Messages</button>
             </section>
         </main>
         <aside class="page-decor" id="page-decor-right">
