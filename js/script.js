@@ -99,8 +99,8 @@ function order() {
             }
         }
         if(result.length > 0) {
-            params.set("order", result);
-            window.location.href = window.location.href.replace("index.php", "_foodHelper.php") + "?" + params.toString() + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§" + "tablenr:" + document.querySelector('#table-number').value;
+            params.set("order", result); 
+            window.location.href = window.location.href.replace("index.php", "_foodHelper.php") + params.toString() + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§" + "tablenr:" + document.querySelector('#table-number').value;
             /* Attempted to use POST instead of GET to place orders but couldn't get it to work
             fetch(window.location.href.replace("index.php","_foodHelper.php"), {
                 method: "POST",
