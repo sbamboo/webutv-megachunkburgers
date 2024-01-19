@@ -120,3 +120,7 @@
 #tab2 + .sidebar-content {
     background-color: var(--sb-tab2-bg-color);
 }
+
+#tab2-content {
+    height: calc( var(--sb-content-height) / 1.7);
+}

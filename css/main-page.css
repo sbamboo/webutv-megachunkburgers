@@ -85,6 +85,13 @@
     --bottomLink-color: rgb(91, 90, 90);
     --whiteText-color: rgb(211,211,211);
     --textFontSize: 19px;
+
+    --title-width: 58px;
+    --title-font-family: Algerian, sans-serif;
+    --title-font-weight: 200;
+
+    --employee-info-font-family: Algerian, sans-serif;
+    --employee-info-font-weight: 100;
 }
 
 /*Easy to use classes & tags*/
@@ -129,8 +136,17 @@ main {
 
 /* PAGE CONTENT BELLOW HERE */
 /*Booking*/
+#booking-form-wrapper-outer {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
 .booking-form {
     margin: var(--bform-outer-margin);
+    margin-left: calc( var(--bform-outer-margin) + 20px);
+}
+#booking-form-wrapper-retmsg {
+    margin-left: 24px;
 }
 .book-tab-ret-msg {
     margin: var(--bform-outer-margin);
@@ -144,7 +160,12 @@ main {
 .ret-msg-warning {
     color: var(--bform-retmsg-war-color);
 }
-.booking-form h1, .booking-form p, .booking-form input, .booking-form option {
+.booking-form h1 {
+    font-size: 35px;
+    color: var(--bform-tx-color);
+}
+.booking-form p, .booking-form input, .booking-form option {
+    font-size: 20px;
     color: var(--bform-tx-color);
 }
 .booking-form p {
@@ -170,6 +191,17 @@ main {
     padding-top: var(--bform-select-vpadding);
     padding-bottom: var(--bform-select-vpadding);
     background-color: var(--bform-inp-bg-color);
+}
+#booking-form-img-wrapper {
+    width: 53%;
+    height: 90%;
+    margin: 24px;
+    margin-left: 4px;
+}
+#booking-form-img {
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
 }
 #booking-form-seg1 {
     display: Block;
@@ -394,13 +426,28 @@ main {
 #relWithoutRetMsg:hover {
     cursor: pointer;
 }
-#title-text {
-    width: 70%;
-    text-align: center;
-    font-size: 58px;
+#title {
     border-bottom: 3px solid white;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-top: 2vh;
+    padding-bottom: 2vh;
+}
+#title-wrapper {
+    display: flex;
+    flex-direction: row;
+    margin-left: 2vw;
+}
+#title-text {
+    padding-top: 1.8vh;
+    text-align: center;
+    font-size: var(--title-width);
+    margin-right: calc( var(--title-width) * 2);
+    width: calc( 60vw - calc( var(--title-width) * 4) - 4vw);
+    font-family: var(--title-font-family);
+    font-weight: var(--title-font-weight);
+}
+#title-img {
+    width: calc( var(--title-width) * 2);
+    height: calc( var(--title-width) * 2);
 }
 
 .group-picture-wrapper {
@@ -415,7 +462,7 @@ main {
     margin: var(--group-pic-margin);
     border-radius: var(--group-pic-border);
     width: auto;
-    height: auto;
+    height: 30vh;
     max-width: var(--group-pic-width);
     max-height: var(--group-pic-height);
     object-fit: contain;
@@ -530,6 +577,11 @@ main {
 .employee-info,.info,#about,#contact {
     font-size: var(--textFontSize);
     color: var(--menu-general-text-color);
+}
+
+.employee-info h2 {
+    font-family: var(--employee-info-font-family);
+    font-weight: var(--employee-info-font-weight);
 }
 
 /*No script MSG*/
