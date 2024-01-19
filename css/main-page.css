@@ -273,6 +273,12 @@ main {
     justify-content: space-around;
     width: 100%;
 }
+.item-price-display {
+    font-size:20px;
+    font-weight:bold;
+    width:100%;
+    text-align:center;
+}
 
 .cart-content {
     display: none;
