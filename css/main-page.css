@@ -87,6 +87,11 @@
     --textFontSize: 19px;
 
     --title-width: 58px;
+    --title-font-family: Algerian, sans-serif;
+    --title-font-weight: 200;
+
+    --employee-info-font-family: Algerian, sans-serif;
+    --employee-info-font-weight: 100;
 }
 
 /*Easy to use classes & tags*/
@@ -300,6 +305,12 @@ main {
     justify-content: space-around;
     width: 100%;
 }
+.item-price-display {
+    font-size:20px;
+    font-weight:bold;
+    width:100%;
+    text-align:center;
+}
 
 .cart-content {
     display: none;
@@ -431,6 +442,8 @@ main {
     font-size: var(--title-width);
     margin-right: calc( var(--title-width) * 2);
     width: calc( 60vw - calc( var(--title-width) * 4) - 4vw);
+    font-family: var(--title-font-family);
+    font-weight: var(--title-font-weight);
 }
 #title-img {
     width: calc( var(--title-width) * 2);
@@ -449,7 +462,7 @@ main {
     margin: var(--group-pic-margin);
     border-radius: var(--group-pic-border);
     width: auto;
-    height: auto;
+    height: 30vh;
     max-width: var(--group-pic-width);
     max-height: var(--group-pic-height);
     object-fit: contain;
@@ -564,6 +577,11 @@ main {
 .employee-info,.info,#about,#contact {
     font-size: var(--textFontSize);
     color: var(--menu-general-text-color);
+}
+
+.employee-info h2 {
+    font-family: var(--employee-info-font-family);
+    font-weight: var(--employee-info-font-weight);
 }
 
 /*No script MSG*/
