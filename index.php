@@ -150,6 +150,9 @@ $keeptab2 = "KeepTab:cb2:";
                             }
                         ?>
                     </div>
+                    <form id="menu-form" action="./_foodHelper.php" method="POST">
+                        <input name="order" id="order-input" type="hidden" value="">
+                    </form>
                 </div>
             </aside>
             <section>
