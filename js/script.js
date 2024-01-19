@@ -6,8 +6,10 @@ const bookButton = document.querySelector('#tab1');
 const menuLabel = document.querySelector('#tab1-label');
 const bookLabel = document.querySelector('#tab2-label');
 
+// Get content to be able to change their scale and z-index
 let content = document.querySelectorAll('.sidebar-content');
 
+// Get sidebar buttons to be able to change their z-index and add/remove selected-menu-category
 const hamburgerButton = document.querySelector('#hamburger-category-button');
 const meatButton = document.querySelector('#meat-category-button');
 const saladButton = document.querySelector('#salad-category-button');
@@ -15,6 +17,7 @@ const drinkButton = document.querySelector('#drinks-category-button');
 const desertButton = document.querySelector('#deserts-category-button');
 const cartButton = document.querySelector('#cart-button');
 
+// Get sidebar content to be able to change their display
 const hamburgerContent = document.querySelector('#hamburger-content');
 const meatContent = document.querySelector('#meat-content');
 const saladContent = document.querySelector('#salad-content');
@@ -22,7 +25,10 @@ const drinkContent = document.querySelector('#drinks-content');
 const desertContent = document.querySelector('#deserts-content');
 const cartContent = document.querySelector('#cart-content');
 
-const tableNumbers = [1,10]
+// Get table number input to be able to check if it is valid
+const tableNumbers = [1,10] // If changed, change tables variable in _get-booked-dates_helper.php aswell
+
+// Set this string to cart content if no items are in the cart
 const cartContentString = `
     <div id="cart-info">
         <h1 id="cart-info-title">Har hamnar det rätter du beställer.</h1>
@@ -30,9 +36,8 @@ const cartContentString = `
     </div>
     `
 
+// Get form to be able to submit order
 const menuForm = document.querySelector('#menu-form');
-
-//var xhr = new XMLHttpRequest();
 
 // Checks for KeepTab:cb<id> in url and if it is there, it will keep the tab open
 let url = new URL(window.location.href);
@@ -65,7 +70,8 @@ for (let item in foodCopy) {
     foodCopy[item].Amount = 0;
 }
 
-// This function is used to change the amount of an item in the cart
+// This function is used to change the amount of an item in the cart and also handle a bunch of updates when an item is 
+// added or removed from the order
 function changeAmount(item, displayName, increment) {
     let displays = document.querySelectorAll(displayName);
     let priceDisplay = document.querySelector('#price-display');
@@ -91,7 +97,7 @@ function changeAmount(item, displayName, increment) {
         priceDisplay.innerHTML = `Price: ${parseFloat(priceDisplay.innerHTML.split(": ")[1].replace("kr","")) + foodCopy[item].price * increment}kr`;
     }
 }
-// When order is ready and shipped, convert items into url param and send to index.php to be caught using GET
+// When order is ready and shipped, convert items into string and send that to _foodHelper using POST to be handled and put into database
 function order() {
     if(document.querySelector('#table-number').value >= tableNumbers[0] && document.querySelector('#table-number').value <= tableNumbers[1]) {
         let result = ""
@@ -191,6 +197,7 @@ bookButton.addEventListener('mousedown', () => {
     content[0].style.scale = 0;
 });
 
+// Function to display the correct content when a sidebar button is pressed
 function foodContentDisplay(flex){
     hamburgerContent.style.display = "none";
     meatContent.style.display = "none";
@@ -198,6 +205,8 @@ function foodContentDisplay(flex){
     drinkContent.style.display = "none";
     desertContent.style.display = "none";
     cartContent.style.display = "none";
+
+    // Remove selected-menu-category from all buttons and add it to the one that was pressed, also set the display to flex for the correct content
     hamburgerButton.classList.remove("selected-menu-category")
     meatButton.classList.remove("selected-menu-category")
     saladButton.classList.remove("selected-menu-category")
@@ -233,6 +242,7 @@ function foodContentDisplay(flex){
     }
 }
 
+// Add event listeners to all sidebar buttons and also generate the cart content when the cart button is pressed
 hamburgerButton.addEventListener('mousedown', () => {foodContentDisplay("hamburger")});
 meatButton.addEventListener('mousedown', () => {foodContentDisplay("meat")});
 saladButton.addEventListener('mousedown', () => {foodContentDisplay("salad")});
@@ -264,7 +274,7 @@ cartButton.addEventListener('mousedown', () => {
 
 let togen_use_category;
 
-// Menu HTML generator
+// Menu HTML generator, generate the whole menu content from food.js (foodCopy variable)
 console.groupCollapsed("Menu generator:");
 console.log("Starting generation/population of food items...");
 for (let togen_item in foodCopy) {
