@@ -97,7 +97,7 @@ function order() {
         let result = ""
         for(let item in foodCopy) {
             for(let i = 0; i < foodCopy[item].Amount; i++) {
-                result += item + "§";
+                result += foodCopy[item].name + "§";
             }
         }
         if(result.length > 0) {

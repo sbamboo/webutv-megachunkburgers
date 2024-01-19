@@ -167,6 +167,13 @@ $sqlargs3 = array("localhost","root","","megacbur","fd_orders");
         $prices = array();
         $times = array();
         $foods = array();
+
+        #$raw = file_get_contents("./js/food.js");
+        #$raw = str_replace("let food = ","",$raw);
+        #$data = json_decode(strval($raw),False);
+        #$data = json_decode($string,True);
+        #print_r($data);
+
         foreach ($orders as $order) {
             $ids[] = $order["ID"];
             $tablenrs[] = $order["TableNr"];
