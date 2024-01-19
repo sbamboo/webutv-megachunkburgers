@@ -1,7 +1,7 @@
 <?php
 require("_functions.php");
 $sqlargs3 = array("localhost","root","","megacbur","fd_orders");
-$retargs = ["/","/"];
+$retargs = ["./index.php","./index.php"];
 
 if (isset($_GET["order"]) && !empty($_GET["order"])) {
     $tempData = parseOrderStr($_GET["order"]);
