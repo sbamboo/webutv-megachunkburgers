@@ -119,6 +119,10 @@ async function fetchData(fetchUrl, objectToSend) {
     }
 }
 
+function displayState(status, state, message) {
+    document.querySelector("#menu-order-bottom").innerHTML = `<div id="menu-order-main"><p id="price-display">Price: ${document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","")}kr</p><input type="number" id="order-code" placeholder="Order Code" value="${document.querySelector('#order-code').value}" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"><button id="order-button" onclick="order()">Order</button></div><div id="menu-ret-msg"><p id="ret-msg-p">${status}</p><p id="ret-msg-m" class="menu-tab-ret-msg ret-msg-${state}"> ${message} </p></div>`;
+}
+
 // When order is ready and shipped, convert items into string and send that to _foodHelper using POST to be handled and put into database
 async function order() {
     let response = "";
@@ -133,6 +137,7 @@ async function order() {
     var fetchUrl = fetchUrl + encodeURIComponent(dataToSend);
 
     response = await fetchData(fetchUrl, {ordercode: dataToSend});
+    response = response.split(/:(.*)/s)
     if(response == "SUCCESS") {
         let result = ""
         for(let item in foodCopy) {
@@ -149,25 +154,40 @@ async function order() {
             }
             let orderState = "";
             orderState = await fetchData(fetchUrl, {order: result});
-            console.log(orderState)
-            if(orderState == "SUCCESS") {
+            orderState = orderState.split(/:(.*)/s)
+            if(orderState[0] == "SUCCESS") {
                 for(let item in foodCopy) {
                     foodCopy[item].Amount = 0;
                     document.querySelectorAll("." + item + "-counter")[0].innerHTML = "0 st";
                 }
                 document.querySelector('#price-display').innerHTML = "Price: 0kr";
                 document.querySelector('#order-code').value = "";
-                document.querySelector("#menu-order-bottom").innerHTML = `<div id="menu-order-main"><p id="price-display">Price: 0kr</p><input type="number" id="order-code" placeholder="Order Code" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"><button id="order-button" onclick="order()">Order</button></div><div id="menu-ret-msg"><p id="ret-msg-p">Order Info:</p><p id="ret-msg-m" class="menu-tab-ret-msg ret-msg-success"> Order successfully placed!</p></div>`;
-            }else{
-                document.querySelector("#menu-order-bottom").innerHTML = `<div id="menu-order-main"><p id="price-display">Price: ${document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","")}kr</p><input type="number" id="order-code" placeholder="Order Code" value="${document.querySelector('#order-code').value}" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"><button id="order-button" onclick="order()">Order</button></div><div id="menu-ret-msg"><p id="ret-msg-p">Order Info:</p><p id="ret-msg-m" class="menu-tab-ret-msg ret-msg-failed"> Order was not placed</p></div>`;
+                displayState("Order info:", "success", orderState[1]);
+                console.log(orderState[1])
+            }else if(orderState[0] == "FAILED"){
+                displayState("Order info:", "failed", orderState[1]);
+                console.log(orderState[1])
+            }else if(orderState[0] == "Warning"){
+                displayState("Warning", "failed", orderState[1]);
+                console.log(orderState[1]);
+            }else if(orderState[0] == "Fatal error") {
+                displayState("Warning", "failed", orderState[1]);
+                console.log(orderState[1]);
             }
 
             
         }else{
             alert("You have no items in your cart!");
         }
-    }else {
-        alert("Order code invalid!")
+    }else if(orderState[0] == "FAILED"){
+        displayState("Order info:", "failed", orderState[1]);
+        console.log(orderState[1])
+    }else if(orderState[0] == "Warning"){
+        displayState("Warning", "failed", orderState[1]);
+        console.log(orderState[1]);
+    }else if(orderState[0] == "Fatal error") {
+        displayState("Warning", "failed", orderState[1]);
+        console.log(orderState[1]);
     }
 }
 
