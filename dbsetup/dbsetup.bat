@@ -13,6 +13,12 @@
 ::     Username at 45 char long.
 ::     Password at 80 char long.
 :: 
+:: It also creates a table called fd_orders with the following config:
+::     TableNr at 45 char long.
+::     Price at 45 char long.
+::     Time is the time when order was placed in format of 2023-11-28_21:57 as an example thus 20 len.
+::     Food contains al the foods of length 255.
+::
 :: Finally it creates an account on the admin-page
 ::
 mysql -u root < dbsetup.sql
