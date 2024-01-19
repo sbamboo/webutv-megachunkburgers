@@ -99,8 +99,18 @@ function order() {
             }
         }
         if(result.length > 0) {
-            params.set("order", result); 
-            window.location.href = window.location.href.replace("index.php", "_foodHelper.php") + params.toString() + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§" + "tablenr:" + document.querySelector('#table-number').value;
+            redirectLink = window.location.href;
+            params.set("order", result);
+            if(window.location.href.includes("index.php")){
+                redirectLink = redirectLink.split("index.php")[0] + "_foodHelper.php";
+            }else{
+                redirectLink += "_foodHelper.php";
+            }
+            if(string == ""){
+                window.location.href = redirectLink + "?" + params.toString() + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§" + "tablenr:" + document.querySelector('#table-number').value;
+            }else{
+                window.location.href = redirectLink.split("?")[0] + "?" + params.toString() + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§" + "tablenr:" + document.querySelector('#table-number').value;
+            }
             /* Attempted to use POST instead of GET to place orders but couldn't get it to work
             fetch(window.location.href.replace("index.php","_foodHelper.php"), {
                 method: "POST",
@@ -233,7 +243,7 @@ cartButton.addEventListener('mousedown', () => {
                         <p class="increment-counter ${item}-counter">${document.querySelectorAll("." + item + "-counter")[0].innerHTML}</p>
                         <button class="menu-items-btn-positive" onclick="changeAmount('${item}','.${item}-counter', 1)">+</button>
                     </div>
-                    <p>${foodCopy[item].price}kr</p>
+                    <p class="item-price-display">${foodCopy[item].price}kr</p>
                 </div>
             </div>`
         }
@@ -284,7 +294,7 @@ for (let togen_item in foodCopy) {
                 <p class="increment-counter ${togen_id}-counter">0 st</p>
                 <button class="menu-items-btn-positive" onclick="changeAmount('${togen_id}','.${togen_id}-counter', 1)">+</button>
             </div>
-            <p>${togen_item.price}kr</p>
+            <p class="item-price-display">${togen_item.price}kr</p>
         </div>
     </div>
     `
