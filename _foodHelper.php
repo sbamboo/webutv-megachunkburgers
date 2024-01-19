@@ -9,10 +9,11 @@ $order = str_replace("\u00a7","§",$order);
 
 $tempData = parseOrderStr($order);
 var_dump($tempData);
-if(saveFoodOrder($sqlargs3,$tempData[0],$tempData[1],$tempData[2]) == "SUCCESS") {
-    echo "SUCCESS";
+$result = saveFoodOrder($sqlargs3,$tempData[0],$tempData[1],$tempData[2]);
+if(str_contains($result,"successfully")) {
+    echo "SUCCESS:"+$result;
 }else{
-    echo "FAILED";
+    echo "FAILED:"+$result;
 }
 
 ?>
