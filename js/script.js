@@ -30,6 +30,8 @@ const cartContentString = `
     </div>
     `
 
+const menuForm = document.querySelector('#menu-form');
+
 //var xhr = new XMLHttpRequest();
 
 // Checks for KeepTab:cb<id> in url and if it is there, it will keep the tab open
@@ -101,6 +103,9 @@ function order() {
         if(result.length > 0) {
             redirectLink = window.location.href;
             params.set("order", result);
+            document.querySelector("#order-input").value = result + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§" + "tablenr:" + document.querySelector('#table-number').value;
+            menuForm.submit();
+            /*
             if(window.location.href.includes("index.php")){
                 redirectLink = redirectLink.split("index.php")[0] + "_foodHelper.php";
             }else{
