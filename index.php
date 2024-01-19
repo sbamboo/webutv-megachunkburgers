@@ -134,7 +134,7 @@ $keeptab2 = "KeepTab:cb2:";
                     <div id="menu-order-bottom">
                         <div id="menu-order-main">
                             <p id="price-display">Price: 0kr</p>
-                            <input type="number" id="table-number" placeholder="Table Number">
+                            <input type="number" id="order-code" placeholder="Order Code" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'">
                             <button id="order-button" onclick="order()">Order</button>
                         </div>
                         <?php

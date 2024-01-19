@@ -97,9 +97,43 @@ function changeAmount(item, displayName, increment) {
         priceDisplay.innerHTML = `Price: ${parseFloat(priceDisplay.innerHTML.split(": ")[1].replace("kr","")) + foodCopy[item].price * increment}kr`;
     }
 }
+
+async function fetchData(fetchUrl, objectToSend) {
+    try {
+        const response = await fetch(fetchUrl, {
+            method: "POST",
+            body: JSON.stringify(objectToSend)
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const resultFromPHP = await response.text();
+        // Process or use the resultFromPHP as needed
+        console.log(resultFromPHP);
+        return resultFromPHP;
+
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+    }
+}
+
 // When order is ready and shipped, convert items into string and send that to _foodHelper using POST to be handled and put into database
-function order() {
-    if(document.querySelector('#table-number').value >= tableNumbers[0] && document.querySelector('#table-number').value <= tableNumbers[1]) {
+async function order() {
+    let response = "";
+    var fetchUrl = window.location.origin + window.location.pathname;
+    if(window.location.href.includes("index.php")){
+        fetchUrl = redirectLink.split("index.php")[0] + "_checkOrderNumber.php?ordercode=";
+    }else{
+        fetchUrl += "_checkOrderNumber.php?ordercode=";
+    }
+
+    var dataToSend = document.querySelector("#order-code").value; // Set the value you want to send to PHP
+    var fetchUrl = fetchUrl + encodeURIComponent(dataToSend);
+
+    response = await fetchData(fetchUrl, {ordercode: dataToSend});
+    if(response == "SUCCESS") {
         let result = ""
         for(let item in foodCopy) {
             for(let i = 0; i < foodCopy[item].Amount; i++) {
@@ -107,45 +141,33 @@ function order() {
             }
         }
         if(result.length > 0) {
-            document.querySelector("#order-input").value = result + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§" + "tablenr:" + document.querySelector('#table-number').value;
-            menuForm.submit();
-            
-            /* Old GET version to place orders, changed to POST for easier use
-            
-            redirectLink = window.location.href;
-            params.set("order", result);
+            fetchUrl = window.location.origin + window.location.pathname;
             if(window.location.href.includes("index.php")){
-                redirectLink = redirectLink.split("index.php")[0] + "_foodHelper.php";
+                fetchUrl = fetchurl.split("index.php")[0] + "_foodHelper.php";
             }else{
-                redirectLink += "_foodHelper.php";
+                fetchUrl += "_foodHelper.php";
             }
-            if(string == ""){
-                window.location.href = redirectLink + "?" + params.toString() + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§" + "tablenr:" + document.querySelector('#table-number').value;
+            let orderState = "";
+            orderState = await fetchData(fetchUrl, {order: result});
+            console.log(orderState)
+            if(orderState == "SUCCESS") {
+                for(let item in foodCopy) {
+                    foodCopy[item].Amount = 0;
+                    document.querySelectorAll("." + item + "-counter")[0].innerHTML = "0 st";
+                }
+                document.querySelector('#price-display').innerHTML = "Price: 0kr";
+                document.querySelector('#order-code').value = "";
+                document.querySelector("#menu-order-bottom").innerHTML = `<div id="menu-order-main"><p id="price-display">Price: 0kr</p><input type="number" id="order-code" placeholder="Order Code" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"><button id="order-button" onclick="order()">Order</button></div><div id="menu-ret-msg"><p id="ret-msg-p">Order Info:</p><p id="ret-msg-m" class="menu-tab-ret-msg ret-msg-success"> Order successfully placed!</p></div>`;
             }else{
-                window.location.href = redirectLink.split("?")[0] + "?" + params.toString() + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§" + "tablenr:" + document.querySelector('#table-number').value;
+                document.querySelector("#menu-order-bottom").innerHTML = `<div id="menu-order-main"><p id="price-display">Price: ${document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","")}kr</p><input type="number" id="order-code" placeholder="Order Code" value="${document.querySelector('#order-code').value}" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"><button id="order-button" onclick="order()">Order</button></div><div id="menu-ret-msg"><p id="ret-msg-p">Order Info:</p><p id="ret-msg-m" class="menu-tab-ret-msg ret-msg-failed"> Order was not placed</p></div>`;
             }
 
-             Attempted to use POST (without using a form) instead of GET to place orders but couldn't get it to work
             
-            fetch(window.location.href.replace("index.php","_foodHelper.php"), {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({order: result})
-            })
-            for(let item in foodCopy) {
-                foodCopy[item].Amount = 0;
-                document.querySelectorAll("." + item + "-counter")[0].innerHTML = "0 st";
-            }
-            document.querySelector('#price-display').innerHTML = "Price: 0kr";
-            document.querySelector('#table-number').value = "";
-            */
         }else{
             alert("You have no items in your cart!");
         }
-    }else{
-        alert(`Please enter a valid table number (${tableNumbers[0]}-${tableNumbers[1]})`);
+    }else {
+        alert("Order code invalid!")
     }
 }
 

@@ -2,11 +2,17 @@
 require("_functions.php");
 // SQL setup
 $sqlargs3 = array("localhost","root","","megacbur","fd_orders");
-$retargs = ["./index.php","./index.php"];
 
-// if order is sent through POST get it and use the saveFoodOrder to save it to SQL
-if (isset($_POST["order"]) && !empty($_POST["order"])) {
-    $tempData = parseOrderStr($_POST["order"]);
-    saveFoodOrder($sqlargs3,$retargs,$tempData[0],$tempData[1],$tempData[2]);
+$order = file_get_contents('php://input');
+$order = json_encode(json_decode($order, true));
+$order = str_replace("\u00a7","§",$order);
+
+$tempData = parseOrderStr($order);
+var_dump($tempData);
+if(saveFoodOrder($sqlargs3,$tempData[0],$tempData[1],$tempData[2]) == "SUCCESS") {
+    echo "SUCCESS";
+}else{
+    echo "FAILED";
 }
+
 ?>

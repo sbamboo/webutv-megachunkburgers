@@ -338,11 +338,12 @@ function parseOrderStr(string $unparsed) {
 }
 
 // Function to save a given food-order to SQL
-function saveFoodOrder(array $sqlargs, array $retargs, array $amntFoods, string $price, string $tableNr) {
+function saveFoodOrder(array $sqlargs, array $amntFoods, string $price, string $tableNr) {
     // Basic validation of inputted values
     if (empty($amntFoods) || empty($price) || empty($tableNr)) {
         //return array(False,"Order placement failed! (Empty form input)",array());
-        toLanding2($retargs,"KeepTab:cb1:Order placement failed! (Empty form input)");
+        return "FAILED";
+        //toLanding2($retargs,"KeepTab:cb1:Order placement failed! (Empty form input)");
     }
 
     // Extracting values from the arg array
@@ -393,7 +394,8 @@ function saveFoodOrder(array $sqlargs, array $retargs, array $amntFoods, string 
     $prepped_statement->close();
 
     // Return
-    toLanding2($retargs,"KeepTab:cb1:Order successfully placed!");
+    return "SUCCESS";
+    //toLanding2($retargs,"KeepTab:cb1:Order successfully placed!");
 }
 
 // Function to clear the orders in the SQL-order database with a given id
