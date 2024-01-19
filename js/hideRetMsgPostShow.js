@@ -1,3 +1,4 @@
+// Function that can remove the ret-msg url param from the window.location.href
 function removeRetMsg() {
     // Get the current URL
     var currentUrl = window.location.href;

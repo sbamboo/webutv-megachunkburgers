@@ -1,3 +1,4 @@
+// Retrive by id
 const formSeg1 = document.getElementById('booking-form-seg1');
 const formSeg2 = document.getElementById('booking-form-seg2');
 const formSeg3 = document.getElementById('booking-form-seg3');
@@ -12,10 +13,12 @@ const tablpic = document.getElementById('booking-form-inp-tb');
 const retMsgObj = document.getElementsByClassName('book-tab-ret-msg')[0];
 const dtRtMsg = "Please fill-in date before hitting next!";
 
+// Setup vars
 let segIndex = 0;
 const min = 0;
 const max = 2;
 
+// Function to reload the page with a mesage
 function reloadPgWithMsg(msg) {
     // Get the current URL
     var currentUrl = window.location.href;
@@ -49,6 +52,7 @@ function reloadPgWithMsg(msg) {
     window.location.href = updatedUrl;
 }
 
+// Function to check table avaliablity by calling php letting php filter and getting the data again
 function updateTbAvaliability(index) {
     unavaliable = [];
     if (index == 1) {
@@ -71,27 +75,35 @@ function updateTbAvaliability(index) {
                 'Accept': 'application/json',
             },
         })
+        // Take it as text so it can be safely parsed bellow rather then response.json()
         .then(response => response.text())
         .then(response => {
+            // Try catch errors so they can be displayed incase-of-error
             try {
+                // parse the json
                 response = JSON.parse(response);
                 strBuild = "";
+                // loop the elements
                 for (let elem in response) {
                     // Preselect first element
                     elem = response[elem];
+                    // If the first one is false this means we didn't get the elements and instead got an error-msg from _functions.php piped through _get-booked-dates_helper.php, so throw it so the previous try/catch can catch it.
                     if (response[0] == false) {
                         throw new Error('No elem: '.concat(response));
                     }
+                    // generate the HTML
                     if (elem == response[0]) {
                         strBuild = '<option value="'.concat(elem,'" selected>',elem,'</option>');
                     } else {
                         strBuild += '<option value="'.concat(elem,'">',elem,'</option>');
                     }
                 }
+                // debug
                 console.log(response);
                 console.log(strBuild);
                 tablpic.innerHTML = strBuild;
             } catch (error) {
+                // if catched display it
                 formSeg2.innerHTML += '<p class="whiteText"><b>PHP Error: </b><p class="book-form-error-php">'.concat(response[1]).concat("</p></p>");
                 console.log(error);
             }
@@ -102,6 +114,7 @@ function updateTbAvaliability(index) {
     console.log(unavaliable);
 }
 
+// function to toggle elements for the diff segments
 function setSegment(index) {
     if (index == 0) {
         formSeg1.style.display = "block";
@@ -121,6 +134,7 @@ function setSegment(index) {
     }
 }
 
+// update which butons are shown next/back/send
 function updBtns(index) {
     if (index == min) {
         decrBtn.style.display = "None";
@@ -134,6 +148,7 @@ function updBtns(index) {
     }
 }
 
+// go to next segment
 function incrementBookingFormSegment() {
     segIndex += 1;
     if (segIndex > max) { segIndex = max };
@@ -142,6 +157,7 @@ function incrementBookingFormSegment() {
     updateTbAvaliability(segIndex);
 }
 
+// go to previous segment
 function decrementBookingFormSegment() {
     segIndex -=1 ;
     if (segIndex < min) { segIndex = min };

@@ -53,17 +53,17 @@ $keeptab2 = "KeepTab:cb2:";
                     <div id="booking-form-wrapper-outer">
                         <div id="booking-form-wrapper-mid">
                             <form method="post" action=<?php echo $formUse?> class="booking-form">
-                                <h1>Book a table:</h1>
+                                <h1>Boka ett bord:</h1>
                                 <div id="booking-form-wrapper">
                                     <div id="booking-form-seg1">
-                                        <p>When do you want to be there?</p><input type="datetime-local" name="time" id="booking-form-inp-dt">
+                                        <p>När vill du va där?</p><input type="datetime-local" name="time" id="booking-form-inp-dt">
                                     </div>
                                     <div id="booking-form-seg2">
-                                        <p>Which table?<i>  (Filtered by avaliability for your selected day)</i></p><select name="tablenr" size="5" id="booking-form-inp-tb" selected?>
+                                        <p>Vilket bord?<i>  (Filtrerat efter tillgänglighet denna dag)</i></p><select name="tablenr" size="5" id="booking-form-inp-tb" selected?>
                                         </select>
                                     </div>
                                     <div id="booking-form-seg3">
-                                        <p>Your full name:</p><input type="text" name="fullname" placeholder="Full name">
+                                        <p>Ditt fulla namn:</p><input type="text" name="fullname" placeholder="Full name">
                                         <p>Phone number or Email:</p><input type="text" name="telephone" placeholder="Phone Number"><input type="text" name="email" placeholder="Email">
                                         <p>Any additional details you want to provide: (Optional)</p><input type="text" name="details">
                                     </div>
@@ -140,12 +140,15 @@ $keeptab2 = "KeepTab:cb2:";
                         <?php
                             if (isset($_GET["ret-msg"]) && !empty($_GET["ret-msg"])) {
                                 $retmsg = str_replace($keeptab1,"",$_GET["ret-msg"]);
-                                if (str_contains($retmsg,"failed") || str_contains($retmsg,"Failed")) {
-                                    echo '<div id="menu-ret-msg"><p id="ret-msg-p">Order Info:</p><p id="ret-msg-m" class="menu-tab-ret-msg ret-msg-failed">' . $retmsg . '</p></div>';
-                                } elseif (str_contains($retmsg,'Please') || str_contains($retmsg,'please') || str_contains($retmsg,'Warning: ')) {
-                                    echo '<div id="menu-ret-msg"><p id="ret-msg-p">Order Info:</p><p id="ret-msg-m" class="menu-tab-ret-msg ret-msg-warning">' . $retmsg . '</p></div>';
+                                if (str_contains($retmsg, $keeptab2)) {
                                 } else {
-                                    echo '<div id="menu-ret-msg"><p id="ret-msg-p">Order Info:</p><p id="ret-msg-m" class="menu-tab-ret-msg ret-msg-success">' . $retmsg . '</p></div>';
+                                    if (str_contains($retmsg,"failed") || str_contains($retmsg,"Failed")) {
+                                        echo '<div id="menu-ret-msg"><p id="ret-msg-p">Order Info:</p><p id="ret-msg-m" class="menu-tab-ret-msg ret-msg-failed">' . $retmsg . '</p></div>';
+                                    } elseif (str_contains($retmsg,'Please') || str_contains($retmsg,'please') || str_contains($retmsg,'Warning: ')) {
+                                        echo '<div id="menu-ret-msg"><p id="ret-msg-p">Order Info:</p><p id="ret-msg-m" class="menu-tab-ret-msg ret-msg-warning">' . $retmsg . '</p></div>';
+                                    } else {
+                                        echo '<div id="menu-ret-msg"><p id="ret-msg-p">Order Info:</p><p id="ret-msg-m" class="menu-tab-ret-msg ret-msg-success">' . $retmsg . '</p></div>';
+                                    }
                                 }
                             }
                         ?>
@@ -213,7 +216,6 @@ $keeptab2 = "KeepTab:cb2:";
                     <p>*Telefon: +46 (0)7 23 64 90 *instagram: @MegaChopBurgers *Mail: megachop@burgers.com</p>
                 </div>
             </section>
-            <section>
                 <p class="vert-space-top"></p>
                 <a href="./admin.php" class="vert-space-top btlink">Admin</a>
                 <button onclick="removeRetMsg()" id="relWithoutRetMsg" class="btlink">Reload Without Messages</button>

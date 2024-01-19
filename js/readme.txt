@@ -1,0 +1,1 @@
+Food.js contains al food items with names and pictures aswell as price

@@ -1,0 +1,28 @@
+Meny innanför kategorin, ska ha alignade bilder med samma scale och förmodligen va i listform
+med större +/- knappar och skrivbart antal.
+
+----------------------------------------
+ <img>       <desc>
+             <+> <amnt> <->
+             <pris>
+----------------------------------------
+
+
+Länka meny bokning till bords-bokning istället för bords-nr.
+
+Bord filtreras efter 2h inte dags.
+
+Kockarnas tre bilder ha mindre text.
+
+<img1>    <img2>    <img3>
+                    ||||||
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*text-rutan kommer fram som en popup vid hovering på en kock, och ser ut som den är "länkad/kommer ut" från bilden.
+
+Öppettider i kontakt och lite mer flashigt så den inte ser så undan gömd ut.
+
+liten bild på om-oss
+
+Kontrollera så texten tabsen flyttar sig så den alltid syns.

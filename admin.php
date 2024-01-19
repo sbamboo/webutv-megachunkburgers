@@ -24,13 +24,17 @@ $sqlargs3 = array("localhost","root","","megacbur","fd_orders");
             <input type="submit" name="submit" value="Send In">  <a href="./index.php" id="goback-btn">Go Back</a>
         </form>
         <?php
+        // If login details are given (sent by form above)
         if ( isset($_POST["usrnme"]) && isset($_POST["usrpsw"]) ) {
+            // Validate login details from SQL
             $funcres = validateLoginDetails($sqlargs,$_POST["usrnme"],$_POST["usrpsw"]);
             //echo '<script>alert("' . $funcres[1] . '");</script>';
             if (isset($_POST["submit"])) {
+                // if error echo that
                 if ($funcres[0] != true) {
                     echo $funcres[1];
                 } else {
+                    // Show detail-change form
                     echo '<style type="text/css">#login-form {display: None;} #entriesbox {display: Block;}</style>';
                     echo '
                     <form method="post" action="admin.php" id="change-creds">
@@ -44,6 +48,7 @@ $sqlargs3 = array("localhost","root","","megacbur","fd_orders");
                       //  Here is the end of the "loginbox" div
                 }
             }
+        // If not check if a change to user-login details was made and update them in SQL
         } elseif ( isset($_POST["usrnme_2"]) && isset($_POST["usrpsw_2"]) && isset($_POST["submit_2"]) && isset($_POST["olduname"]) ) {
             $funcres = updUserData($sqlargs,$_POST["usrnme_2"],$_POST["usrpsw_2"],$_POST["olduname"]);
             echo $funcres[1] . "</div>";
@@ -63,10 +68,12 @@ $sqlargs3 = array("localhost","root","","megacbur","fd_orders");
             ';
         }
         echo '   <table border="1">';
+        // Incase the clear button was pressed
         if ( isset($_POST["submit_3"]) ) {
             clearOrders($sqlargs2);
         }
-        $orders = getOrders($sqlargs2);
+        $orders = getOrders($sqlargs2); // get the orders
+        // Create arrays
         $ids = array();
         $tablenrs = array();
         $fullnames = array();
@@ -75,6 +82,7 @@ $sqlargs3 = array("localhost","root","","megacbur","fd_orders");
         $times = array();
         $details = array();
         $clrbtns = array();
+        // Populate arrays
         foreach ($orders as $order) {
             $ids[] = $order["ID"];
             $tablenrs[] = $order["TableNr"];
@@ -84,6 +92,7 @@ $sqlargs3 = array("localhost","root","","megacbur","fd_orders");
             $times[] = $order["Time"];
             $details[] = $order["Details"];
         }
+        // No entires text
         if (count($ids) == 0) {
             $ids[] = "NO ENTRIES";
         }
@@ -105,6 +114,7 @@ $sqlargs3 = array("localhost","root","","megacbur","fd_orders");
         if (count($details) == 0) {
             $details[] = "NO ENTRIES";
         }
+        // Generate HTML
         echo '<tr>';
         echo '<th class="tab_id tab_title">ID</th>';
         foreach ($ids as $id) {
@@ -158,10 +168,13 @@ $sqlargs3 = array("localhost","root","","megacbur","fd_orders");
             ';
         }
         echo '   <table border="1">';
+        // incase clear was pressed
         if ( isset($_POST["submit_4"]) ) {
             clearOrders($sqlargs3);
         }
+        // get orders
         $orders = getOrders($sqlargs3);
+        // Create arrays
         $ids = array();
         $tablenrs = array();
         $prices = array();
@@ -174,6 +187,7 @@ $sqlargs3 = array("localhost","root","","megacbur","fd_orders");
         #$data = json_decode($string,True);
         #print_r($data);
 
+        // Populate
         foreach ($orders as $order) {
             $ids[] = $order["ID"];
             $tablenrs[] = $order["TableNr"];
@@ -181,6 +195,7 @@ $sqlargs3 = array("localhost","root","","megacbur","fd_orders");
             $times[] = $order["Time"];
             $foods[] = $order["Food"];
         }
+        // no entires text
         if (count($ids) == 0) {
             $ids[] = "NO ENTRIES";
         }
@@ -196,6 +211,7 @@ $sqlargs3 = array("localhost","root","","megacbur","fd_orders");
         if (count($foods) == 0) {
             $foods[] = "NO ENTRIES";
         }
+        // Generate HTML
         echo '<tr>';
         echo '<th class="tab_id tab_title">ID</th>';
         foreach ($ids as $id) {
@@ -225,6 +241,7 @@ $sqlargs3 = array("localhost","root","","megacbur","fd_orders");
         echo '<th class="tab_rem tab_title">Remove</th>';
         if ($id == "NO ENTRIES") {
             echo '<th class="tab_rem">' . $id . '</th>';
+        // Remove form
         } else {
             foreach ($times as $time) {
                 echo '<th class="tab_rem">
@@ -239,6 +256,7 @@ $sqlargs3 = array("localhost","root","","megacbur","fd_orders");
                 </th>';
             }
         }
+        // With action to above clear form for specific order
         if ( isset($_POST["submit_5"]) && isset($_POST["toremid"]) ) {
             clearOrdersId($sqlargs3,$_POST["toremid"]);
         }
