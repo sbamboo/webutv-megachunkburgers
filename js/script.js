@@ -98,9 +98,10 @@ function changeAmount(item, displayName, increment) {
     }
 }
 
+// async function to fetch data from PHP
 async function fetchData(fetchUrl, objectToSend) {
     try {
-        const response = await fetch(fetchUrl, {
+        await fetch(fetchUrl, {
             method: "POST",
             body: JSON.stringify(objectToSend)
         });
@@ -121,10 +122,13 @@ async function fetchData(fetchUrl, objectToSend) {
 
 function displayState(status, state, message) {
     document.querySelector("#menu-order-bottom").innerHTML = `<div id="menu-order-main"><p id="price-display">Price: ${document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","")}kr</p><input type="number" id="order-code" placeholder="Order Code" value="${document.querySelector('#order-code').value}" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"><button id="order-button" onclick="order()">Order</button></div><div id="menu-ret-msg"><p id="ret-msg-p">${status}</p><p id="ret-msg-m" class="menu-tab-ret-msg ret-msg-${state}"> ${message} </p></div>`;
+    console.log(message);
 }
 
 // When order is ready and shipped, convert items into string and send that to _foodHelper using POST to be handled and put into database
 async function order() {
+
+    // Building URL and sending a POST request to check if ordercode is valid
     let response = "";
     var fetchUrl = window.location.origin + window.location.pathname;
     if(window.location.href.includes("index.php")){
@@ -137,7 +141,11 @@ async function order() {
     var fetchUrl = fetchUrl + encodeURIComponent(dataToSend);
 
     response = await fetchData(fetchUrl, {ordercode: dataToSend});
-    response = response.split(/:(.*)/s)
+
+    // Splits response into status and message
+    response = response.split(/:(.*)/s) // only splits on first occurence of : to allow for : in message
+
+    // Checks if ordercode is valid, if it is, it will add all items to a string and send that to _foodHelper.php
     if(response == "SUCCESS") {
         let result = ""
         for(let item in foodCopy) {
@@ -145,7 +153,11 @@ async function order() {
                 result += foodCopy[item].name + "§";
             }
         }
+
+        // Checks if cart isn't empty
         if(result.length > 0) {
+
+            // Building URL and sending a POST request 
             fetchUrl = window.location.origin + window.location.pathname;
             if(window.location.href.includes("index.php")){
                 fetchUrl = fetchurl.split("index.php")[0] + "_foodHelper.php";
@@ -154,7 +166,11 @@ async function order() {
             }
             let orderState = "";
             orderState = await fetchData(fetchUrl, {order: result});
-            orderState = orderState.split(/:(.*)/s)
+
+            // Splits response into status and message
+            orderState = orderState.split(/:(.*)/s) // only splits on first occurence of : to allow for : in message
+
+            // Checks response from _foodHelper and displays correct info on screen
             if(orderState[0] == "SUCCESS") {
                 for(let item in foodCopy) {
                     foodCopy[item].Amount = 0;
@@ -162,23 +178,22 @@ async function order() {
                 }
                 document.querySelector('#price-display').innerHTML = "Price: 0kr";
                 document.querySelector('#order-code').value = "";
+
+                // Displayts the order info and also the message
                 displayState("Order info:", "success", orderState[1]);
-                console.log(orderState[1])
             }else if(orderState[0] == "FAILED"){
                 displayState("Order info:", "failed", orderState[1]);
-                console.log(orderState[1])
             }else if(orderState[0] == "Warning"){
                 displayState("Warning", "failed", orderState[1]);
-                console.log(orderState[1]);
             }else if(orderState[0] == "Fatal error") {
                 displayState("Warning", "failed", orderState[1]);
-                console.log(orderState[1]);
             }
 
             
         }else{
             alert("You have no items in your cart!");
         }
+    // If ordercode is invalid, display that on screen aswell as the error message
     }else if(orderState[0] == "FAILED"){
         displayState("Order info:", "failed", orderState[1]);
         console.log(orderState[1])
@@ -193,6 +208,7 @@ async function order() {
 
 //Open up the menu content and close the book content
 menuButton.addEventListener('mousedown', () => {
+    // if the menu content is open, close it, else open it
     if(content[0].style.scale == 1) {
         content[0].style.scale = 0;
         content[0].style.zIndex = 0;
@@ -209,6 +225,7 @@ menuButton.addEventListener('mousedown', () => {
         bookLabel.style.position = "relative";
     }
 
+    // Close the book content and button
     bookButton.style.right = '-1vw';
     bookButton.style.zIndex = 0;
     content[1].style.zIndex = 0;
@@ -217,6 +234,7 @@ menuButton.addEventListener('mousedown', () => {
 
 //Open up the book content and close the menu content
 bookButton.addEventListener('mousedown', () => {
+    // if the book content is open, close it, else open it
     if(content[1].style.scale == 1) {
         content[1].style.scale = 0;
         content[1].style.zIndex = 0;
@@ -233,6 +251,7 @@ bookButton.addEventListener('mousedown', () => {
         menuLabel.style.position = "relative";
     }
 
+    // Close the menu content and button
     menuButton.style.right = '-1vw';
     menuButton.style.zIndex = 0;
     content[0].style.zIndex = 0;
@@ -241,6 +260,7 @@ bookButton.addEventListener('mousedown', () => {
 
 // Function to display the correct content when a sidebar button is pressed
 function foodContentDisplay(flex){
+    // Set all content to display none, later add display flex to target content
     hamburgerContent.style.display = "none";
     meatContent.style.display = "none";
     saladContent.style.display = "none";
@@ -248,7 +268,7 @@ function foodContentDisplay(flex){
     desertContent.style.display = "none";
     cartContent.style.display = "none";
 
-    // Remove selected-menu-category from all buttons and add it to the one that was pressed, also set the display to flex for the correct content
+    // Remove selected-menu-category from all buttons and add it to the one that was pressed, also set the display to flex for the correct content and also add a class to the content button
     hamburgerButton.classList.remove("selected-menu-category")
     meatButton.classList.remove("selected-menu-category")
     saladButton.classList.remove("selected-menu-category")
