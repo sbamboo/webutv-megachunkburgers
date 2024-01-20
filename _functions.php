@@ -342,7 +342,7 @@ function saveFoodOrder(array $sqlargs, array $amntFoods, string $price, string $
     // Basic validation of inputted values
     if (empty($amntFoods) || empty($price) || empty($tableNr)) {
         //return array(False,"Order placement failed! (Empty form input)",array());
-        return "KeepTab:cb1:Order placement failed! (Empty form input)";
+        return "Order placement failed! (Empty form input)";
     }
 
     // Extracting values from the arg array
@@ -354,12 +354,12 @@ function saveFoodOrder(array $sqlargs, array $amntFoods, string $price, string $
         $mysqli->set_charset("utf8");
     } catch (Exception $e) {
         // Handle exceptions and return message
-        return "KeepTab:cb1:Failed to connect to SQL database (" . $e->getMessage() . ")";
+        return "Failed to connect to SQL database (" . $e->getMessage() . ")";
     }
 
     // Verify connection to database
     if ($mysqli->connect_error) {
-        return "KeepTab:cb1:Failed to connect to SQL database (" . $mysqli->connect_error . ")";
+        return "Failed to connect to SQL database (" . $mysqli->connect_error . ")";
     }
     
     // Parse foods into string

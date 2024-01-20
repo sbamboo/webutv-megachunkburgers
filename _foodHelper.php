@@ -11,9 +11,9 @@ $tempData = parseOrderStr($order);
 var_dump($tempData);
 $result = saveFoodOrder($sqlargs3,$tempData[0],$tempData[1],$tempData[2]);
 if(str_contains($result,"successfully")) {
-    echo "SUCCESS:"+$result;
+    echo "SUCCESS:" . $result;
 }else{
-    echo "FAILED:"+$result;
+    echo "FAILED:" . $result;
 }
 
 ?>

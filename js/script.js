@@ -39,30 +39,6 @@ const cartContentString = `
 // Get form to be able to submit order
 const menuForm = document.querySelector('#menu-form');
 
-// Checks for KeepTab:cb<id> in url and if it is there, it will keep the tab open
-let url = new URL(window.location.href);
-let params = new URLSearchParams(url.search);
-const string = params.get("ret-msg") || "";
-if(string.includes("KeepTab:cb2")) {
-    console.log(string.split(":")[2]);
-    content[0].style.scale = 1;
-    content[0].style.zIndex = 1;
-    menuButton.style.right = '0vw';
-    menuButton.style.zIndex = 1;
-    bookButton.style.zIndex = 0;
-    content[1].style.zIndex = 0;
-    content[1].style.scale = 0;
-}
-if(string.includes("KeepTab:cb1")) {
-    content[1].style.scale = 1;
-    content[1].style.zIndex = 1;
-    bookButton.style.right = '0vw';
-    bookButton.style.zIndex = 1;
-    menuButton.style.zIndex = 0;
-    content[0].style.zIndex = 0;
-    content[0].style.scale = 0;
-}
-
 let foodCopy = food;
 
 // Add a variable called "Amount" to every item in foodCopy
@@ -101,7 +77,7 @@ function changeAmount(item, displayName, increment) {
 // async function to fetch data from PHP
 async function fetchData(fetchUrl, objectToSend) {
     try {
-        await fetch(fetchUrl, {
+        let response = await fetch(fetchUrl, {
             method: "POST",
             body: JSON.stringify(objectToSend)
         });
@@ -165,7 +141,7 @@ async function order() {
                 fetchUrl += "_foodHelper.php";
             }
             let orderState = "";
-            orderState = await fetchData(fetchUrl, {order: result});
+            orderState = await fetchData(fetchUrl, {order: result + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","")});
 
             // Splits response into status and message
             orderState = orderState.split(/:(.*)/s) // only splits on first occurence of : to allow for : in message
