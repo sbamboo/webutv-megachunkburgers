@@ -103,8 +103,22 @@ function addTbOrder(array $sqlargs, array $retargs, int $tableNr, string $fullNa
         toLanding($retargs,"KeepTab:cb2:Failed to connect to SQL database (" . $mysqli->connect_error . ")");
     }
 
+    $sqlcmd = "SELECT * FROM " . $sql_table . ' WHERE OrderCode=?';
+    while(true){
+        $ordercode = random_int(100000,999999);
+        $prepped_statement = $mysqli->prepare($sqlcmd);
+        $prepped_statement->bind_param("s", $ordercode);
+        $prepped_statement->execute();
+        $result = $prepped_statement->get_result();
+        $result = $result->fetch_assoc();
+        $prepped_statement->close();
+        if(empty($result)){
+            break;
+        }
+    }
+
     // Here we now use ? as a placeholder for our later values
-    $sqlcmd = "INSERT INTO " . $sql_table . " (TableNr, FullName, Telephone, Email, Time, Details) VALUES (?, ?, ?, ?, ?, ?)";
+    $sqlcmd = "INSERT INTO " . $sql_table . " (TableNr, OrderCode, FullName, Telephone, Email, Time, Details) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     // We also create a stmt (statement) and use the mysqli.prepare method on it to load it as a prepared-statement
     $prepped_statement = $mysqli->prepare($sqlcmd);
@@ -112,7 +126,7 @@ function addTbOrder(array $sqlargs, array $retargs, int $tableNr, string $fullNa
     // We use bind_param to bind our placeholders with their wanted values making sure to use the correct data type:
     // s: String
     // This effectively says to php/sql that the content must be string, making injection less likely.
-    $prepped_statement->bind_param("ssssss", $tableNr, $fullName, $telephone, $email, $time, $details);
+    $prepped_statement->bind_param("sssssss", $tableNr, $ordercode, $fullName, $telephone, $email, $time, $details);
 
     // Execute the prepared statement (Same as our query)
     $prepped_statement->execute();
