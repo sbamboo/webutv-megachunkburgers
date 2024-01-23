@@ -39,8 +39,6 @@ const cartContentString = `
 // Get form to be able to submit order
 const menuForm = document.querySelector('#menu-form');
 
-let foodCopy = food;
-
 // Checks for KeepTab:cb<id> in url and if it is there, it will keep the tab open
 let url = new URL(window.location.href);
 let params = new URLSearchParams(url.search);
@@ -64,6 +62,8 @@ if(string.includes("KeepTab:cb1")) {
     content[0].style.zIndex = 0;
     content[0].style.scale = 0;
 }
+
+let foodCopy = food;
 
 // Add a variable called "Amount" to every item in foodCopy
 for (let item in foodCopy) {
@@ -92,123 +92,65 @@ function changeAmount(item, displayName, increment) {
     }
 
     if(parseFloat(priceDisplay.innerHTML.split(": ")[1].replace("kr","")) + foodCopy[item].price * increment <= 0) {
-        priceDisplay.innerHTML = `Pris: 0kr`;
+        priceDisplay.innerHTML = `Price: 0kr`;
     }else {
-        priceDisplay.innerHTML = `Pris: ${parseFloat(priceDisplay.innerHTML.split(": ")[1].replace("kr","")) + foodCopy[item].price * increment}kr`;
+        priceDisplay.innerHTML = `Price: ${parseFloat(priceDisplay.innerHTML.split(": ")[1].replace("kr","")) + foodCopy[item].price * increment}kr`;
     }
 }
-
-// async function to fetch data from PHP
-async function fetchData(fetchUrl, objectToSend) {
-    try {
-        let response = await fetch(fetchUrl, {
-            method: "POST",
-            body: JSON.stringify(objectToSend)
-        });
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
-        const resultFromPHP = await response.text();
-        // Process or use the resultFromPHP as needed
-        return resultFromPHP;
-
-    } catch (error) {
-        console.error('There was a problem with the fetch operation:', error);
-    }
-}
-
-function displayState(status, state, message, error) {
-    document.querySelector("#menu-order-bottom").innerHTML = `<div id="menu-order-main"><p id="price-display">Pris: ${document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","")}kr</p><input type="number" id="order-code" placeholder="Beställnings Kod" value="${document.querySelector('#order-code').value}" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"><button id="order-button" onclick="order()">Beställ</button></div><div id="menu-ret-msg"><p id="ret-msg-p">${status}</p><p id="ret-msg-m" class="menu-tab-ret-msg ret-msg-${state}"> ${message} </p></div>`;
-    console.log(error);
-}
-
 // When order is ready and shipped, convert items into string and send that to _foodHelper using POST to be handled and put into database
-async function order() {
-
-    // Building URL and sending a POST request to check if ordercode is valid
-    let response = "";
-    var fetchUrl = window.location.origin + window.location.pathname;
-    if(window.location.href.includes("index.php")){
-        fetchUrl = fetchUrl.split("index.php")[0] + "_checkOrderNumber.php?ordercode=";
-    }else{
-        fetchUrl += "_checkOrderNumber.php?ordercode=";
-    }
-
-    var dataToSend = document.querySelector("#order-code").value; // Set the value you want to send to PHP
-    var fetchUrl = fetchUrl + encodeURIComponent(dataToSend);
-
-    response = await fetchData(fetchUrl, {ordercode: dataToSend});
-
-    // Splits response into status and message
-    response = response.split(/:(.*)/s) // only splits on first occurence of : to allow for : in message
-
-    // Checks if ordercode is valid, if it is, it will add all items to a string and send that to _foodHelper.php
-    console.log(response)
-    if(response[0] == "SUCCESS") {
-        console.log("ordercode passed");
-        let tablenr = response[1];
-        let result = "";
+function order() {
+    if(document.querySelector('#table-number').value >= tableNumbers[0] && document.querySelector('#table-number').value <= tableNumbers[1]) {
+        let result = ""
         for(let item in foodCopy) {
             for(let i = 0; i < foodCopy[item].Amount; i++) {
-                result += foodCopy[item].name.replace(" ","_") + "§";
+                result += foodCopy[item].name + "§";
             }
         }
-
-        // Checks if cart isn't empty
         if(result.length > 0) {
-            // Building URL and sending a POST request 
-            let fetchUrl = window.location.origin + window.location.pathname;
-            if(window.location.href.includes("index.php")){
-                fetchUrl = fetchUrl.split("index.php")[0] + "_foodHelper.php";
-            }else{
-                fetchUrl += "_foodHelper.php";
-            }
-            let orderState = "";
-            orderState = await fetchData(fetchUrl, {order: result + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§tablenr:" + tablenr});
-
-            // Splits response into status and message
-            console.log(orderState);
-            // Checks response from _foodHelper and displays correct info on screen
-            if(orderState.includes("SUCCESS")) {
-                console.log("order passed");
-                for(let item in foodCopy) {
-                    foodCopy[item].Amount = 0;
-                    document.querySelectorAll("." + item + "-counter")[0].innerHTML = "0 st";
-                }
-                document.querySelector('#price-display').innerHTML = "Pris: 0kr";
-                document.querySelector('#order-code').value = "";
-
-                // Displayts the order info and also the message
-                displayState("Beställnings information:", "success", "Beställning placerad till bord " + tablenr, orderState);
-            }else if(orderState.includes("FAILED")){
-                displayState("Beställnings information:", "failed", "Beställning misslyckad, vänligen kontakta personal", orderState);
-            }else if(orderState.includes("Warning")){
-                displayState("Varning", "failed", "PHP Error", orderState);
-            }else if(orderState.includes("Fatal Error")) {
-                displayState("Varning", "failed", "PHP Erorr", orderState);
-            }else if(orderState.includes("Syntax Error")) {
-                displayState("Syntax Error", "failed", "PHP Error", orderState);
-            }
-
+            document.querySelector("#order-input").value = result + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§" + "tablenr:" + document.querySelector('#table-number').value;
+            menuForm.submit();
             
+            /* Old GET version to place orders, changed to POST for easier use
+            
+            redirectLink = window.location.href;
+            params.set("order", result);
+            if(window.location.href.includes("index.php")){
+                redirectLink = redirectLink.split("index.php")[0] + "_foodHelper.php";
+            }else{
+                redirectLink += "_foodHelper.php";
+            }
+            if(string == ""){
+                window.location.href = redirectLink + "?" + params.toString() + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§" + "tablenr:" + document.querySelector('#table-number').value;
+            }else{
+                window.location.href = redirectLink.split("?")[0] + "?" + params.toString() + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§" + "tablenr:" + document.querySelector('#table-number').value;
+            }
+
+             Attempted to use POST (without using a form) instead of GET to place orders but couldn't get it to work
+            
+            fetch(window.location.href.replace("index.php","_foodHelper.php"), {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({order: result})
+            })
+            for(let item in foodCopy) {
+                foodCopy[item].Amount = 0;
+                document.querySelectorAll("." + item + "-counter")[0].innerHTML = "0 st";
+            }
+            document.querySelector('#price-display').innerHTML = "Price: 0kr";
+            document.querySelector('#table-number').value = "";
+            */
         }else{
             alert("You have no items in your cart!");
         }
-    // If ordercode is invalid, display that on screen aswell as the error message
-    }else if(response[0] == "FAILED"){
-        displayState("Beställnings information:", "failed", "Beställning misslyckad, ange en giltig beställnings kod", response[1]);
-    }else if(response[0] == "Warning"){
-        displayState("Varning", "failed", "PHP Error", response[1]);
-    }else if(response[0] == "Fatal error") {
-        displayState("Varning", "failed", "PHP Erorr",response[1]);
+    }else{
+        alert(`Please enter a valid table number (${tableNumbers[0]}-${tableNumbers[1]})`);
     }
 }
 
 //Open up the menu content and close the book content
 menuButton.addEventListener('mousedown', () => {
-    // if the menu content is open, close it, else open it
     if(content[0].style.scale == 1) {
         content[0].style.scale = 0;
         content[0].style.zIndex = 0;
@@ -225,7 +167,6 @@ menuButton.addEventListener('mousedown', () => {
         bookLabel.style.position = "relative";
     }
 
-    // Close the book content and button
     bookButton.style.right = '-1vw';
     bookButton.style.zIndex = 0;
     content[1].style.zIndex = 0;
@@ -234,7 +175,6 @@ menuButton.addEventListener('mousedown', () => {
 
 //Open up the book content and close the menu content
 bookButton.addEventListener('mousedown', () => {
-    // if the book content is open, close it, else open it
     if(content[1].style.scale == 1) {
         content[1].style.scale = 0;
         content[1].style.zIndex = 0;
@@ -251,7 +191,6 @@ bookButton.addEventListener('mousedown', () => {
         menuLabel.style.position = "relative";
     }
 
-    // Close the menu content and button
     menuButton.style.right = '-1vw';
     menuButton.style.zIndex = 0;
     content[0].style.zIndex = 0;
@@ -260,7 +199,6 @@ bookButton.addEventListener('mousedown', () => {
 
 // Function to display the correct content when a sidebar button is pressed
 function foodContentDisplay(flex){
-    // Set all content to display none, later add display flex to target content
     hamburgerContent.style.display = "none";
     meatContent.style.display = "none";
     saladContent.style.display = "none";
@@ -268,7 +206,7 @@ function foodContentDisplay(flex){
     desertContent.style.display = "none";
     cartContent.style.display = "none";
 
-    // Remove selected-menu-category from all buttons and add it to the one that was pressed, also set the display to flex for the correct content and also add a class to the content button
+    // Remove selected-menu-category from all buttons and add it to the one that was pressed, also set the display to flex for the correct content
     hamburgerButton.classList.remove("selected-menu-category")
     meatButton.classList.remove("selected-menu-category")
     saladButton.classList.remove("selected-menu-category")

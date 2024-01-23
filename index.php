@@ -81,12 +81,14 @@ $keeptab2 = "KeepTab:cb2:";
                                 }
                                 if (isset($_GET["ret-msg"]) && !empty($_GET["ret-msg"])) {
                                     $retmsg = str_replace($keeptab2,"",$_GET["ret-msg"]);
-                                    if (str_contains($retmsg,"failed") || str_contains($retmsg,"Failed")) {
-                                        echo '<p id="ret-msg" class="book-tab-ret-msg ret-msg-failed">' . $retmsg . '</p>';
-                                    } elseif (str_contains($retmsg,'Please') || str_contains($retmsg,'please') || str_contains($retmsg,'Warning: ')) {
-                                        echo '<p id="ret-msg" class="book-tab-ret-msg ret-msg-warning">' . $retmsg . '</p>';
-                                    } else {
-                                        echo '<p id="ret-msg" class="book-tab-ret-msg ret-msg-success">' . $retmsg . '</p>';
+                                    if(str_contains($_GET["ret-msg"],$keeptab2)) {
+                                        if (str_contains($retmsg,"failed") || str_contains($retmsg,"Failed")) {
+                                            echo '<p id="ret-msg" class="book-tab-ret-msg ret-msg-failed">' . $retmsg . '</p>';
+                                        } elseif (str_contains($retmsg,'Please') || str_contains($retmsg,'please') || str_contains($retmsg,'Warning: ')) {
+                                            echo '<p id="ret-msg" class="book-tab-ret-msg ret-msg-warning">' . $retmsg . '</p>';
+                                        } else {
+                                            echo '<p id="ret-msg" class="book-tab-ret-msg ret-msg-success">' . $retmsg . '</p>';
+                                        }
                                     }
                                 }
                                 ?>
@@ -133,9 +135,9 @@ $keeptab2 = "KeepTab:cb2:";
                     </div>
                     <div id="menu-order-bottom">
                         <div id="menu-order-main">
-                            <p id="price-display">Pris: 0kr</p>
-                            <input type="number" id="order-code" placeholder="Beställnings Kod" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'">
-                            <button id="order-button" onclick="order()">Beställ</button>
+                            <p id="price-display">Price: 0kr</p>
+                            <input type="number" id="table-number" placeholder="Table Number">
+                            <button id="order-button" onclick="order()">Order</button>
                         </div>
                         <?php
                             if (isset($_GET["ret-msg"]) && !empty($_GET["ret-msg"])) {

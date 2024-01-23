@@ -58,12 +58,12 @@
 
     --menu-price-font-size: 40px;
 
-    --menu-ordercode-width: 30%;
-    --menu-ordercode-color: rgb(211, 211, 211);;
-    --menu-ordercode-bgcolor: #333333;
-    --menu-ordercode-margin-h: 1.9vh;
-    --menu-ordercode-margin-w: 1vw;
-    --menu-ordercode-fontsize: 20px;
+    --menu-tablenr-width: 30%;
+    --menu-tablenr-color: rgb(211, 211, 211);;
+    --menu-tablenr-bgcolor: #333333;
+    --menu-tablenr-margin-h: 1.9vh;
+    --menu-tablenr-margin-w: 1vw;
+    --menu-tablenr-fontsize: 20px;
 
     --menu-orderbtn-width: 30%;
     --menu-orderbtn-color: rgb(211, 211, 211);
@@ -333,29 +333,17 @@ main {
     text-align: center;
     color: var(--menu-general-text-color);
 }
-#order-code {
-    width: var(--menu-ordercode-width);
-    color: var(--menu-ordercode-color);
-    background-color: var(--menu-ordercode-bgcolor);
+#table-number {
+    width: var(--menu-tablenr-width);
+    color: var(--menu-tablenr-color);
+    background-color: var(--menu-tablenr-bgcolor);
     text-align: center;
-    margin-top: var(--menu-ordercode-margin-h);
-    margin-bottom: var(--menu-ordercode-margin-h);
-    margin-left: var(--menu-ordercode-margin-w);
-    margin-right: var(--menu-ordercode-margin-w);
-    font-size: var(--menu-ordercode-fontsize);
+    margin-top: var(--menu-tablenr-margin-h);
+    margin-bottom: var(--menu-tablenr-margin-h);
+    margin-left: var(--menu-tablenr-margin-w);
+    margin-right: var(--menu-tablenr-margin-w);
+    font-size: var(--menu-tablenr-fontsize);
 }
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-}
-
-input[type=number] {
-    appearance: textfield;
-    -moz-appearance: textfield;
-}
-
 #order-button {
     width: var(--menu-orderbtn-width);
     color: var(--menu-orderbtn-color);

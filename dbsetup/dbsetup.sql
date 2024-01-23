@@ -5,7 +5,6 @@ USE megacbur;
 CREATE TABLE tb_orders (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     `TableNr` varchar(45),
-    OrderCode varchar(45),
     FullName varchar(255),
     Telephone varchar(30),
     Email varchar(255),

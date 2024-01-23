@@ -1,1 +1,1 @@
-Food.js contains all food items with names and pictures aswell as price (very important)
+Food.js contains al food items with names and pictures aswell as price

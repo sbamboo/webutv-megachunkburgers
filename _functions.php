@@ -103,22 +103,8 @@ function addTbOrder(array $sqlargs, array $retargs, int $tableNr, string $fullNa
         toLanding($retargs,"KeepTab:cb2:Failed to connect to SQL database (" . $mysqli->connect_error . ")");
     }
 
-    $sqlcmd = "SELECT * FROM " . $sql_table . ' WHERE OrderCode=?';
-    while(true){
-        $ordercode = random_int(100000,999999);
-        $prepped_statement = $mysqli->prepare($sqlcmd);
-        $prepped_statement->bind_param("s", $ordercode);
-        $prepped_statement->execute();
-        $result = $prepped_statement->get_result();
-        $result = $result->fetch_assoc();
-        $prepped_statement->close();
-        if(empty($result)){
-            break;
-        }
-    }
-
     // Here we now use ? as a placeholder for our later values
-    $sqlcmd = "INSERT INTO " . $sql_table . " (TableNr, OrderCode, FullName, Telephone, Email, Time, Details) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $sqlcmd = "INSERT INTO " . $sql_table . " (TableNr, FullName, Telephone, Email, Time, Details) VALUES (?, ?, ?, ?, ?, ?)";
 
     // We also create a stmt (statement) and use the mysqli.prepare method on it to load it as a prepared-statement
     $prepped_statement = $mysqli->prepare($sqlcmd);
@@ -126,7 +112,7 @@ function addTbOrder(array $sqlargs, array $retargs, int $tableNr, string $fullNa
     // We use bind_param to bind our placeholders with their wanted values making sure to use the correct data type:
     // s: String
     // This effectively says to php/sql that the content must be string, making injection less likely.
-    $prepped_statement->bind_param("sssssss", $tableNr, $ordercode, $fullName, $telephone, $email, $time, $details);
+    $prepped_statement->bind_param("ssssss", $tableNr, $fullName, $telephone, $email, $time, $details);
 
     // Execute the prepared statement (Same as our query)
     $prepped_statement->execute();
@@ -140,7 +126,7 @@ function addTbOrder(array $sqlargs, array $retargs, int $tableNr, string $fullNa
 
     // Return
     //return array(TRUE,"",array());
-    toLanding($retargs,"KeepTab:cb2:Bokning genomförd! <br> Beställningskoden är: " . $ordercode . "<br> Please save this code for later use! <br> Beställningskoden har även skickats via sms");
+    toLanding($retargs,"KeepTab:cb2:Order successfully placed!");
 }
 
 // Function to validate login-details (username and password) to check if they match a database
@@ -348,63 +334,15 @@ function parseOrderStr(string $unparsed) {
     }
     // Make it to a amount-assoicated array
     $amntFoods = array_count_values($foods);
-    return array($amntFoods,$price,trim($tableNr,'"}'));
-}
-
-function checkOrderCode(string $ordercode, array $sqlargs) {
-    // Basic validation of inputted values
-    if (strlen($ordercode) != 6) {
-        return "FAILED: Order placement failed! (Invalid order code length)";
-    }
-
-    // Extracting values from the arg array
-    list($sql_host, $sql_uname, $sql_password, $sql_database, $sql_table) = $sqlargs;
-
-    // Connect to SQL server UTF8
-    try {
-        $mysqli = new mysqli($sql_host, $sql_uname, $sql_password, $sql_database);
-        $mysqli->set_charset("utf8");
-    } catch (Exception $e) {
-        // Handle exceptions and return message
-        return array(False,"Failed to connect to SQL database (" . $e->getMessage() . ")",array());
-    }
-
-    // Verify connection to database
-    if ($mysqli->connect_error) {
-        return array(False,"Failed to connect to SQL database (" . $mysqli->connect_error . ")",array());
-    }
-
-    // We also create a stmt (statement) and use the mysqli.prepare method on it to load it as a prepared-statement
-    $prepped_statement = $mysqli->prepare("SELECT TableNr FROM " . $sql_table . " WHERE OrderCode=?");
-
-    // We use bind_param to bind our placeholders with their wanted values making sure to use the correct data type:
-    // s: String
-    // This effectively says to php/sql that the content must be string, making injection less likely.
-    $prepped_statement->bind_param("s", $ordercode);
-
-    // Execute the prepared statement (Same as our query)
-    $prepped_statement->execute();
-
-    // Get result
-    $result = $prepped_statement->get_result();
-
-    $result = $result->fetch_assoc();
-    // Close the statement connection since we don't need this connection to our SQL database.
-    $prepped_statement->close();
-
-    if(!empty($result["TableNr"])) {
-        return "SUCCESS:" . $result["TableNr"];
-    } else {
-        return "FAILED: Order code " . $ordercode . " dosen't match any order in the database";
-    }
+    return array($amntFoods,$price,$tableNr);
 }
 
 // Function to save a given food-order to SQL
-function saveFoodOrder(array $sqlargs, string $foods, string $price, string $tableNr) {
+function saveFoodOrder(array $sqlargs, array $retargs, array $amntFoods, string $price, string $tableNr) {
     // Basic validation of inputted values
-    if (empty($foods) || empty($price) || empty($tableNr)) {
+    if (empty($amntFoods) || empty($price) || empty($tableNr)) {
         //return array(False,"Order placement failed! (Empty form input)",array());
-        return "FAILED:Order placement failed! (Empty form input)";
+        toLanding2($retargs,"KeepTab:cb1:Order placement failed! (Empty form input)");
     }
 
     // Extracting values from the arg array
@@ -416,14 +354,21 @@ function saveFoodOrder(array $sqlargs, string $foods, string $price, string $tab
         $mysqli->set_charset("utf8");
     } catch (Exception $e) {
         // Handle exceptions and return message
-        return "FAILED:Failed to connect to SQL database (" . $e->getMessage() . ")";
+        toLanding($retargs,"KeepTab:cb1:Failed to connect to SQL database (" . $e->getMessage() . ")");
     }
 
     // Verify connection to database
     if ($mysqli->connect_error) {
-        return "FAILED:Failed to connect to SQL database (" . $mysqli->connect_error . ")";
+        toLanding2($retargs,"KeepTab:cb1:Failed to connect to SQL database (" . $mysqli->connect_error . ")");
     }
     
+    // Parse foods into string
+    $foods = '';
+    foreach ($amntFoods as $key => $value) {
+        $foods .= $key . ':' . $value . ',';
+    }
+    $foods = rtrim($foods, ',');
+
     // Generate timestamp
     $timestamp = time(); // Get the current timestamp
 
@@ -448,7 +393,7 @@ function saveFoodOrder(array $sqlargs, string $foods, string $price, string $tab
     $prepped_statement->close();
 
     // Return
-    return "SUCCESS:Order successfully placed at table number " . $tableNr . "!";
+    toLanding2($retargs,"KeepTab:cb1:Order successfully placed!");
 }
 
 // Function to clear the orders in the SQL-order database with a given id
