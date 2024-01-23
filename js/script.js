@@ -41,6 +41,30 @@ const menuForm = document.querySelector('#menu-form');
 
 let foodCopy = food;
 
+// Checks for KeepTab:cb<id> in url and if it is there, it will keep the tab open
+let url = new URL(window.location.href);
+let params = new URLSearchParams(url.search);
+const string = params.get("ret-msg") || "";
+if(string.includes("KeepTab:cb2")) {
+    console.log(string.split(":")[2]);
+    content[0].style.scale = 1;
+    content[0].style.zIndex = 1;
+    menuButton.style.right = '0vw';
+    menuButton.style.zIndex = 1;
+    bookButton.style.zIndex = 0;
+    content[1].style.zIndex = 0;
+    content[1].style.scale = 0;
+}
+if(string.includes("KeepTab:cb1")) {
+    content[1].style.scale = 1;
+    content[1].style.zIndex = 1;
+    bookButton.style.right = '0vw';
+    bookButton.style.zIndex = 1;
+    menuButton.style.zIndex = 0;
+    content[0].style.zIndex = 0;
+    content[0].style.scale = 0;
+}
+
 // Add a variable called "Amount" to every item in foodCopy
 for (let item in foodCopy) {
     foodCopy[item].Amount = 0;
@@ -68,9 +92,9 @@ function changeAmount(item, displayName, increment) {
     }
 
     if(parseFloat(priceDisplay.innerHTML.split(": ")[1].replace("kr","")) + foodCopy[item].price * increment <= 0) {
-        priceDisplay.innerHTML = `Price: 0kr`;
+        priceDisplay.innerHTML = `Pris: 0kr`;
     }else {
-        priceDisplay.innerHTML = `Price: ${parseFloat(priceDisplay.innerHTML.split(": ")[1].replace("kr","")) + foodCopy[item].price * increment}kr`;
+        priceDisplay.innerHTML = `Pris: ${parseFloat(priceDisplay.innerHTML.split(": ")[1].replace("kr","")) + foodCopy[item].price * increment}kr`;
     }
 }
 
@@ -96,7 +120,7 @@ async function fetchData(fetchUrl, objectToSend) {
 }
 
 function displayState(status, state, message, error) {
-    document.querySelector("#menu-order-bottom").innerHTML = `<div id="menu-order-main"><p id="price-display">Price: ${document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","")}kr</p><input type="number" id="order-code" placeholder="Order Code" value="${document.querySelector('#order-code').value}" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"><button id="order-button" onclick="order()">Order</button></div><div id="menu-ret-msg"><p id="ret-msg-p">${status}</p><p id="ret-msg-m" class="menu-tab-ret-msg ret-msg-${state}"> ${message} </p></div>`;
+    document.querySelector("#menu-order-bottom").innerHTML = `<div id="menu-order-main"><p id="price-display">Pris: ${document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","")}kr</p><input type="number" id="order-code" placeholder="Beställnings Kod" value="${document.querySelector('#order-code').value}" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"><button id="order-button" onclick="order()">Beställ</button></div><div id="menu-ret-msg"><p id="ret-msg-p">${status}</p><p id="ret-msg-m" class="menu-tab-ret-msg ret-msg-${state}"> ${message} </p></div>`;
     console.log(error);
 }
 
@@ -143,7 +167,6 @@ async function order() {
             }
             let orderState = "";
             orderState = await fetchData(fetchUrl, {order: result + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§tablenr:" + tablenr});
-            console.log(result + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§tablenr:" + tablenr);
 
             // Splits response into status and message
             console.log(orderState);
@@ -154,17 +177,17 @@ async function order() {
                     foodCopy[item].Amount = 0;
                     document.querySelectorAll("." + item + "-counter")[0].innerHTML = "0 st";
                 }
-                document.querySelector('#price-display').innerHTML = "Price: 0kr";
+                document.querySelector('#price-display').innerHTML = "Pris: 0kr";
                 document.querySelector('#order-code').value = "";
 
                 // Displayts the order info and also the message
-                displayState("Order info:", "success", "Order successfully placed at table " + tablenr, orderState);
+                displayState("Beställnings information:", "success", "Beställning placerad till bord " + tablenr, orderState);
             }else if(orderState.includes("FAILED")){
-                displayState("Order info:", "failed", "Order failed", orderState);
+                displayState("Beställnings information:", "failed", "Beställning misslyckad, vänligen kontakta personal", orderState);
             }else if(orderState.includes("Warning")){
-                displayState("Warning", "failed", "PHP Error", orderState);
+                displayState("Varning", "failed", "PHP Error", orderState);
             }else if(orderState.includes("Fatal Error")) {
-                displayState("Warning", "failed", "PHP Erorr", orderState);
+                displayState("Varning", "failed", "PHP Erorr", orderState);
             }else if(orderState.includes("Syntax Error")) {
                 displayState("Syntax Error", "failed", "PHP Error", orderState);
             }
@@ -175,11 +198,11 @@ async function order() {
         }
     // If ordercode is invalid, display that on screen aswell as the error message
     }else if(response[0] == "FAILED"){
-        displayState("Order info:", "failed", "Order failed", response[1]);
+        displayState("Beställnings information:", "failed", "Beställning misslyckad, ange en giltig beställnings kod", response[1]);
     }else if(response[0] == "Warning"){
-        displayState("Warning", "failed", "PHP Error", response[1]);
+        displayState("Varning", "failed", "PHP Error", response[1]);
     }else if(response[0] == "Fatal error") {
-        displayState("Warning", "failed", "PHP Erorr",response[1]);
+        displayState("Varning", "failed", "PHP Erorr",response[1]);
     }
 }
 

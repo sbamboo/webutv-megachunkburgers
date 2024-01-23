@@ -140,7 +140,7 @@ function addTbOrder(array $sqlargs, array $retargs, int $tableNr, string $fullNa
 
     // Return
     //return array(TRUE,"",array());
-    toLanding($retargs,"KeepTab:cb2:Order successfully placed!");
+    toLanding($retargs,"KeepTab:cb2:Bokning genomförd! <br> Beställningskoden är: " . $ordercode . "<br> Please save this code for later use! <br> Beställningskoden har även skickats via sms");
 }
 
 // Function to validate login-details (username and password) to check if they match a database
@@ -402,7 +402,6 @@ function checkOrderCode(string $ordercode, array $sqlargs) {
 // Function to save a given food-order to SQL
 function saveFoodOrder(array $sqlargs, string $foods, string $price, string $tableNr) {
     // Basic validation of inputted values
-    trigger_error("FAILED: bad use", E_USER_ERROR);
     if (empty($foods) || empty($price) || empty($tableNr)) {
         //return array(False,"Order placement failed! (Empty form input)",array());
         return "FAILED:Order placement failed! (Empty form input)";

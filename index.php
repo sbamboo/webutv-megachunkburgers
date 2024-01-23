@@ -133,9 +133,9 @@ $keeptab2 = "KeepTab:cb2:";
                     </div>
                     <div id="menu-order-bottom">
                         <div id="menu-order-main">
-                            <p id="price-display">Price: 0kr</p>
-                            <input type="number" id="order-code" placeholder="Order Code" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'">
-                            <button id="order-button" onclick="order()">Order</button>
+                            <p id="price-display">Pris: 0kr</p>
+                            <input type="number" id="order-code" placeholder="Beställnings Kod" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'">
+                            <button id="order-button" onclick="order()">Beställ</button>
                         </div>
                         <?php
                             if (isset($_GET["ret-msg"]) && !empty($_GET["ret-msg"])) {
