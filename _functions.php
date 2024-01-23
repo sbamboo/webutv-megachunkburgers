@@ -400,9 +400,10 @@ function checkOrderCode(string $ordercode, array $sqlargs) {
 }
 
 // Function to save a given food-order to SQL
-function saveFoodOrder(array $sqlargs, array $amntFoods, string $price, string $tableNr) {
+function saveFoodOrder(array $sqlargs, string $foods, string $price, string $tableNr) {
     // Basic validation of inputted values
-    if (empty($amntFoods) || empty($price) || empty($tableNr)) {
+    trigger_error("FAILED: bad use", E_USER_ERROR);
+    if (empty($foods) || empty($price) || empty($tableNr)) {
         //return array(False,"Order placement failed! (Empty form input)",array());
         return "FAILED:Order placement failed! (Empty form input)";
     }
@@ -424,13 +425,6 @@ function saveFoodOrder(array $sqlargs, array $amntFoods, string $price, string $
         return "FAILED:Failed to connect to SQL database (" . $mysqli->connect_error . ")";
     }
     
-    // Parse foods into string
-    $foods = '';
-    foreach ($amntFoods as $key => $value) {
-        $foods .= $key . ':' . $value . ',';
-    }
-    $foods = rtrim($foods, ',');
-
     // Generate timestamp
     $timestamp = time(); // Get the current timestamp
 

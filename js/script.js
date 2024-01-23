@@ -95,9 +95,9 @@ async function fetchData(fetchUrl, objectToSend) {
     }
 }
 
-function displayState(status, state, message) {
+function displayState(status, state, message, error) {
     document.querySelector("#menu-order-bottom").innerHTML = `<div id="menu-order-main"><p id="price-display">Price: ${document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","")}kr</p><input type="number" id="order-code" placeholder="Order Code" value="${document.querySelector('#order-code').value}" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"><button id="order-button" onclick="order()">Order</button></div><div id="menu-ret-msg"><p id="ret-msg-p">${status}</p><p id="ret-msg-m" class="menu-tab-ret-msg ret-msg-${state}"> ${message} </p></div>`;
-    console.log(message);
+    console.log(error);
 }
 
 // When order is ready and shipped, convert items into string and send that to _foodHelper using POST to be handled and put into database
@@ -107,7 +107,7 @@ async function order() {
     let response = "";
     var fetchUrl = window.location.origin + window.location.pathname;
     if(window.location.href.includes("index.php")){
-        fetchUrl = redirectLink.split("index.php")[0] + "_checkOrderNumber.php?ordercode=";
+        fetchUrl = fetchUrl.split("index.php")[0] + "_checkOrderNumber.php?ordercode=";
     }else{
         fetchUrl += "_checkOrderNumber.php?ordercode=";
     }
@@ -128,27 +128,27 @@ async function order() {
         let result = "";
         for(let item in foodCopy) {
             for(let i = 0; i < foodCopy[item].Amount; i++) {
-                result += foodCopy[item].name + "§";
+                result += foodCopy[item].name.replace(" ","_") + "§";
             }
         }
 
         // Checks if cart isn't empty
         if(result.length > 0) {
             // Building URL and sending a POST request 
-            fetchUrl = window.location.origin + window.location.pathname;
+            let fetchUrl = window.location.origin + window.location.pathname;
             if(window.location.href.includes("index.php")){
-                fetchUrl = fetchurl.split("index.php")[0] + "_foodHelper.php";
+                fetchUrl = fetchUrl.split("index.php")[0] + "_foodHelper.php";
             }else{
                 fetchUrl += "_foodHelper.php";
             }
             let orderState = "";
             orderState = await fetchData(fetchUrl, {order: result + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§tablenr:" + tablenr});
+            console.log(result + "price:" + document.querySelector('#price-display').innerHTML.split(": ")[1].replace("kr","") + "§tablenr:" + tablenr);
 
             // Splits response into status and message
-            orderState = orderState.split(/:(.*)/s) // only splits on first occurence of : to allow for : in message
             console.log(orderState);
             // Checks response from _foodHelper and displays correct info on screen
-            if(orderState[0] == "SUCCESS") {
+            if(orderState.includes("SUCCESS")) {
                 console.log("order passed");
                 for(let item in foodCopy) {
                     foodCopy[item].Amount = 0;
@@ -158,13 +158,15 @@ async function order() {
                 document.querySelector('#order-code').value = "";
 
                 // Displayts the order info and also the message
-                displayState("Order info:", "success", orderState[1]);
-            }else if(orderState[0] == "FAILED"){
-                displayState("Order info:", "failed", orderState[1]);
-            }else if(orderState[0] == "Warning"){
-                displayState("Warning", "failed", orderState[1]);
-            }else if(orderState[0] == "Fatal error") {
-                displayState("Warning", "failed", orderState[1]);
+                displayState("Order info:", "success", "Order successfully placed at table " + tablenr, orderState);
+            }else if(orderState.includes("FAILED")){
+                displayState("Order info:", "failed", "Order failed", orderState);
+            }else if(orderState.includes("Warning")){
+                displayState("Warning", "failed", "PHP Error", orderState);
+            }else if(orderState.includes("Fatal Error")) {
+                displayState("Warning", "failed", "PHP Erorr", orderState);
+            }else if(orderState.includes("Syntax Error")) {
+                displayState("Syntax Error", "failed", "PHP Error", orderState);
             }
 
             
@@ -173,11 +175,11 @@ async function order() {
         }
     // If ordercode is invalid, display that on screen aswell as the error message
     }else if(response[0] == "FAILED"){
-        displayState("Order info:", "failed", response[1]);
+        displayState("Order info:", "failed", "Order failed", response[1]);
     }else if(response[0] == "Warning"){
-        displayState("Warning", "failed", response[1]);
+        displayState("Warning", "failed", "PHP Error", response[1]);
     }else if(response[0] == "Fatal error") {
-        displayState("Warning", "failed", response[1]);
+        displayState("Warning", "failed", "PHP Erorr",response[1]);
     }
 }
 
